@@ -1,0 +1,62 @@
+import { site } from "@/data/site";
+import { village } from "@/data/village";
+import { SuggestionForm } from "./SuggestionForm";
+
+export function Footer() {
+  return (
+    <footer id="kontakt" className="mt-auto bg-graphite text-zinc-300">
+      <div className="mx-auto max-w-6xl px-4 py-16">
+        <div className="grid gap-12 lg:grid-cols-2">
+          {/* Suggestion form */}
+          <div>
+            <h2 className="text-2xl font-bold text-white">
+              Masz pomysł na rozwój strony?
+            </h2>
+            <p className="mt-2 max-w-md text-zinc-400">
+              Napisz do nas — czytamy wszystkie zgłoszenia i wspólnie rozwijamy
+              tę stronę.
+            </p>
+            <div className="mt-6 max-w-md">
+              <SuggestionForm />
+            </div>
+          </div>
+
+          {/* About */}
+          <div className="lg:pl-10">
+            <p className="font-mono text-lg font-bold text-brand-200">
+              [{site.name.toUpperCase()}]
+            </p>
+            <p className="mt-3 max-w-md text-zinc-400">
+              Oficjalna strona mieszkańców wsi {village.name}. {village.region}.
+              Tworzona społecznie, dla naszej lokalnej społeczności.
+            </p>
+            <a
+              href={site.buyMeACoffeeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-6 inline-flex items-center gap-2 rounded-lg border border-amber-300/60 bg-amber-400/10 px-4 py-2.5 font-medium text-amber-200 transition hover:bg-amber-400/20"
+            >
+              Buy me a coffee ☕
+            </a>
+          </div>
+        </div>
+
+        <div className="mt-12 border-t border-white/10 pt-6 text-sm text-zinc-500">
+          <p>
+            © {village.populationYear} Oficjalna Strona Mieszkańców. Strona
+            stworzona społecznie. Wspieraj projekt przez{" "}
+            <a
+              href={site.buyMeACoffeeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-amber-300 hover:underline"
+            >
+              Buy me a coffee ☕
+            </a>
+            .
+          </p>
+        </div>
+      </div>
+    </footer>
+  );
+}

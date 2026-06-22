@@ -1,0 +1,71 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-geist-mono);
+
+  /* Brand — Izabelin / village green */
+  --color-brand-50: #f0fdf4;
+  --color-brand-100: #dcfce7;
+  --color-brand-200: #bbf7d0;
+  --color-brand-500: #22c55e;
+  --color-brand-600: #16a34a;
+  --color-brand-700: #15803d;
+  --color-brand-800: #166534;
+  --color-brand-900: #14532d;
+
+  /* "Strefa 6SP" — dark / industrial / Chernobyl palette */
+  --color-graphite: #121417;
+  --color-graphite-800: #181b20;
+  --color-graphite-700: #20242b;
+  --color-graphite-600: #2a2f38;
+  --color-toxic: #c4dd00; /* toxic yellow-green */
+  --color-toxic-bright: #e4ff1a;
+  --color-blood: #d11f2a;
+  --color-blood-dark: #8c1119;
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #0f172a;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Keep sticky-header-anchored sections from hiding under the header */
+section[id],
+div[id] {
+  scroll-margin-top: 5rem;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+/* Subtle drifting smog used by the Strefa 6SP section */
+@keyframes smog-drift {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1.1);
+    opacity: 0.35;
+  }
+  50% {
+    transform: translate3d(-3%, -1.5%, 0) scale(1.2);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(1.1);
+    opacity: 0.35;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .smog-layer {
+    animation: none !important;
+  }
+}
