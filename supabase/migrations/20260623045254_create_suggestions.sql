@@ -1,5 +1,5 @@
--- Database schema for the suggestion form.
--- Run in Supabase: SQL Editor -> New query -> paste -> Run.
+-- Suggestion form: table + insert-only RLS for the public (anon) role.
+-- Mirrors supabase/schema.sql (kept for running manually in the cloud SQL editor).
 
 create table if not exists public.suggestions (
   id         uuid primary key default gen_random_uuid(),
@@ -17,7 +17,6 @@ grant all on public.suggestions to service_role;
 
 -- Allow anonymous users to INSERT only.
 -- No SELECT policy => the public cannot read submissions.
--- You read them in the Supabase dashboard (Table editor).
 drop policy if exists "anon insert suggestions" on public.suggestions;
 create policy "anon insert suggestions"
   on public.suggestions
