@@ -5,6 +5,7 @@ import { VillageStats } from "@/components/VillageStats";
 import { CalendarBoard } from "@/components/CalendarBoard";
 import { Investments } from "@/components/Investments";
 import { Transport } from "@/components/Transport";
+import { Waste } from "@/components/Waste";
 import { Contacts } from "@/components/Contacts";
 import { Footer } from "@/components/Footer";
 
@@ -19,6 +20,7 @@ export default function Home() {
         <CalendarBoard />
         <Investments />
         <Transport />
+        <Waste />
         <Contacts />
       </main>
       <Footer />

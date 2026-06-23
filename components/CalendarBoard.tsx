@@ -1,7 +1,8 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { calendarEvents } from "@/data/calendar";
+import { wasteCalendarEvents } from "@/data/waste";
 import { notices } from "@/data/notices";
 import { formatDayMonthPL, formatShortDatePL } from "@/lib/format";
 import { SectionHeading } from "./ui/SectionHeading";
@@ -14,13 +15,22 @@ const VIEWS: { id: View; label: string }[] = [
   { id: "year", label: "Rok" },
 ];
 
-const sortedEvents = [...calendarEvents].sort((a, b) =>
+// Wydarzenia wsi + terminy wywozu odpadów (harmonogram z data/waste.ts).
+const sortedEvents = [...calendarEvents, ...wasteCalendarEvents].sort((a, b) =>
   a.date.localeCompare(b.date),
 );
-// Anchor = earliest event (deterministic, avoids depending on "today").
-const anchorDate = sortedEvents[0]?.date ?? "2026-01-01";
+// Fallback dla pierwszego (serwerowego) renderu; po zamontowaniu używamy
+// realnego „dziś", aby domyślny widok pokazywał bieżący okres.
+const fallbackAnchor = sortedEvents[0]?.date ?? "2026-01-01";
 
-function isInView(eventDate: string, view: View): boolean {
+function todayISO(): string {
+  const d = new Date();
+  const m = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, "0");
+  return `${d.getFullYear()}-${m}-${day}`;
+}
+
+function isInView(eventDate: string, view: View, anchorDate: string): boolean {
   const event = new Date(`${eventDate}T00:00:00`);
   const anchor = new Date(`${anchorDate}T00:00:00`);
   if (view === "year") return event.getFullYear() === anchor.getFullYear();
@@ -39,10 +49,14 @@ function dayNumber(iso: string): string {
 
 export function CalendarBoard() {
   const [view, setView] = useState<View>("month");
+  const [today, setToday] = useState<string | null>(null);
+  useEffect(() => setToday(todayISO()), []);
+
+  const anchorDate = today ?? fallbackAnchor;
 
   const visible = useMemo(
-    () => sortedEvents.filter((e) => isInView(e.date, view)),
-    [view],
+    () => sortedEvents.filter((e) => isInView(e.date, view, anchorDate)),
+    [view, anchorDate],
   );
 
   return (

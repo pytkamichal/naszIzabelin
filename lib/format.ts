@@ -17,6 +17,8 @@ const dayMonth = new Intl.DateTimeFormat("pl-PL", {
   month: "long",
 });
 
+const weekday = new Intl.DateTimeFormat("pl-PL", { weekday: "long" });
+
 function parseISO(iso: string): Date {
   // Interpret as local midnight to avoid timezone shifts.
   return new Date(`${iso}T00:00:00`);
@@ -38,4 +40,8 @@ export function formatShortDatePL(iso: string): string {
 
 export function formatDayMonthPL(iso: string): string {
   return dayMonth.format(parseISO(iso));
+}
+
+export function formatWeekdayPL(iso: string): string {
+  return weekday.format(parseISO(iso));
 }

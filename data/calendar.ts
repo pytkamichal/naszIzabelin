@@ -15,11 +15,6 @@ export const calendarEvents: CalendarEvent[] = [
     time: "od 16:00",
   },
   {
-    date: "2026-06-24",
-    icon: "🗑️",
-    title: "Wywóz śmieci (zmieszane i plastik)",
-  },
-  {
     date: "2026-06-27",
     icon: "🚪",
     title: "Spotkania w świetlicy – warsztaty dla dzieci",
