@@ -138,9 +138,12 @@ export function CalendarBoard() {
             id="aktualnosci"
             className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm"
           >
-            <h3 className="mb-5 text-lg font-semibold text-slate-900">
+            <h3 className="mb-3 text-lg font-semibold text-slate-900">
               📌 Ogłoszenia
             </h3>
+            <p className="mb-5 rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-800">
+              ⚠️ Treść przykładowa (testowa) — to nie są prawdziwe ogłoszenia.
+            </p>
             <ul className="divide-y divide-slate-100">
               {notices.map((notice) => (
                 <li key={notice.date + notice.text} className="py-3 first:pt-0">

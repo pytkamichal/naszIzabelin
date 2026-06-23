@@ -1,4 +1,6 @@
 // Village calendar events. Date in ISO format (YYYY-MM-DD).
+// Real waste-collection dates are merged in separately (see data/waste.ts),
+// so the calendar is not empty even while this list is.
 
 export type CalendarEvent = {
   date: string;
@@ -7,17 +9,6 @@ export type CalendarEvent = {
   time?: string;
 };
 
-export const calendarEvents: CalendarEvent[] = [
-  {
-    date: "2026-06-22",
-    icon: "🟢",
-    title: "Sprawdzanie liczników wody",
-    time: "od 16:00",
-  },
-  {
-    date: "2026-06-27",
-    icon: "🚪",
-    title: "Spotkania w świetlicy – warsztaty dla dzieci",
-    time: "17:00",
-  },
-];
+// Add real village events here, e.g.:
+//   { date: "2026-07-01", icon: "🎉", title: "Festyn wiejski", time: "15:00" }
+export const calendarEvents: CalendarEvent[] = [];
