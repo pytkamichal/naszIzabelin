@@ -7,6 +7,14 @@ export const site = {
   buyMeACoffeeUrl: "https://www.buymeacoffee.com/",
 };
 
+// Air-quality widget location (Open-Meteo, by coordinates).
+export const air = {
+  locationName: "Jakubów",
+  latitude: 52.2,
+  // TODO: fine-tune the exact coordinates for Jakubów if needed.
+  longitude: 21.79,
+};
+
 export type NavLink = { href: string; label: string };
 
 export const navLinks: NavLink[] = [

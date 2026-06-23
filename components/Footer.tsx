@@ -3,6 +3,8 @@ import { village } from "@/data/village";
 import { SuggestionForm } from "./SuggestionForm";
 
 export function Footer() {
+  const year = new Date().getFullYear();
+
   return (
     <footer id="kontakt" className="mt-auto bg-graphite text-zinc-300">
       <div className="mx-auto max-w-6xl px-4 py-16">
@@ -43,8 +45,8 @@ export function Footer() {
 
         <div className="mt-12 border-t border-white/10 pt-6 text-sm text-zinc-500">
           <p>
-            © {village.populationYear} Oficjalna Strona Mieszkańców. Strona
-            stworzona społecznie. Wspieraj projekt przez{" "}
+            © {year} Michał Pytka. Strona stworzona społecznie dla
+            mieszkańców wsi {village.name}. Wspieraj projekt przez{" "}
             <a
               href={site.buyMeACoffeeUrl}
               target="_blank"

@@ -37,7 +37,7 @@ html {
 /* Keep sticky-header-anchored sections from hiding under the header */
 section[id],
 div[id] {
-  scroll-margin-top: 5rem;
+  scroll-margin-top: 7rem;
 }
 
 body {
