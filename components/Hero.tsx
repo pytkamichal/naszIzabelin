@@ -6,26 +6,32 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative isolate overflow-hidden bg-[#0c1f14]"
+      className="relative isolate min-h-[620px] overflow-hidden bg-[#0c1f14] sm:min-h-[720px]"
     >
       {/* Peaceful field + forest illustration */}
       <FieldForest className="absolute inset-0 h-full w-full" />
 
-      {/* Optional real photo override: drop public/hero.jpg to replace the scene. */}
+      {/* Hero photo (falls back to the illustration above if missing). */}
       <div
         aria-hidden
-        className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: "url('/hero.jpg')" }}
+        className="absolute inset-0 bg-cover"
+        style={{
+          backgroundImage: "url('/hero.jpg')",
+          // Anchor to the bottom so the animals stand fully in frame (no clipped legs).
+          backgroundPosition: "center bottom",
+          // Mirror so the moose sits on the open right side, clear of the text.
+          transform: "scaleX(-1)",
+        }}
       />
 
-      {/* Scrims so white text stays readable over the bright scene */}
+      {/* Scrims so white text stays readable over the bright photo */}
       <div
         aria-hidden
-        className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/35 to-black/10"
+        className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/30 to-black/5"
       />
       <div
         aria-hidden
-        className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/15 to-transparent"
+        className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/25 to-transparent"
       />
 
       <div className="relative mx-auto max-w-6xl px-4 py-28 sm:py-36">
