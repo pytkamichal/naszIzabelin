@@ -5,7 +5,7 @@ import { navLinks, site } from "@/data/site";
 import { protest } from "@/data/protest";
 import { AirQuality } from "./AirQuality";
 import { Weather } from "./Weather";
-import { Icon } from "./ui/Icon";
+import { BuyMeACoffee } from "./ui/BuyMeACoffee";
 
 export function Header() {
   const [open, setOpen] = useState(false);
@@ -20,15 +20,7 @@ export function Header() {
             Oficjalna strona mieszkańców wsi {site.name}
           </span>
           <div className="ml-auto flex items-center gap-2">
-            <a
-              href={site.buyMeACoffeeUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-md border border-amber-300 bg-amber-50 px-2.5 py-1 text-xs font-medium text-amber-900 transition hover:bg-amber-100"
-            >
-              <Icon name="coffee" className="h-3.5 w-3.5" />
-              Buy me a coffee
-            </a>
+            <BuyMeACoffee size="sm" />
             <Weather />
             <AirQuality />
           </div>

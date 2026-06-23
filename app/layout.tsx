@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Lora, Geist_Mono } from "next/font/google";
+import { Inter, Lora, Geist_Mono, Cookie } from "next/font/google";
 import "./globals.css";
 import { village } from "@/data/village";
 
@@ -19,6 +19,14 @@ const lora = Lora({
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+// Cursive face used only for the "Buy me a coffee" button lettering.
+const cookie = Cookie({
+  weight: "400",
+  variable: "--font-cookie",
   subsets: ["latin"],
   display: "swap",
 });
@@ -56,7 +64,7 @@ export default function RootLayout({
   return (
     <html
       lang="pl"
-      className={`${inter.variable} ${lora.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${inter.variable} ${lora.variable} ${geistMono.variable} ${cookie.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-canvas font-sans text-slate-900">
         {children}
