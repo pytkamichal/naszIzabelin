@@ -2,6 +2,8 @@ import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { Alert6SP } from "@/components/Alert6SP";
 import { VillageStats } from "@/components/VillageStats";
+import { VillageHistory } from "@/components/VillageHistory";
+import { Places } from "@/components/Places";
 import { CalendarBoard } from "@/components/CalendarBoard";
 import { Investments } from "@/components/Investments";
 import { Transport } from "@/components/Transport";
@@ -17,6 +19,8 @@ export default function Home() {
         <Hero />
         <Alert6SP />
         <VillageStats />
+        <VillageHistory />
+        <Places />
         <CalendarBoard />
         <Investments />
         <Transport />
