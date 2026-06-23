@@ -25,9 +25,11 @@ export function Footer() {
 
           {/* About */}
           <div className="lg:pl-10">
-            <p className="font-mono text-lg font-bold text-brand-200">
-              [{site.name.toUpperCase()}]
-            </p>
+            <img
+              src="/logo.jpeg"
+              alt={site.name}
+              className="h-16 w-auto"
+            />
             <p className="mt-3 max-w-md text-zinc-400">
               Oficjalna strona mieszkańców wsi {village.name}. {village.region}.
               Tworzona społecznie, dla naszej lokalnej społeczności.

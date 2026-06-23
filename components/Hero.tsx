@@ -35,15 +35,6 @@ export function Hero() {
       />
 
       <div className="relative mx-auto max-w-6xl px-4 py-28 sm:py-36">
-        <div className="mb-6 rounded-lg border border-white/20 bg-black/30 px-4 py-3 backdrop-blur">
-          <p className="text-center text-sm italic text-white/90">
-            „{village.quote.text}"
-          </p>
-          <p className="text-center text-xs text-white/70">
-            — {village.quote.author}
-          </p>
-        </div>
-
         <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-100 drop-shadow">
           {village.region}
         </p>
