@@ -1,6 +1,6 @@
 import { protest } from "@/data/protest";
 import { documents } from "@/data/documents";
-import { formatDayMonthPL } from "@/lib/format";
+import { formatDayMonthPL, formatWeekdayPL } from "@/lib/format";
 import { FacebookEmbed } from "./FacebookEmbed";
 import { Zone6SP } from "./illustrations/Zone6SP";
 
@@ -8,8 +8,32 @@ import { Zone6SP } from "./illustrations/Zone6SP";
 const NOISE_URI =
   "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")";
 
+// Diagonal hazard / caution tape framing the section (toxic yellow + graphite).
+const HAZARD_TAPE =
+  "repeating-linear-gradient(-45deg, #c4dd00 0 22px, #15171b 22px 44px)";
+
+// Whole days from today (local) until the given ISO date.
+function daysUntil(iso: string): number {
+  const target = new Date(`${iso}T00:00:00`);
+  const now = new Date();
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  return Math.round((target.getTime() - today.getTime()) / 86_400_000);
+}
+
 export function Alert6SP() {
   const { meeting, planOgolny, threat, cta } = protest;
+
+  const petition = documents.find((doc) => doc.type === "PDF") ?? documents[0];
+
+  const days = daysUntil(meeting.date);
+  const countdown =
+    days < 0
+      ? null
+      : days === 0
+        ? "Dziś!"
+        : days === 1
+          ? "Jutro!"
+          : `Za ${days} dni`;
 
   return (
     <section
@@ -33,8 +57,20 @@ export function Alert6SP() {
         style={{ backgroundImage: NOISE_URI }}
       />
 
+      {/* Hazard tape top + bottom — frames the section as a danger zone. */}
+      <div
+        aria-hidden
+        className="absolute inset-x-0 top-0 z-10 h-3"
+        style={{ backgroundImage: HAZARD_TAPE }}
+      />
+      <div
+        aria-hidden
+        className="absolute inset-x-0 bottom-0 z-10 h-3"
+        style={{ backgroundImage: HAZARD_TAPE }}
+      />
+
       <div className="relative mx-auto max-w-6xl px-4 py-20">
-        <span className="inline-flex items-center gap-2 rounded border border-toxic/40 bg-toxic/10 px-3 py-1 text-xs font-bold uppercase tracking-[0.2em] text-toxic">
+        <span className="animate-pulse-glow inline-flex items-center gap-2 rounded border border-toxic/40 bg-toxic/10 px-3 py-1 text-xs font-bold uppercase tracking-[0.2em] text-toxic">
           ⚠️ Alarm dla mieszkańców
         </span>
 
@@ -45,6 +81,25 @@ export function Alert6SP() {
         <p className="mt-6 max-w-3xl text-lg leading-relaxed text-zinc-200">
           {protest.lead}
         </p>
+
+        {/* Primary actions */}
+        <div className="mt-8 flex flex-wrap items-center gap-3">
+          <a
+            href={petition.href}
+            download
+            className="inline-flex items-center gap-2 rounded-lg bg-toxic px-5 py-3 text-sm font-extrabold uppercase tracking-wide text-graphite shadow-[0_0_24px_rgba(196,221,0,0.35)] transition hover:bg-toxic-bright"
+          >
+            ✍️ Podpisz petycję
+          </a>
+          <a
+            href={protest.sourceUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-lg border border-zinc-600 px-5 py-3 text-sm font-bold uppercase tracking-wide text-zinc-200 transition hover:border-toxic/60 hover:text-toxic-bright"
+          >
+            Dowiedz się więcej
+          </a>
+        </div>
 
         {/* Graphic banner */}
         <div className="mt-10 overflow-hidden rounded-xl border border-graphite-600 shadow-lg ring-1 ring-black/40">
@@ -136,12 +191,20 @@ export function Alert6SP() {
             </div>
 
             <div className="rounded-lg border-l-4 border-blood bg-graphite-800 p-5">
-              <p className="text-sm font-bold uppercase tracking-wider text-blood">
-                Ważne wydarzenie
-              </p>
+              <div className="flex items-center justify-between gap-3">
+                <p className="text-sm font-bold uppercase tracking-wider text-blood">
+                  Ważne wydarzenie
+                </p>
+                {countdown ? (
+                  <span className="rounded-full bg-blood px-2.5 py-0.5 text-xs font-extrabold uppercase tracking-wide text-white">
+                    {countdown}
+                  </span>
+                ) : null}
+              </div>
               <p className="mt-2 text-lg font-semibold text-zinc-100">
-                📅 {meeting.title}: {formatDayMonthPL(meeting.date)}, godz.{" "}
-                {meeting.time} {meeting.place}.
+                📅 {meeting.title}: {formatWeekdayPL(meeting.date)},{" "}
+                {formatDayMonthPL(meeting.date)}, godz. {meeting.time}{" "}
+                {meeting.place}.
               </p>
             </div>
 

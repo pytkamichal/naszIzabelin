@@ -60,7 +60,7 @@ export function Header() {
           <div className="flex items-center gap-2">
             <a
               href="#strefa-6sp"
-              className="inline-flex items-center gap-1.5 rounded-md bg-blood px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-white shadow-sm ring-2 ring-toxic/60 transition hover:bg-blood-dark"
+              className="animate-pulse-soft inline-flex items-center gap-1.5 rounded-md bg-blood px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-white shadow-sm ring-2 ring-toxic/60 transition hover:bg-blood-dark md:gap-2 md:px-4 md:py-2 md:text-sm"
             >
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-toxic opacity-75" />

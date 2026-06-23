@@ -34,7 +34,7 @@ export function Hero() {
       />
 
       {/* Village coat of arms — a soft watermark on the open right side.
-          Hidden on small screens so the photo and copy stay uncluttered. */}
+          Hidden on small screens, where it appears inline above the title instead. */}
       <img
         src="/herb.png?v=2"
         alt=""
@@ -42,7 +42,13 @@ export function Hero() {
         className="pointer-events-none absolute right-6 top-28 hidden h-[185px] w-auto opacity-100 drop-shadow-[0_12px_28px_rgba(0,0,0,0.55)] md:block lg:right-14 lg:h-[220px]"
       />
 
-      <div className="relative mx-auto max-w-6xl px-4 py-28 sm:py-36">
+      <div className="relative mx-auto max-w-6xl px-4 py-24 sm:py-36">
+        {/* Coat of arms for small screens — sits above the title, clear of the copy. */}
+        <img
+          src="/herb.png?v=2"
+          alt="Herb wsi Izabelin"
+          className="mb-6 h-28 w-auto drop-shadow-[0_10px_24px_rgba(0,0,0,0.55)] md:hidden"
+        />
         <p className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.2em] text-brand-100 drop-shadow">
           <span aria-hidden className="h-px w-8 bg-brand-200/70" />
           {village.region}
