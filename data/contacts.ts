@@ -45,4 +45,17 @@ export const contacts: Contact[] = [
     name: "Status dla naszej lokalizacji",
     note: "Pełna dostępność (wymagany własny zestaw).",
   },
+  {
+    role: "Opieka zdrowotna",
+    icon: "⚕️",
+    name: "Rodzinny NZOZ - przychodnia",
+    phone: "+48 25 726 02 10",
+    note: "ul. Mińska 9, Jakubów",
+  },
+  {
+    role: "Społeczność",
+    icon: "💬",
+    name: "Dołącz do nas na Messengerze",
+    note: "Skontaktuj się z administratorem strony",
+  },
 ];

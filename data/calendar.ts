@@ -11,4 +11,15 @@ export type CalendarEvent = {
 
 // Add real village events here, e.g.:
 //   { date: "2026-07-01", icon: "🎉", title: "Festyn wiejski", time: "15:00" }
-export const calendarEvents: CalendarEvent[] = [];
+export const calendarEvents: CalendarEvent[] = [
+  {
+    date: "2026-09-15",
+    icon: "🏠",
+    title: "Termin płatności raty za podatek od nieruchomości",
+  },
+  {
+    date: "2026-11-15",
+    icon: "🏠",
+    title: "Termin płatności raty za podatek od nieruchomości",
+  },
+];

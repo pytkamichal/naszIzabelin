@@ -4,20 +4,24 @@ import { useState } from "react";
 import { navLinks, site } from "@/data/site";
 import { protest } from "@/data/protest";
 import { AirQuality } from "./AirQuality";
+import { Weather } from "./Weather";
 
 export function Header() {
   const [open, setOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-50">
-      {/* Top utility strip: air quality + tagline.
-          z-50 keeps the air-quality tooltip above the main row below it. */}
+      {/* Top utility strip: air quality + weather + tagline.
+          z-50 keeps the tooltips above the main row below it. */}
       <div className="relative z-50 border-b border-slate-200 bg-slate-100/90 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-2 px-4 py-1.5">
           <span className="hidden truncate text-xs text-slate-500 sm:inline">
             Oficjalna strona mieszkańców wsi {site.name}
           </span>
-          <AirQuality className="ml-auto" />
+          <div className="ml-auto flex gap-2">
+            <Weather />
+            <AirQuality />
+          </div>
         </div>
       </div>
 
