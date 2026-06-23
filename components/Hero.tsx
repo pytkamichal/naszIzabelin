@@ -1,7 +1,5 @@
 import { village } from "@/data/village";
-import { formatNumberPL } from "@/lib/format";
 import { FieldForest } from "./illustrations/FieldForest";
-import { Icon } from "./ui/Icon";
 
 export function Hero() {
   return (
@@ -35,6 +33,15 @@ export function Hero() {
         className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/25 to-transparent"
       />
 
+      {/* Village coat of arms — a soft watermark on the open right side.
+          Hidden on small screens so the photo and copy stay uncluttered. */}
+      <img
+        src="/herb.png?v=2"
+        alt=""
+        aria-hidden
+        className="pointer-events-none absolute right-6 top-28 hidden h-[185px] w-auto opacity-100 drop-shadow-[0_12px_28px_rgba(0,0,0,0.55)] md:block lg:right-14 lg:h-[220px]"
+      />
+
       <div className="relative mx-auto max-w-6xl px-4 py-28 sm:py-36">
         <p className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.2em] text-brand-100 drop-shadow">
           <span aria-hidden className="h-px w-8 bg-brand-200/70" />
@@ -47,18 +54,15 @@ export function Hero() {
           {village.heroLead}
         </p>
 
-        <div className="mt-8 inline-flex items-center gap-2.5 rounded-full bg-black/35 px-5 py-2.5 text-base font-medium text-white ring-1 ring-white/25 backdrop-blur">
-          <Icon name="users" className="h-4 w-4 text-brand-200" />
-          <span>
-            Liczba mieszkańców:{" "}
-            <strong className="font-semibold">
-              {formatNumberPL(village.population)}
-            </strong>{" "}
-            <span className="text-white/75">
-              (Stan na {village.populationYear} r.)
-            </span>
-          </span>
-        </div>
+        {/* Village motto */}
+        <figure className="mt-10 max-w-xl border-l-2 border-brand-200/50 pl-5">
+          <blockquote className="font-serif text-xl font-medium italic leading-relaxed text-white/90 drop-shadow sm:text-2xl">
+            „{village.quote.text}"
+          </blockquote>
+          <figcaption className="mt-2.5 text-xs font-semibold uppercase tracking-[0.18em] text-brand-100/85">
+            — {village.quote.author}
+          </figcaption>
+        </figure>
       </div>
     </section>
   );
