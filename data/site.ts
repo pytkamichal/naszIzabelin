@@ -3,8 +3,7 @@
 
 export const site = {
   name: "Izabelin",
-  // TODO: paste your Buy Me a Coffee link.
-  buyMeACoffeeUrl: "https://www.buymeacoffee.com/",
+  buyMeACoffeeUrl: "https://www.buymeacoffee.com/michalpytka",
 };
 
 // Air-quality widget location (Open-Meteo, by coordinates).
