@@ -1,6 +1,7 @@
 import { site } from "@/data/site";
 import { village } from "@/data/village";
 import { SuggestionForm } from "./SuggestionForm";
+import { Icon } from "./ui/Icon";
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -11,7 +12,7 @@ export function Footer() {
         <div className="grid gap-12 lg:grid-cols-2">
           {/* Suggestion form */}
           <div>
-            <h2 className="text-2xl font-bold text-white">
+            <h2 className="font-serif text-3xl font-semibold text-white">
               Masz pomysł na rozwój strony?
             </h2>
             <p className="mt-2 max-w-md text-zinc-400">
@@ -40,7 +41,8 @@ export function Footer() {
               rel="noopener noreferrer"
               className="mt-6 inline-flex items-center gap-2 rounded-lg border border-amber-300/60 bg-amber-400/10 px-4 py-2.5 font-medium text-amber-200 transition hover:bg-amber-400/20"
             >
-              Buy me a coffee ☕
+              <Icon name="coffee" className="h-4 w-4" />
+              Buy me a coffee
             </a>
           </div>
         </div>
@@ -55,7 +57,7 @@ export function Footer() {
               rel="noopener noreferrer"
               className="font-medium text-amber-300 hover:underline"
             >
-              Buy me a coffee ☕
+              Buy me a coffee
             </a>
             .
           </p>

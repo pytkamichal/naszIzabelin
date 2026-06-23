@@ -35,7 +35,7 @@ export const nearbyPlaces: Place[] = [
     distance: "~15 km",
   },
   {
-    name: "Kościół Piotra i Pawła w Mińsku",
+    name: "Kościół Piotra i Pawła w Mińsku Mazowieckim",
     category: "culture",
     icon: "⛪",
     description:
@@ -73,5 +73,29 @@ export const nearbyPlaces: Place[] = [
     description:
       "Przyrodni rezerwat chronujący cenny ekosystem. Doskonałe miejsce do obserwacji ptaków i zrozumienia ochrony przyrody.",
     distance: "~20 km",
+  },
+  {
+    name: "Sala zabaw w Mińsku Mazowieckim",
+    category: "kids",
+    icon: "🎠",
+    description:
+      "Kryta sala zabaw z dmuchańcami, zjeżdżalniami i strefą malucha. Idealna na deszczowe dni oraz na urodziny i imprezy dla dzieci.",
+    distance: "~10 km",
+  },
+  {
+    name: "Mini ZOO w okolicy",
+    category: "kids",
+    icon: "🦓",
+    description:
+      "Niewielki ogród zoologiczny z domowymi i egzotycznymi zwierzętami. Dzieci mogą z bliska poznać, a często też nakarmić zwierzęta.",
+    distance: "~15 km",
+  },
+  {
+    name: "Stodoła Alpaki w Jędrzejowie",
+    category: "kids",
+    icon: "🦙",
+    description:
+      "Hodowla sympatycznych alpak. Można poznać te łagodne zwierzęta, wybrać się z nimi na spacer i spędzić czas na łonie natury.",
+    distance: "~15 km",
   },
 ];

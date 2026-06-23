@@ -5,6 +5,7 @@ import { navLinks, site } from "@/data/site";
 import { protest } from "@/data/protest";
 import { AirQuality } from "./AirQuality";
 import { Weather } from "./Weather";
+import { Icon } from "./ui/Icon";
 
 export function Header() {
   const [open, setOpen] = useState(false);
@@ -23,9 +24,10 @@ export function Header() {
               href={site.buyMeACoffeeUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center rounded-md border border-amber-300 bg-amber-50 px-2 py-1 text-xs font-medium text-amber-900 transition hover:bg-amber-100"
+              className="inline-flex items-center gap-1.5 rounded-md border border-amber-300 bg-amber-50 px-2.5 py-1 text-xs font-medium text-amber-900 transition hover:bg-amber-100"
             >
-              Buy me a coffee ☕
+              <Icon name="coffee" className="h-3.5 w-3.5" />
+              Buy me a coffee
             </a>
             <Weather />
             <AirQuality />
@@ -38,8 +40,7 @@ export function Header() {
         <div className="mx-auto flex h-20 max-w-6xl items-center justify-between gap-4 px-4">
           <a
             href="#top"
-            className="shrink-0 text-2xl font-bold tracking-tight text-brand-800"
-            style={{ fontFamily: 'Georgia, serif' }}
+            className="shrink-0 font-serif text-2xl font-semibold tracking-tight text-brand-800"
           >
             Nasz {site.name}
           </a>
@@ -49,7 +50,7 @@ export function Header() {
               <a
                 key={link.href}
                 href={link.href}
-                className="rounded-md px-3 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-100 hover:text-slate-900"
+                className="rounded-md px-3 py-2 text-sm font-medium text-slate-600 transition hover:bg-brand-50 hover:text-brand-700"
               >
                 {link.label}
               </a>

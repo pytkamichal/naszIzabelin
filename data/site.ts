@@ -20,7 +20,7 @@ export type NavLink = { href: string; label: string };
 export const navLinks: NavLink[] = [
   { href: "#aktualnosci", label: "Aktualności" },
   { href: "#historia", label: "Historia" },
-  { href: "#miejsca", label: "Miejsca" },
+  { href: "#miejsca", label: "W okolicy" },
   { href: "#kalendarz", label: "Kalendarz" },
   { href: "#transport", label: "Autobusy" },
   { href: "#odpady", label: "Śmieci" },

@@ -2,17 +2,25 @@
 
 @theme {
   --font-sans: var(--font-inter);
+  --font-serif: var(--font-lora);
   --font-mono: var(--font-geist-mono);
 
-  /* Brand — Izabelin / village green */
-  --color-brand-50: #f0fdf4;
-  --color-brand-100: #dcfce7;
-  --color-brand-200: #bbf7d0;
-  --color-brand-500: #22c55e;
-  --color-brand-600: #16a34a;
-  --color-brand-700: #15803d;
-  --color-brand-800: #166534;
-  --color-brand-900: #14532d;
+  /* Brand — Izabelin / forest green.
+     Deeper and more desaturated than a stock green for a calm, civic tone. */
+  --color-brand-50: #f1f6f2;
+  --color-brand-100: #deeae1;
+  --color-brand-200: #bdd5c5;
+  --color-brand-300: #93b9a1;
+  --color-brand-400: #649a7b;
+  --color-brand-500: #437d5d;
+  --color-brand-600: #2f6248;
+  --color-brand-700: #244e3a;
+  --color-brand-800: #1e3f30;
+  --color-brand-900: #183328;
+
+  /* Warm paper neutrals — softer and less clinical than pure white / slate. */
+  --color-canvas: #faf9f5;
+  --color-paper: #f4f2ec;
 
   /* "Strefa 6SP" — dark / industrial / Chernobyl palette */
   --color-graphite: #121417;
@@ -26,12 +34,23 @@
 }
 
 :root {
-  --background: #ffffff;
-  --foreground: #0f172a;
+  --background: #faf9f5;
+  --foreground: #1b2420;
 }
 
 html {
   scroll-behavior: smooth;
+}
+
+::selection {
+  background: var(--color-brand-200);
+  color: var(--color-brand-900);
+}
+
+/* Calmer, brand-tinted focus ring for keyboard users. */
+:focus-visible {
+  outline: 2px solid var(--color-brand-600);
+  outline-offset: 2px;
 }
 
 /* Keep sticky-header-anchored sections from hiding under the header */

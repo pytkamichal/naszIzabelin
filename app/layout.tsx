@@ -1,10 +1,18 @@
 import type { Metadata } from "next";
-import { Inter, Geist_Mono } from "next/font/google";
+import { Inter, Lora, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { village } from "@/data/village";
 
 const inter = Inter({
   variable: "--font-inter",
+  subsets: ["latin", "latin-ext"],
+  display: "swap",
+});
+
+// Editorial serif for headings — gives the page a calm, civic, institutional
+// voice instead of the all-sans "startup" look.
+const lora = Lora({
+  variable: "--font-lora",
   subsets: ["latin", "latin-ext"],
   display: "swap",
 });
@@ -48,9 +56,9 @@ export default function RootLayout({
   return (
     <html
       lang="pl"
-      className={`${inter.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${inter.variable} ${lora.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-white font-sans text-slate-900">
+      <body className="min-h-full flex flex-col bg-canvas font-sans text-slate-900">
         {children}
       </body>
     </html>

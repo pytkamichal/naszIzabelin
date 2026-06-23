@@ -1,6 +1,7 @@
 import { village } from "@/data/village";
 import { formatNumberPL } from "@/lib/format";
 import { FieldForest } from "./illustrations/FieldForest";
+import { Icon } from "./ui/Icon";
 
 export function Hero() {
   return (
@@ -35,30 +36,22 @@ export function Hero() {
       />
 
       <div className="relative mx-auto max-w-6xl px-4 py-28 sm:py-36">
-        <div className="mb-6 rounded-lg border border-white/20 bg-black/30 px-4 py-3 backdrop-blur">
-          <p className="text-center text-sm italic text-white/90">
-            „{village.quote.text}"
-          </p>
-          <p className="text-center text-xs text-white/70">
-            — {village.quote.author}
-          </p>
-        </div>
-
-        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-100 drop-shadow">
+        <p className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.2em] text-brand-100 drop-shadow">
+          <span aria-hidden className="h-px w-8 bg-brand-200/70" />
           {village.region}
         </p>
-        <h1 className="mt-3 max-w-3xl text-3xl font-extrabold leading-tight tracking-tight text-white drop-shadow-md sm:text-5xl">
+        <h1 className="mt-4 max-w-3xl font-serif text-4xl font-semibold leading-[1.1] tracking-tight text-white drop-shadow-md sm:text-6xl">
           {village.heroHeading}
         </h1>
         <p className="mt-6 max-w-2xl text-lg leading-relaxed text-slate-100 drop-shadow-sm">
           {village.heroLead}
         </p>
 
-        <div className="mt-8 inline-flex items-center gap-2 rounded-full bg-black/35 px-5 py-2.5 text-base font-medium text-white ring-1 ring-white/25 backdrop-blur">
-          <span aria-hidden>👤</span>
+        <div className="mt-8 inline-flex items-center gap-2.5 rounded-full bg-black/35 px-5 py-2.5 text-base font-medium text-white ring-1 ring-white/25 backdrop-blur">
+          <Icon name="users" className="h-4 w-4 text-brand-200" />
           <span>
             Liczba mieszkańców:{" "}
-            <strong className="font-bold">
+            <strong className="font-semibold">
               {formatNumberPL(village.population)}
             </strong>{" "}
             <span className="text-white/75">
