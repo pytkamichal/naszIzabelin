@@ -1,7 +1,7 @@
 import { site } from "@/data/site";
 import { village } from "@/data/village";
 import { SuggestionForm } from "./SuggestionForm";
-import { Icon } from "./ui/Icon";
+import { BuyMeACoffee } from "./ui/BuyMeACoffee";
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -32,18 +32,10 @@ export function Footer() {
               className="h-16 w-auto"
             />
             <p className="mt-3 max-w-md text-zinc-400">
-              Oficjalna strona mieszkańców wsi {village.name}. {village.region}.
+              Oficjalna strona mieszkańców wsi {village.name} ({village.region}).
               Tworzona społecznie, dla naszej lokalnej społeczności.
             </p>
-            <a
-              href={site.buyMeACoffeeUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-6 inline-flex items-center gap-2 rounded-lg border border-amber-300/60 bg-amber-400/10 px-4 py-2.5 font-medium text-amber-200 transition hover:bg-amber-400/20"
-            >
-              <Icon name="coffee" className="h-4 w-4" />
-              Buy me a coffee
-            </a>
+            <BuyMeACoffee className="mt-6" label="Buy me a coffee / Wesprzyj" />
           </div>
         </div>
 
