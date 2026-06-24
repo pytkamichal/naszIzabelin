@@ -3,6 +3,11 @@
 
 export const site = {
   name: "Izabelin",
+  // Canonical public address of the site. Used by metadata, the sitemap,
+  // robots.txt and the social-share (Open Graph) image as a single source of
+  // truth. Set NEXT_PUBLIC_SITE_URL to the real domain before deploying —
+  // otherwise these point at localhost.
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
   buyMeACoffeeUrl: "https://www.buymeacoffee.com/michalpytka",
 };
 

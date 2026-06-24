@@ -3,6 +3,7 @@ import { Inter, Lora, Geist_Mono, Cookie } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { village } from "@/data/village";
+import { site } from "@/data/site";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -32,12 +33,14 @@ const cookie = Cookie({
   display: "swap",
 });
 
-const description = `Oficjalna strona mieszkańców wsi ${village.name} (powiat miński, woj. mazowieckie). Aktualności, kalendarz, inwestycje, kontakty oraz akcja STOP STREFIE 6SP.`;
+const description = `Strona mieszkańców wsi ${village.name} (powiat miński, woj. mazowieckie). Aktualności, kalendarz, inwestycje, kontakty oraz akcja STOP STREFIE 6SP.`;
+
+const title = `${village.name} – strona mieszkańców wsi`;
 
 export const metadata: Metadata = {
-  metadataBase: new URL("http://localhost:3000"),
+  metadataBase: new URL(site.url),
   title: {
-    default: `${village.name} – oficjalna strona mieszkańców wsi`,
+    default: title,
     template: `%s · ${village.name}`,
   },
   description,
@@ -49,11 +52,23 @@ export const metadata: Metadata = {
     "strefa 6SP",
     "mieszkańcy",
   ],
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
-    title: `${village.name} – oficjalna strona mieszkańców wsi`,
+    title,
     description,
+    siteName: `${village.name} – strona mieszkańców`,
+    url: site.url,
     locale: "pl_PL",
     type: "website",
+    // The share image is supplied by app/opengraph-image.tsx (file convention).
+  },
+  twitter: {
+    // Falls back to the Open Graph image; renders a large preview card.
+    card: "summary_large_image",
+    title,
+    description,
   },
 };
 

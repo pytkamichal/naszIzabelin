@@ -17,7 +17,7 @@ export function Header() {
       <div className="relative z-50 border-b border-slate-200 bg-slate-100/90 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-2 px-4 py-1.5">
           <span className="hidden truncate text-xs text-slate-500 sm:inline">
-            Oficjalna strona mieszkańców wsi {site.name}
+            Strona mieszkańców wsi {site.name}
           </span>
           <div className="ml-auto flex items-center gap-2">
             <BuyMeACoffee size="sm" />

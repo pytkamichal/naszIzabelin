@@ -32,7 +32,7 @@ export function Footer() {
               className="h-16 w-auto"
             />
             <p className="mt-3 max-w-md text-zinc-400">
-              Oficjalna strona mieszkańców wsi {village.name} ({village.region}).
+              Strona mieszkańców wsi {village.name} ({village.region}).
               Tworzona społecznie, dla naszej lokalnej społeczności.
             </p>
             <BuyMeACoffee className="mt-6" label="Buy me a coffee / Wesprzyj" />
