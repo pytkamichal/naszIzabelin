@@ -6,6 +6,7 @@ import { wasteCalendarEvents } from "@/data/waste";
 import { notices } from "@/data/notices";
 import { formatDayMonthPL, formatShortDatePL } from "@/lib/format";
 import { SectionHeading } from "./ui/SectionHeading";
+import { AddToCalendar } from "./AddToCalendar";
 
 type View = "week" | "month" | "year";
 
@@ -131,6 +132,13 @@ export function CalendarBoard() {
                 ))
               )}
             </ul>
+
+            <div className="mt-5 border-t border-slate-100 pt-4">
+              <p className="mb-2 text-sm font-medium text-slate-600">
+                Dodaj kalendarz wsi (wydarzenia + wywóz śmieci) do telefonu:
+              </p>
+              <AddToCalendar path="/kalendarz.ics" />
+            </div>
           </div>
 
           {/* Tablica ogłoszeń */}
