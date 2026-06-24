@@ -8,7 +8,7 @@ export const village = {
   populationYear: 2021,
 
   // Hero H1.
-  heroHeading: "Witamy na oficjalnej stronie mieszkańców wsi Izabelin!",
+  heroHeading: "Witamy na stronie mieszkańców wsi Izabelin!",
 
   // Hero lead paragraph.
   heroLead:
