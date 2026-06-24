@@ -1,13 +1,24 @@
 // Global site config and navigation.
 // Edit the nav links and the "Buy me a coffee" URL here.
 
+// Canonical public address of the site (no trailing slash). Single source of
+// truth for metadata, the sitemap, robots.txt and the social-share (Open Graph)
+// image. Resolved in order:
+//   1. NEXT_PUBLIC_SITE_URL          — explicit override; set for a custom domain.
+//   2. VERCEL_PROJECT_PRODUCTION_URL — Vercel's stable production domain,
+//                                      injected automatically on every deploy.
+//   3. http://localhost:3000         — local development.
+function resolveSiteUrl(): string {
+  if (process.env.NEXT_PUBLIC_SITE_URL) return process.env.NEXT_PUBLIC_SITE_URL;
+  if (process.env.VERCEL_PROJECT_PRODUCTION_URL) {
+    return `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`;
+  }
+  return "http://localhost:3000";
+}
+
 export const site = {
   name: "Izabelin",
-  // Canonical public address of the site. Used by metadata, the sitemap,
-  // robots.txt and the social-share (Open Graph) image as a single source of
-  // truth. Set NEXT_PUBLIC_SITE_URL to the real domain before deploying —
-  // otherwise these point at localhost.
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
+  url: resolveSiteUrl(),
   buyMeACoffeeUrl: "https://www.buymeacoffee.com/michalpytka",
 };
 
