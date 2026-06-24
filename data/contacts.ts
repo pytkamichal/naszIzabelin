@@ -12,8 +12,14 @@ export const contacts: Contact[] = [
   {
     role: "Sołtys",
     icon: "📇",
-    name: "Jan Kowalski",
-    phone: "+48 123 456 789",
+    name: "Leszek Miąsek",
+    phone: "+48 509 127 391",
+  },
+  {
+    role: "Inkasent Gminny",
+    icon: "💰",
+    name: "-",
+    phone: "+48 530 194 147",
   },
   {
     role: "Kominiarz",
