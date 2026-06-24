@@ -15,7 +15,8 @@ export type IconName =
   | "building"
   | "church"
   | "mail"
-  | "tools";
+  | "tools"
+  | "calendar";
 
 type IconProps = {
   name: IconName;
@@ -114,6 +115,13 @@ const paths: Record<IconName, React.ReactNode> = {
   tools: (
     <>
       <path d="M14.6 6.1a3.8 3.8 0 0 0-5.1 5.1L3 17.7V21h3.3l6.5-6.5a3.8 3.8 0 0 0 5.1-5.1l-2.4 2.4-2.6-.6-.6-2.6 2.3-2.5Z" />
+    </>
+  ),
+  calendar: (
+    <>
+      <rect x="3" y="4.5" width="18" height="16" rx="2" />
+      <path d="M3 9.5h18" />
+      <path d="M8 2.5v4M16 2.5v4" />
     </>
   ),
 };

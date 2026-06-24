@@ -11,6 +11,7 @@ import {
 } from "@/data/waste";
 import { SectionHeading } from "./ui/SectionHeading";
 import { WasteNextPickup } from "./WasteNextPickup";
+import { AddToCalendar } from "./AddToCalendar";
 
 const KINDS: WasteKind[] = ["bags", "pszok", "bulky"];
 
@@ -26,6 +27,20 @@ export function Waste() {
         />
 
         <WasteNextPickup />
+
+        {/* Subskrypcja kalendarza odpadów */}
+        <div className="mb-8 rounded-xl border border-brand-200 bg-brand-50 p-5">
+          <h3 className="font-semibold text-slate-900">
+            📅 Dodaj wywóz śmieci do swojego kalendarza
+          </h3>
+          <p className="mt-1 mb-4 text-sm text-slate-600">
+            Wszystkie terminy trafią do Twojego kalendarza (telefon, Google,
+            Apple), a wieczorem dzień przed każdym odbiorem dostaniesz
+            przypomnienie. „Subskrybuj" aktualizuje się automatycznie, gdy
+            zmieni się harmonogram.
+          </p>
+          <AddToCalendar path="/odpady.ics" />
+        </div>
 
         {/* Kolory worków → frakcje */}
         <div className="mb-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
