@@ -7,11 +7,7 @@ export type Notice = {
 
 export const notices: Notice[] = [
   {
-    date: "2026-06-20",
-    text: "Informacja o planowanej przerwie w dostawie prądu.",
-  },
-  {
-    date: "2026-06-18",
-    text: "Wyniki zbiórki charytatywnej z festynu wiejskiego.",
+    date: "2026-07-29",
+    text: "Inspekcja kominiarska dla zainteresowanych - więcej informacji u Sołtysa lub na grupie Messenger",
   },
 ];
