@@ -48,7 +48,7 @@ export const protest = {
   cta: {
     title: "Co możesz zrobić?",
     points: [
-      "📝 Podpisz petycję przeciwko strefie 6.SP (do pobrania poniżej).",
+      "📝 Podpisz petycję przeciwko strefie 6.SP.",
       "🗳️ Złóż uwagę do projektu planu ogólnego w urzędzie gminy.",
       "📅 Przyjdź na spotkanie mieszkańców.",
       "📣 Udostępniaj informacje i powiedz o tym sąsiadom.",

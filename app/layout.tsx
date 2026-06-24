@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Lora, Geist_Mono, Cookie } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { village } from "@/data/village";
 
@@ -68,6 +69,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-canvas font-sans text-slate-900">
         {children}
+        <Analytics />
       </body>
     </html>
   );

@@ -2,7 +2,6 @@ import { protest } from "@/data/protest";
 import { documents } from "@/data/documents";
 import { formatDayMonthPL, formatWeekdayPL } from "@/lib/format";
 import { FacebookEmbed } from "./FacebookEmbed";
-import { Zone6SP } from "./illustrations/Zone6SP";
 
 // Grainy "smog" texture (SVG feTurbulence) as a data URI.
 const NOISE_URI =
@@ -103,121 +102,87 @@ export function Alert6SP() {
 
         {/* Graphic banner */}
         <div className="mt-10 overflow-hidden rounded-xl border border-graphite-600 shadow-lg ring-1 ring-black/40">
-          <Zone6SP className="h-44 w-full sm:h-56 lg:h-64" />
+          <img
+            src="/protest.jpeg"
+            alt="Strefa produkcyjna 6.SP tuż przy naszym lesie"
+            className="block h-auto w-full"
+          />
         </div>
 
-        <div className="mt-12 grid gap-10 lg:grid-cols-2">
-          {/* Left column: plan ogólny + threat */}
-          <div className="space-y-8">
-            <article className="rounded-xl border border-graphite-600 bg-graphite-800 p-6">
-              <h3 className="text-xl font-bold leading-snug text-toxic-bright">
-                {planOgolny.title}
-              </h3>
-              {planOgolny.paragraphs.map((paragraph) => (
-                <p key={paragraph} className="mt-3 text-zinc-300">
-                  {paragraph}
-                </p>
-              ))}
-              <p className="mt-5 text-xs font-bold uppercase tracking-wider text-zinc-400">
-                Plan ogólny przesądza o:
+        <div className="mt-12 grid gap-x-10 gap-y-8 lg:grid-cols-2">
+          {/* Explanation: plan ogólny + threat sit side by side (similar height) */}
+          <article className="rounded-xl border border-graphite-600 bg-graphite-800 p-6">
+            <h3 className="text-xl font-bold leading-snug text-toxic-bright">
+              {planOgolny.title}
+            </h3>
+            {planOgolny.paragraphs.map((paragraph) => (
+              <p key={paragraph} className="mt-3 text-zinc-300">
+                {paragraph}
               </p>
-              <ul className="mt-2 space-y-2">
-                {planOgolny.decides.map((item) => (
-                  <li key={item} className="flex gap-2 text-zinc-300">
-                    <span className="text-toxic" aria-hidden>
-                      ▸
-                    </span>
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </article>
-
-            <article className="rounded-xl border border-graphite-600 border-l-4 border-l-blood bg-graphite-800 p-6">
-              <h3 className="text-xl font-bold text-white">{threat.title}</h3>
-              {threat.paragraphs.map((paragraph) => (
-                <p key={paragraph} className="mt-3 text-zinc-300">
-                  {paragraph}
-                </p>
+            ))}
+            <p className="mt-5 text-xs font-bold uppercase tracking-wider text-zinc-400">
+              Plan ogólny przesądza o:
+            </p>
+            <ul className="mt-2 space-y-2">
+              {planOgolny.decides.map((item) => (
+                <li key={item} className="flex gap-2 text-zinc-300">
+                  <span className="text-toxic" aria-hidden>
+                    ▸
+                  </span>
+                  <span>{item}</span>
+                </li>
               ))}
-              <ul className="mt-4 space-y-2">
-                {threat.consequences.map((item) => (
-                  <li
-                    key={item}
-                    className="rounded-lg bg-graphite-700 px-3 py-2 text-zinc-200"
-                  >
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </article>
+            </ul>
+          </article>
+
+          <article className="rounded-xl border border-graphite-600 border-l-4 border-l-blood bg-graphite-800 p-6">
+            <h3 className="text-xl font-bold text-white">{threat.title}</h3>
+            {threat.paragraphs.map((paragraph) => (
+              <p key={paragraph} className="mt-3 text-zinc-300">
+                {paragraph}
+              </p>
+            ))}
+            <ul className="mt-4 space-y-2">
+              {threat.consequences.map((item) => (
+                <li
+                  key={item}
+                  className="rounded-lg bg-graphite-700 px-3 py-2 text-zinc-200"
+                >
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </article>
+
+          {/* Meeting — full-width alert strip below the two cards */}
+          <div className="rounded-lg border-l-4 border-blood bg-graphite-800 p-5 sm:flex sm:items-center sm:justify-between sm:gap-6 lg:col-span-2">
+            <div className="flex items-center gap-3">
+              <p className="text-sm font-bold uppercase tracking-wider text-blood">
+                Ważne wydarzenie
+              </p>
+              {countdown ? (
+                <span className="rounded-full bg-blood px-2.5 py-0.5 text-xs font-extrabold uppercase tracking-wide text-white">
+                  {countdown}
+                </span>
+              ) : null}
+            </div>
+            <p className="mt-2 text-lg font-semibold text-zinc-100 sm:mt-0 sm:text-right">
+              📅 {meeting.title}: {formatWeekdayPL(meeting.date)},{" "}
+              {formatDayMonthPL(meeting.date)}, godz. {meeting.time}{" "}
+              {meeting.place}.
+            </p>
           </div>
 
-          {/* Right column: documents + meeting + call to action */}
-          <div className="space-y-8">
-            <div>
-              <h3 className="text-sm font-bold uppercase tracking-wider text-zinc-400">
-                Dokumenty do pobrania
-              </h3>
-              <ul className="mt-4 space-y-3">
-                {documents.map((doc) => (
-                  <li key={doc.href}>
-                    <a
-                      href={doc.href}
-                      download
-                      className="group flex items-center gap-3 rounded-lg border border-graphite-600 bg-graphite-800 p-4 transition hover:border-toxic/60 hover:bg-graphite-700"
-                    >
-                      <span className="text-2xl" aria-hidden>
-                        📄
-                      </span>
-                      <span className="min-w-0 flex-1">
-                        <span className="block font-semibold text-zinc-100 group-hover:text-toxic-bright">
-                          {doc.label}
-                        </span>
-                        <span className="text-xs uppercase tracking-wide text-zinc-500">
-                          Pobierz ({doc.type})
-                        </span>
-                      </span>
-                      <span
-                        className="rounded bg-graphite-600 px-2 py-1 text-[11px] font-bold text-zinc-300"
-                        aria-hidden
-                      >
-                        ↓
-                      </span>
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="rounded-lg border-l-4 border-blood bg-graphite-800 p-5">
-              <div className="flex items-center justify-between gap-3">
-                <p className="text-sm font-bold uppercase tracking-wider text-blood">
-                  Ważne wydarzenie
-                </p>
-                {countdown ? (
-                  <span className="rounded-full bg-blood px-2.5 py-0.5 text-xs font-extrabold uppercase tracking-wide text-white">
-                    {countdown}
-                  </span>
-                ) : null}
-              </div>
-              <p className="mt-2 text-lg font-semibold text-zinc-100">
-                📅 {meeting.title}: {formatWeekdayPL(meeting.date)},{" "}
-                {formatDayMonthPL(meeting.date)}, godz. {meeting.time}{" "}
-                {meeting.place}.
-              </p>
-            </div>
-
-            <div className="rounded-xl border border-toxic/30 bg-toxic/5 p-6">
-              <h3 className="text-lg font-bold text-toxic-bright">{cta.title}</h3>
-              <ul className="mt-3 space-y-2">
-                {cta.points.map((point) => (
-                  <li key={point} className="text-zinc-200">
-                    {point}
-                  </li>
-                ))}
-              </ul>
-            </div>
+          {/* Call to action — full width, points laid out in two columns */}
+          <div className="rounded-xl border border-toxic/30 bg-toxic/5 p-6 lg:col-span-2">
+            <h3 className="text-lg font-bold text-toxic-bright">{cta.title}</h3>
+            <ul className="mt-3 grid gap-x-8 gap-y-2 sm:grid-cols-2">
+              {cta.points.map((point) => (
+                <li key={point} className="text-zinc-200">
+                  {point}
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
 

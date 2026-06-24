@@ -14,10 +14,6 @@ export function FacebookEmbed({ url, caption }: FacebookEmbedProps) {
           [ Odtwarzacz wideo z Facebooka
           {caption ? ` – ${caption}` : ""} ]
         </p>
-        <p className="text-xs text-zinc-500">
-          Wklej adres URL filmu w pliku <code>data/protest.ts</code>{" "}
-          (pole <code>facebookVideoUrl</code>), aby osadzić nagranie.
-        </p>
       </div>
     );
   }
