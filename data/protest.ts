@@ -60,6 +60,10 @@ export const protest = {
     time: "18:00",
     place: "pod świetlicą",
     title: "Spotkanie mieszkańców",
+    // Set to false once this is a confirmed, real meeting. While true the
+    // section shows a clear "test / example event" warning instead of a
+    // countdown, so nobody mistakes it for a genuine date.
+    isExample: true,
   },
 
   // Paste the Facebook video URL here (e.g. https://www.facebook.com/.../videos/123...).

@@ -155,22 +155,34 @@ export function Alert6SP() {
           </article>
 
           {/* Meeting — full-width alert strip below the two cards */}
-          <div className="rounded-lg border-l-4 border-blood bg-graphite-800 p-5 sm:flex sm:items-center sm:justify-between sm:gap-6 lg:col-span-2">
-            <div className="flex items-center gap-3">
-              <p className="text-sm font-bold uppercase tracking-wider text-blood">
-                Ważne wydarzenie
+          <div className="rounded-lg border-l-4 border-blood bg-graphite-800 p-5 lg:col-span-2">
+            {meeting.isExample ? (
+              <p className="mb-3 flex items-center gap-2 rounded-md border border-amber-400/40 bg-amber-400/10 px-3 py-2 text-sm font-semibold text-amber-200">
+                ⚠️ Wydarzenie przykładowe (testowe) — termin nie jest
+                potwierdzony. Nie traktuj go jako prawdziwego spotkania.
               </p>
-              {countdown ? (
-                <span className="rounded-full bg-blood px-2.5 py-0.5 text-xs font-extrabold uppercase tracking-wide text-white">
-                  {countdown}
-                </span>
-              ) : null}
+            ) : null}
+            <div className="sm:flex sm:items-center sm:justify-between sm:gap-6">
+              <div className="flex items-center gap-3">
+                <p className="text-sm font-bold uppercase tracking-wider text-blood">
+                  Ważne wydarzenie
+                </p>
+                {meeting.isExample ? (
+                  <span className="rounded-full bg-amber-400 px-2.5 py-0.5 text-xs font-extrabold uppercase tracking-wide text-graphite">
+                    Przykład
+                  </span>
+                ) : countdown ? (
+                  <span className="rounded-full bg-blood px-2.5 py-0.5 text-xs font-extrabold uppercase tracking-wide text-white">
+                    {countdown}
+                  </span>
+                ) : null}
+              </div>
+              <p className="mt-2 text-lg font-semibold text-zinc-100 sm:mt-0 sm:text-right">
+                📅 {meeting.title}: {formatWeekdayPL(meeting.date)},{" "}
+                {formatDayMonthPL(meeting.date)}, godz. {meeting.time}{" "}
+                {meeting.place}.
+              </p>
             </div>
-            <p className="mt-2 text-lg font-semibold text-zinc-100 sm:mt-0 sm:text-right">
-              📅 {meeting.title}: {formatWeekdayPL(meeting.date)},{" "}
-              {formatDayMonthPL(meeting.date)}, godz. {meeting.time}{" "}
-              {meeting.place}.
-            </p>
           </div>
 
           {/* Call to action — full width, points laid out in two columns */}
