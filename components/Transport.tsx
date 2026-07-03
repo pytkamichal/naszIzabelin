@@ -67,7 +67,7 @@ function DirectionBoard({ direction }: { direction: BusDirection }) {
 
 export function Transport() {
   return (
-    <section id="transport" className="bg-slate-50 py-16">
+    <section id="transport" className="bg-paper py-16">
       <div className="mx-auto max-w-6xl px-4">
         <SectionHeading
           eyebrow="Komunikacja"

@@ -61,7 +61,7 @@ export function CalendarBoard() {
   );
 
   return (
-    <section id="kalendarz" className="bg-slate-50 py-16">
+    <section id="kalendarz" className="bg-paper py-16">
       <div className="mx-auto max-w-6xl px-4">
         <SectionHeading
           eyebrow="Życie wsi"

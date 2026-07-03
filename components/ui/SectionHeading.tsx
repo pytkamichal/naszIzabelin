@@ -16,7 +16,28 @@ export function SectionHeading({
     <div className="mb-10 max-w-3xl">
       {eyebrow ? (
         <p className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.18em] text-brand-600">
-          <span aria-hidden className="h-px w-8 bg-brand-300" />
+          {/* Little wheat-sprig flourish before the eyebrow */}
+          <svg
+            aria-hidden
+            width="40"
+            height="14"
+            viewBox="0 0 40 14"
+            fill="none"
+            className="text-brand-400"
+          >
+            <path
+              d="M1 7 H24"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+            />
+            {/* Leaves staggered along the stem, like a little sprig */}
+            <g fill="currentColor">
+              <path d="M24 7 Q26 2 31 1 Q30 6 24 7 Z" />
+              <path d="M27 7 Q29 12 34 13 Q33 8 27 7 Z" />
+              <path d="M30 7 Q33 3 38 2 Q36 7 30 7 Z" />
+            </g>
+          </svg>
           {eyebrow}
         </p>
       ) : null}
