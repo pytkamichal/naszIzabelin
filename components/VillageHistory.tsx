@@ -1,5 +1,6 @@
 import { village } from "@/data/village";
 import { SectionHeading } from "./ui/SectionHeading";
+import { Reveal } from "./ui/Reveal";
 
 export function VillageHistory() {
   const { history } = village;
@@ -22,30 +23,38 @@ export function VillageHistory() {
   return (
     <section id="historia" className="bg-paper py-20">
       <div className="mx-auto max-w-6xl px-4">
-        <SectionHeading
-          eyebrow="Dzieje wsi"
-          title="Historia Izabelina"
-        />
+        <Reveal>
+          <SectionHeading
+            eyebrow="Dzieje wsi"
+            title="Historia Izabelina"
+          />
+        </Reveal>
 
         <div className="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm sm:p-12">
-          <div className="space-y-8">
-            {sections.map((s) => (
-              <div
-                key={s.title}
-                className="border-l-2 border-brand-200 pl-5"
-              >
-                <h3 className="font-serif text-xl font-semibold text-brand-800">
-                  {s.title}
-                </h3>
-                {(Array.isArray(s.body) ? s.body : [s.body]).map((paragraph) => (
-                  <p
-                    key={paragraph}
-                    className="mt-3 leading-relaxed text-slate-700"
-                  >
-                    {paragraph}
-                  </p>
-                ))}
-              </div>
+          {/* Timeline: a continuous line with a dot per era. */}
+          <div className="relative space-y-10 before:absolute before:inset-y-1 before:left-[5px] before:w-px before:bg-brand-200">
+            {sections.map((s, i) => (
+              <Reveal key={s.title} delay={Math.min(i, 2) * 90}>
+                <div className="relative pl-8">
+                  <span
+                    aria-hidden
+                    className="absolute left-0 top-[7px] h-[11px] w-[11px] rounded-full border-2 border-brand-500 bg-white"
+                  />
+                  <h3 className="font-serif text-xl font-semibold text-brand-800">
+                    {s.title}
+                  </h3>
+                  {(Array.isArray(s.body) ? s.body : [s.body]).map(
+                    (paragraph) => (
+                      <p
+                        key={paragraph}
+                        className="mt-3 leading-relaxed text-slate-700"
+                      >
+                        {paragraph}
+                      </p>
+                    )
+                  )}
+                </div>
+              </Reveal>
             ))}
           </div>
 

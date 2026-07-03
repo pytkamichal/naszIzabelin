@@ -10,6 +10,8 @@ import { Transport } from "@/components/Transport";
 import { Waste } from "@/components/Waste";
 import { Contacts } from "@/components/Contacts";
 import { Footer } from "@/components/Footer";
+import { Reveal } from "@/components/ui/Reveal";
+import { SectionDivider } from "@/components/ui/SectionDivider";
 import { site } from "@/data/site";
 import { village } from "@/data/village";
 
@@ -58,13 +60,35 @@ export default function Home() {
         <Hero />
         <Alert6SP />
         <VillageStats />
+        {/* Rolling-hills dividers carry the field/forest motif between
+            sections; colors match the neighbouring backgrounds. */}
+        <SectionDivider from="var(--color-canvas)" to="var(--color-paper)" trees />
         <VillageHistory />
-        <Places />
-        <CalendarBoard />
-        <Investments />
-        <Transport />
-        <Waste />
-        <Contacts />
+        <SectionDivider from="var(--color-paper)" to="var(--color-canvas)" />
+        <Reveal>
+          <Places />
+        </Reveal>
+        <SectionDivider from="var(--color-canvas)" to="var(--color-paper)" />
+        <Reveal>
+          <CalendarBoard />
+        </Reveal>
+        <SectionDivider from="var(--color-paper)" to="var(--color-canvas)" />
+        <Reveal>
+          <Investments />
+        </Reveal>
+        <SectionDivider from="var(--color-canvas)" to="var(--color-paper)" trees />
+        <Reveal>
+          <Transport />
+        </Reveal>
+        <SectionDivider from="var(--color-paper)" to="var(--color-canvas)" />
+        <Reveal>
+          <Waste />
+        </Reveal>
+        <Reveal>
+          <Contacts />
+        </Reveal>
+        {/* Dusk treeline leading into the dark footer */}
+        <SectionDivider from="var(--color-canvas)" to="var(--color-graphite)" trees />
       </main>
       <Footer />
     </>

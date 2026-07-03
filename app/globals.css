@@ -64,6 +64,103 @@ body {
   color: var(--foreground);
 }
 
+/* --- Scroll-reveal ------------------------------------------------------ */
+/* Elements start slightly lowered and transparent; the Reveal component
+   adds .is-revealed when they enter the viewport. */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.7s ease-out,
+    transform 0.7s ease-out;
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.reveal.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- Hero: slow Ken Burns drift on the photo --------------------------- */
+/* The photo layer is mirrored (scaleX(-1)), so the zoom keyframes must
+   carry the mirror too — `animation` would otherwise override it. */
+@keyframes hero-kenburns {
+  0% {
+    transform: scaleX(-1) scale(1);
+  }
+  100% {
+    transform: scaleX(-1) scale(1.08);
+  }
+}
+
+.hero-kenburns {
+  animation: hero-kenburns 28s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+/* --- Hero: fireflies over the evening field ----------------------------- */
+@keyframes firefly-drift {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(14px, -22px);
+  }
+  50% {
+    transform: translate(-10px, -44px);
+  }
+  75% {
+    transform: translate(10px, -66px);
+  }
+  100% {
+    transform: translate(0, -90px);
+  }
+}
+
+@keyframes firefly-glow {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  40%,
+  60% {
+    opacity: 1;
+  }
+}
+
+.firefly {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 9999px;
+  background: #ffe9a8;
+  box-shadow:
+    0 0 6px 2px rgba(255, 233, 168, 0.85),
+    0 0 16px 6px rgba(255, 220, 120, 0.35);
+  opacity: 0;
+  animation:
+    firefly-drift var(--ff-duration, 11s) linear infinite,
+    firefly-glow calc(var(--ff-duration, 11s) / 2.5) ease-in-out infinite;
+  animation-delay: var(--ff-delay, 0s);
+}
+
+/* --- Hero: gentle scroll cue -------------------------------------------- */
+@keyframes cue-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.85;
+  }
+  50% {
+    transform: translateY(8px);
+    opacity: 0.45;
+  }
+}
+
+.animate-cue-bounce {
+  animation: cue-bounce 2s ease-in-out infinite;
+}
+
 /* Subtle drifting smog used by the Strefa 6SP section */
 @keyframes smog-drift {
   0% {
@@ -119,7 +216,18 @@ body {
     animation: none !important;
   }
   .animate-pulse-soft,
-  .animate-pulse-glow {
+  .animate-pulse-glow,
+  .hero-kenburns,
+  .firefly,
+  .animate-cue-bounce {
     animation: none;
+  }
+  .firefly {
+    display: none;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 }

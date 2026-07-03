@@ -1,7 +1,9 @@
+import type { ReactNode } from "react";
 import { village } from "@/data/village";
 import { villageStats } from "@/data/stats";
-import { formatNumberPL } from "@/lib/format";
 import { SectionHeading } from "./ui/SectionHeading";
+import { AnimatedNumber } from "./ui/AnimatedNumber";
+import { Reveal } from "./ui/Reveal";
 
 function pct(part: number): string {
   return `${Math.round((part / village.population) * 100)}%`;
@@ -10,29 +12,39 @@ function pct(part: number): string {
 export function VillageStats() {
   const s = villageStats;
 
-  const cards = [
+  const cards: { key: string; value: ReactNode; label: string }[] = [
     {
-      value: formatNumberPL(village.population),
+      key: "population",
+      value: <AnimatedNumber value={village.population} />,
       label: `Mieszkańcy (${village.populationYear})`,
     },
     {
-      value: `${s.women} / ${s.men}`,
+      key: "women-men",
+      value: (
+        <>
+          <AnimatedNumber value={s.women} /> / <AnimatedNumber value={s.men} />
+        </>
+      ),
       label: "Kobiety / Mężczyźni",
     },
     {
-      value: formatNumberPL(s.childrenUnder18),
+      key: "children",
+      value: <AnimatedNumber value={s.childrenUnder18} />,
       label: `Dzieci, <18 lat · ${pct(s.childrenUnder18)}`,
     },
     {
-      value: formatNumberPL(s.workingAge),
+      key: "working",
+      value: <AnimatedNumber value={s.workingAge} />,
       label: `Wiek produkcyjny · ${pct(s.workingAge)}`,
     },
     {
-      value: formatNumberPL(s.postWorkingAge),
+      key: "post-working",
+      value: <AnimatedNumber value={s.postWorkingAge} />,
       label: `Wiek poprodukcyjny · ${pct(s.postWorkingAge)}`,
     },
     {
-      value: `+${formatNumberPL(s.growthSince1998Pct)}%`,
+      key: "growth",
+      value: <AnimatedNumber value={s.growthSince1998Pct} prefix="+" suffix="%" />,
       label: "Wzrost od 1998 r.",
     },
   ];
@@ -40,26 +52,27 @@ export function VillageStats() {
   return (
     <section id="o-wsi" className="py-16">
       <div className="mx-auto max-w-6xl px-4">
-        <SectionHeading
-          eyebrow="Statystyki"
-          icon="📊"
-          title="Wieś w liczbach"
-          description="Nasza wieś według danych spisu powszechnego."
-        />
+        <Reveal>
+          <SectionHeading
+            eyebrow="Statystyki"
+            icon="📊"
+            title="Wieś w liczbach"
+            description="Nasza wieś według danych spisu powszechnego."
+          />
+        </Reveal>
 
         <div className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-slate-200 bg-slate-200 shadow-sm sm:grid-cols-3 lg:grid-cols-6">
-          {cards.map((card) => (
-            <div
-              key={card.label}
-              className="flex flex-col items-center bg-white px-4 py-7 text-center"
-            >
-              <span className="font-serif text-3xl font-semibold tracking-tight text-brand-700 sm:text-4xl">
-                {card.value}
-              </span>
-              <span className="mt-2 text-xs leading-snug text-slate-500">
-                {card.label}
-              </span>
-            </div>
+          {cards.map((card, i) => (
+            <Reveal key={card.key} delay={i * 80} className="h-full">
+              <div className="flex h-full flex-col items-center bg-white px-4 py-7 text-center">
+                <span className="font-serif text-3xl font-semibold tracking-tight text-brand-700 sm:text-4xl">
+                  {card.value}
+                </span>
+                <span className="mt-2 text-xs leading-snug text-slate-500">
+                  {card.label}
+                </span>
+              </div>
+            </Reveal>
           ))}
         </div>
 
