@@ -16,7 +16,7 @@ export function SuggestionForm() {
 
   if (state.status === "success") {
     return (
-      <div className="rounded-xl border border-brand-500/40 bg-brand-500/10 p-6 text-center">
+      <div className="rounded-2xl border border-gold-400/40 bg-gold-400/10 p-6 text-center">
         <p className="text-2xl" aria-hidden>
           ✅
         </p>
@@ -53,7 +53,7 @@ export function SuggestionForm() {
           type="text"
           placeholder="Twoje imię / e-mail"
           maxLength={200}
-          className="w-full rounded-lg border border-white/15 bg-graphite-700 px-4 py-3 text-white placeholder:text-zinc-500 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/40"
+          className="w-full rounded-2xl border border-white/15 bg-white/5 px-4 py-3 text-cream placeholder:text-cream/35 focus:border-gold-400/60 focus:outline-none focus:ring-2 focus:ring-gold-400/30"
         />
       </div>
 
@@ -68,7 +68,7 @@ export function SuggestionForm() {
           rows={4}
           maxLength={2000}
           placeholder="Pomysł na rozwój (co dodać do strony?)"
-          className="w-full rounded-lg border border-white/15 bg-graphite-700 px-4 py-3 text-white placeholder:text-zinc-500 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/40"
+          className="w-full rounded-2xl border border-white/15 bg-white/5 px-4 py-3 text-cream placeholder:text-cream/35 focus:border-gold-400/60 focus:outline-none focus:ring-2 focus:ring-gold-400/30"
         />
       </div>
 
@@ -84,7 +84,7 @@ export function SuggestionForm() {
       <button
         type="submit"
         disabled={pending}
-        className="inline-flex items-center justify-center rounded-lg bg-brand-600 px-6 py-3 font-semibold text-white transition hover:bg-brand-500 disabled:cursor-not-allowed disabled:opacity-60"
+        className="inline-flex items-center justify-center rounded-full bg-gold-400 px-7 py-3 font-extrabold text-pine-950 transition hover:bg-gold-300 disabled:cursor-not-allowed disabled:opacity-60"
       >
         {pending ? "Wysyłanie…" : "Wyślij"}
       </button>

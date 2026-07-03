@@ -23,7 +23,7 @@ export function AddToCalendar({
       <button
         type="button"
         onClick={subscribe}
-        className="inline-flex items-center gap-2 rounded-lg bg-brand-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-500"
+        className="inline-flex items-center gap-2 rounded-full bg-pine-800 px-5 py-2.5 text-sm font-bold text-cream transition hover:bg-pine-700"
       >
         <Icon name="calendar" className="h-4 w-4" />
         Subskrybuj
@@ -31,7 +31,7 @@ export function AddToCalendar({
       <a
         href={path}
         download
-        className="inline-flex items-center gap-2 rounded-lg border border-brand-300 px-4 py-2 text-sm font-semibold text-brand-700 transition hover:bg-brand-50"
+        className="inline-flex items-center gap-2 rounded-full border border-pine-800/30 px-5 py-2.5 text-sm font-bold text-pine-800 transition hover:bg-pine-50"
       >
         Pobierz plik .ics
       </a>

@@ -1,21 +1,23 @@
 import type { Metadata } from "next";
-import { Inter, Lora, Geist_Mono, Cookie } from "next/font/google";
+import { Manrope, Fraunces, Geist_Mono, Cookie } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { village } from "@/data/village";
 import { site } from "@/data/site";
 
-const inter = Inter({
-  variable: "--font-inter",
+const manrope = Manrope({
+  variable: "--font-manrope",
   subsets: ["latin", "latin-ext"],
   display: "swap",
 });
 
-// Editorial serif for headings — gives the page a calm, civic, institutional
-// voice instead of the all-sans "startup" look.
-const lora = Lora({
-  variable: "--font-lora",
+// Expressive display serif for headings — optical sizing gives small text a
+// bookish warmth and large headlines a high-contrast editorial character.
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
   subsets: ["latin", "latin-ext"],
+  style: ["normal", "italic"],
+  axes: ["opsz"],
   display: "swap",
 });
 
@@ -80,9 +82,9 @@ export default function RootLayout({
   return (
     <html
       lang="pl"
-      className={`${inter.variable} ${lora.variable} ${geistMono.variable} ${cookie.variable} h-full antialiased`}
+      className={`${manrope.variable} ${fraunces.variable} ${geistMono.variable} ${cookie.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-canvas font-sans text-slate-900">
+      <body className="min-h-full flex flex-col bg-cream font-sans text-ink">
         {children}
         <Analytics />
       </body>
