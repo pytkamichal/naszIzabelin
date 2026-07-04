@@ -26,7 +26,7 @@ export function VillageHistory() {
         <div className="gap-14 lg:grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
           {/* Left column: heading + sources, sticky on desktop so it keeps
               the reader company along the long timeline. */}
-          <div className="lg:sticky lg:top-28 lg:self-start">
+          <div className="lg:sticky lg:top-36 lg:self-start">
             <Reveal>
               <SectionHeading
                 index="02"

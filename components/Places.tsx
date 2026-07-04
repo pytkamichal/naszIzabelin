@@ -93,9 +93,9 @@ function PlaceCard({ place }: { place: Place }) {
 
 function AmenityCard({ item }: { item: Amenity }) {
   return (
-    <div className="flex items-start gap-4 rounded-3xl border border-ink/10 bg-cream p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-gold-500/40 hover:shadow-xl hover:shadow-pine-900/10">
-      <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-pine-900 text-gold-300">
-        <Icon name={item.icon} className="h-5 w-5" />
+    <div className="group flex items-start gap-4 rounded-3xl border border-ink/10 bg-cream p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-gold-500/40 hover:shadow-xl hover:shadow-pine-900/10">
+      <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-pine-100 to-gold-300/50 text-pine-600 ring-1 ring-pine-600/10 transition-transform duration-300 group-hover:scale-105">
+        <Icon name={item.icon} className="h-6 w-6" />
       </span>
       <div>
         <h3 className="font-serif text-xl font-semibold tracking-tight text-pine-900">

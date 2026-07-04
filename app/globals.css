@@ -79,10 +79,11 @@ html {
   outline-offset: 2px;
 }
 
-/* Keep sticky-header-anchored sections from hiding under the header */
+/* Keep sticky-header-anchored sections from hiding under the fixed header.
+   The floating header bar ends ~125px down, so we clear it with a little gap. */
 section[id],
 div[id] {
-  scroll-margin-top: 6rem;
+  scroll-margin-top: 8.5rem;
 }
 
 body {

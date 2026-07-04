@@ -53,7 +53,7 @@ export const contacts: Contact[] = [
   },
   {
     role: "Opieka zdrowotna",
-    icon: "⚕️",
+    icon: "🩺",
     name: "Rodzinny NZOZ - przychodnia",
     phone: "+48 25 726 02 10",
     note: "ul. Mińska 9, Jakubów",

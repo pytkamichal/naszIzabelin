@@ -153,19 +153,25 @@ export function CalendarBoard() {
               📌 Ogłoszenia
             </h3>
             <ul className="space-y-3">
-              {notices.map((notice) => (
-                <li
-                  key={notice.date + notice.text}
-                  className="rounded-2xl border border-ink/5 bg-cream p-4"
-                >
-                  <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-gold-600">
-                    {formatShortDatePL(notice.date)}
-                  </p>
-                  <p className="mt-1.5 leading-relaxed text-ink/80">
-                    {notice.text}
-                  </p>
+              {notices.length === 0 ? (
+                <li className="rounded-2xl bg-sand px-4 py-7 text-center text-sm text-ink/55">
+                  Brak aktualnych ogłoszeń.
                 </li>
-              ))}
+              ) : (
+                notices.map((notice) => (
+                  <li
+                    key={notice.date + notice.text}
+                    className="rounded-2xl border border-ink/5 bg-cream p-4"
+                  >
+                    <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-gold-600">
+                      {formatShortDatePL(notice.date)}
+                    </p>
+                    <p className="mt-1.5 leading-relaxed text-ink/80">
+                      {notice.text}
+                    </p>
+                  </li>
+                ))
+              )}
             </ul>
           </div>
         </div>

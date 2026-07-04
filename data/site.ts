@@ -43,4 +43,5 @@ export const navLinks: NavLink[] = [
   { href: "/#odpady", label: "Śmieci" },
   { href: "/#inwestycje", label: "Inwestycje" },
   { href: "/#kontakty", label: "Kontakty" },
+  { href: "/#sasiedzka-pomoc", label: "Pomoc sąsiedzka" },
 ];

@@ -28,7 +28,7 @@ export function Header() {
             </span>
           </Link>
 
-          <nav className="hidden items-center gap-0.5 lg:flex">
+          <nav className="hidden items-center gap-0.5 xl:flex">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -63,7 +63,7 @@ export function Header() {
             <button
               type="button"
               onClick={() => setOpen((v) => !v)}
-              className="inline-flex h-9 w-9 items-center justify-center rounded-lg text-cream/80 hover:bg-white/10 hover:text-cream lg:hidden"
+              className="inline-flex h-9 w-9 items-center justify-center rounded-lg text-cream/80 hover:bg-white/10 hover:text-cream xl:hidden"
               aria-expanded={open}
               aria-controls="mobile-nav"
               aria-label="Otwórz menu"
@@ -109,7 +109,7 @@ export function Header() {
         {open ? (
           <nav
             id="mobile-nav"
-            className="border-t border-white/10 px-4 py-3 lg:hidden"
+            className="border-t border-white/10 px-4 py-3 xl:hidden"
           >
             <div className="flex flex-col gap-1">
               {navLinks.map((link) => (
