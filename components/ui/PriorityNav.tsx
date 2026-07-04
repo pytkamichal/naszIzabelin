@@ -15,7 +15,16 @@ const useIsoLayoutEffect =
   typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
 const ITEM_CLASS =
-  "whitespace-nowrap rounded-lg px-2.5 py-2 text-[13px] font-semibold text-cream/70 transition hover:bg-white/10 hover:text-cream";
+  "inline-flex items-center gap-1.5 whitespace-nowrap rounded-lg px-2.5 py-2 text-[13px] font-semibold text-cream/70 transition hover:bg-white/10 hover:text-cream";
+
+// Small "Nowość"-style pill shown next to flagged links.
+function Badge({ label }: { label: string }) {
+  return (
+    <span className="rounded-full bg-gold-400 px-1.5 py-0.5 text-[9px] font-extrabold uppercase leading-none tracking-wide text-pine-950">
+      {label}
+    </span>
+  );
+}
 
 // Matches the flex `gap` used on the nav rows below (gap-0.5 = 2px).
 const GAP = 2;
@@ -128,6 +137,7 @@ export function PriorityNav({ links }: { links: NavLink[] }) {
           {links.map((link) => (
             <span key={link.href} data-nav-item className={ITEM_CLASS}>
               {link.label}
+              {link.badge ? <Badge label={link.badge} /> : null}
             </span>
           ))}
           <span data-more className={ITEM_CLASS} aria-hidden>
@@ -141,6 +151,7 @@ export function PriorityNav({ links }: { links: NavLink[] }) {
         {visible.map((link) => (
           <Link key={link.href} href={link.href} className={ITEM_CLASS}>
             {link.label}
+            {link.badge ? <Badge label={link.badge} /> : null}
           </Link>
         ))}
 
@@ -170,9 +181,10 @@ export function PriorityNav({ links }: { links: NavLink[] }) {
                     href={link.href}
                     role="menuitem"
                     onClick={() => setOpen(false)}
-                    className="block rounded-lg px-3 py-2 text-sm font-semibold text-cream/80 transition hover:bg-white/10 hover:text-cream"
+                    className="flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-semibold text-cream/80 transition hover:bg-white/10 hover:text-cream"
                   >
                     {link.label}
+                    {link.badge ? <Badge label={link.badge} /> : null}
                   </Link>
                 ))}
               </div>

@@ -6,6 +6,8 @@ type SectionHeadingProps = {
   description?: string;
   /** Chapter number rendered before the eyebrow, e.g. "01". */
   index?: string;
+  /** Small pill next to the eyebrow, e.g. "Nowość". */
+  badge?: string;
   /** "dark" for headings sitting on pine/graphite sections. */
   tone?: "light" | "dark";
 };
@@ -15,6 +17,7 @@ export function SectionHeading({
   title,
   description,
   index,
+  badge,
   tone = "light",
 }: SectionHeadingProps) {
   const dark = tone === "dark";
@@ -41,6 +44,11 @@ export function SectionHeading({
             className={`h-px w-10 self-center ${dark ? "bg-gold-400/60" : "bg-gold-500/70"}`}
           />
           {eyebrow}
+          {badge ? (
+            <span className="self-center rounded-full bg-gold-400 px-2.5 py-0.5 text-[10px] font-extrabold uppercase tracking-wider text-pine-950">
+              {badge}
+            </span>
+          ) : null}
         </p>
       ) : null}
       <h2

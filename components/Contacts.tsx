@@ -24,7 +24,7 @@ export function Contacts() {
               className="flex gap-4 rounded-3xl border border-ink/10 bg-cream p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-gold-500/40 hover:shadow-xl hover:shadow-pine-900/10"
             >
               <div
-                className="flex h-13 w-13 shrink-0 items-center justify-center rounded-2xl bg-pine-900 text-2xl"
+                className="flex h-13 w-13 shrink-0 items-center justify-center rounded-2xl bg-pine-100 text-2xl ring-1 ring-pine-900/10"
                 aria-hidden
               >
                 {contact.icon}
