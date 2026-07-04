@@ -7,19 +7,34 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer id="kontakt" className="mt-auto bg-graphite text-zinc-300">
-      <div className="mx-auto max-w-6xl px-4 py-16">
-        <div className="grid gap-12 lg:grid-cols-2">
+    <footer
+      id="kontakt"
+      className="grain relative mt-auto overflow-hidden bg-pine-950 text-cream/80"
+    >
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0"
+        style={{
+          backgroundImage:
+            "radial-gradient(60% 50% at 80% 0%, rgba(227,174,53,0.06), transparent 70%), radial-gradient(55% 60% at 15% 100%, rgba(58,125,85,0.15), transparent 70%)",
+        }}
+      />
+
+      <div className="relative mx-auto max-w-6xl px-4 py-20 sm:px-5">
+        <div className="grid gap-14 lg:grid-cols-2">
           {/* Suggestion form */}
           <div>
-            <h2 className="font-serif text-3xl font-semibold text-white">
-              Masz pomysł na rozwój strony?
+            <h2 className="font-serif text-4xl font-semibold tracking-tight text-cream">
+              Masz pomysł na rozwój strony
+              <span aria-hidden className="text-gold-400">
+                ?
+              </span>
             </h2>
-            <p className="mt-2 max-w-md text-zinc-400">
+            <p className="mt-3 max-w-md leading-relaxed text-cream/60">
               Napisz do nas — czytamy wszystkie zgłoszenia i wspólnie rozwijamy
               tę stronę.
             </p>
-            <div className="mt-6 max-w-md">
+            <div className="mt-7 max-w-md">
               <SuggestionForm />
             </div>
           </div>
@@ -29,17 +44,17 @@ export function Footer() {
             <img
               src="/logo.jpeg"
               alt={site.name}
-              className="h-16 w-auto"
+              className="h-16 w-auto rounded-xl"
             />
-            <p className="mt-3 max-w-md text-zinc-400">
+            <p className="mt-4 max-w-md leading-relaxed text-cream/60">
               Strona mieszkańców wsi {village.name} ({village.region}).
               Tworzona społecznie, dla naszej lokalnej społeczności.
             </p>
-            <BuyMeACoffee className="mt-6" label="Buy me a coffee / Wesprzyj" />
+            <BuyMeACoffee className="mt-7" label="Buy me a coffee / Wesprzyj" />
           </div>
         </div>
 
-        <div className="mt-12 border-t border-white/10 pt-6 text-sm text-zinc-500">
+        <div className="mt-14 border-t border-white/10 pt-6 text-sm text-cream/40">
           <p>
             © {year} Michał Pytka. Strona stworzona społecznie dla
             mieszkańców wsi {village.name}. Wspieraj projekt przez{" "}
@@ -47,7 +62,7 @@ export function Footer() {
               href={site.buyMeACoffeeUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-medium text-amber-300 hover:underline"
+              className="font-medium text-gold-300 hover:underline"
             >
               Buy me a coffee
             </a>

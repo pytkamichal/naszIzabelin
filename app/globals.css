@@ -1,26 +1,53 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: var(--font-inter);
-  --font-serif: var(--font-lora);
+  --font-sans: var(--font-manrope);
+  --font-serif: var(--font-fraunces);
   --font-mono: var(--font-geist-mono);
 
-  /* Brand — Izabelin / forest green.
-     Deeper and more desaturated than a stock green for a calm, civic tone. */
-  --color-brand-50: #f1f6f2;
-  --color-brand-100: #deeae1;
-  --color-brand-200: #bdd5c5;
-  --color-brand-300: #93b9a1;
-  --color-brand-400: #649a7b;
-  --color-brand-500: #437d5d;
-  --color-brand-600: #2f6248;
-  --color-brand-700: #244e3a;
-  --color-brand-800: #1e3f30;
-  --color-brand-900: #183328;
+  /* Pine — the primary brand green. Deeper and moodier than the previous
+     palette; the dark end (900/950) doubles as a section background. */
+  --color-pine-50: #eef6f0;
+  --color-pine-100: #d8ebdd;
+  --color-pine-200: #b3d6bf;
+  --color-pine-300: #85ba98;
+  --color-pine-400: #579a71;
+  --color-pine-500: #3a7d55;
+  --color-pine-600: #2b6444;
+  --color-pine-700: #235137;
+  --color-pine-800: #1a3d2a;
+  --color-pine-900: #122d1f;
+  --color-pine-950: #0a1f15;
 
-  /* Warm paper neutrals — softer and less clinical than pure white / slate. */
-  --color-canvas: #faf9f5;
-  --color-paper: #f4f2ec;
+  /* brand-* aliases — kept so small shared components (buttons, links)
+     keep working; they now resolve to the pine palette. */
+  --color-brand-50: #eef6f0;
+  --color-brand-100: #d8ebdd;
+  --color-brand-200: #b3d6bf;
+  --color-brand-300: #85ba98;
+  --color-brand-400: #579a71;
+  --color-brand-500: #3a7d55;
+  --color-brand-600: #2b6444;
+  --color-brand-700: #235137;
+  --color-brand-800: #1a3d2a;
+  --color-brand-900: #122d1f;
+
+  /* Harvest gold — the accent. Ripe-grain warm, used sparingly for
+     numbers, rules, the ticker and small flourishes. */
+  --color-gold-300: #eec766;
+  --color-gold-400: #e3ae35;
+  --color-gold-500: #c9941b;
+  --color-gold-600: #a4770e;
+
+  /* Warm papers */
+  --color-cream: #f7f4ea;
+  --color-sand: #efe8d8;
+  --color-sand-deep: #e3d9c2;
+  --color-ink: #1d241e;
+
+  /* Legacy paper aliases (still referenced in a few places) */
+  --color-canvas: #f7f4ea;
+  --color-paper: #efe8d8;
 
   /* "Strefa 6SP" — dark / industrial / Chernobyl palette */
   --color-graphite: #121417;
@@ -34,29 +61,45 @@
 }
 
 :root {
-  --background: #faf9f5;
-  --foreground: #1b2420;
+  --background: #f7f4ea;
+  --foreground: #1d241e;
 }
 
 html {
   scroll-behavior: smooth;
 }
 
-::selection {
-  background: var(--color-brand-200);
-  color: var(--color-brand-900);
+/* Real phones use overlay scrollbars, but narrow desktop windows and some
+   device emulators render a classic vertical scrollbar whose gutter exposes
+   the page background as a stray strip on the right. Below `sm` we hide that
+   scrollbar so fixed/full-width elements reach the very edge — matching how
+   the page actually looks on a phone. Scrolling itself is unaffected. */
+@media (max-width: 640px) {
+  html {
+    scrollbar-width: none; /* Firefox */
+  }
+  html::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    display: none; /* Chromium / WebKit */
+  }
 }
 
-/* Calmer, brand-tinted focus ring for keyboard users. */
+::selection {
+  background: var(--color-gold-300);
+  color: var(--color-pine-950);
+}
+
 :focus-visible {
-  outline: 2px solid var(--color-brand-600);
+  outline: 2px solid var(--color-gold-500);
   outline-offset: 2px;
 }
 
-/* Keep sticky-header-anchored sections from hiding under the header */
+/* Keep sticky-header-anchored sections from hiding under the fixed header.
+   The floating header bar ends ~125px down, so we clear it with a little gap. */
 section[id],
 div[id] {
-  scroll-margin-top: 7rem;
+  scroll-margin-top: 8.5rem;
 }
 
 body {
@@ -64,15 +107,28 @@ body {
   color: var(--foreground);
 }
 
-/* --- Scroll-reveal ------------------------------------------------------ */
+/* --- Grain ---------------------------------------------------------------- */
+/* Subtle film grain laid over dark sections; gives the flat pine panels a
+   printed, organic feel. Parent needs position:relative. */
+.grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* --- Scroll-reveal -------------------------------------------------------- */
 /* Elements start slightly lowered and transparent; the Reveal component
    adds .is-revealed when they enter the viewport. */
 .reveal {
   opacity: 0;
-  transform: translateY(24px);
+  transform: translateY(28px);
   transition:
-    opacity 0.7s ease-out,
-    transform 0.7s ease-out;
+    opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
   transition-delay: var(--reveal-delay, 0ms);
 }
 
@@ -81,7 +137,7 @@ body {
   transform: translateY(0);
 }
 
-/* --- Hero: slow Ken Burns drift on the photo --------------------------- */
+/* --- Hero: slow Ken Burns drift on the photo ------------------------------ */
 /* The photo layer is mirrored (scaleX(-1)), so the zoom keyframes must
    carry the mirror too — `animation` would otherwise override it. */
 @keyframes hero-kenburns {
@@ -98,7 +154,7 @@ body {
   will-change: transform;
 }
 
-/* --- Hero: fireflies over the evening field ----------------------------- */
+/* --- Hero: fireflies over the evening field -------------------------------- */
 @keyframes firefly-drift {
   0% {
     transform: translate(0, 0);
@@ -144,7 +200,7 @@ body {
   animation-delay: var(--ff-delay, 0s);
 }
 
-/* --- Hero: gentle scroll cue -------------------------------------------- */
+/* --- Hero: gentle scroll cue ----------------------------------------------- */
 @keyframes cue-bounce {
   0%,
   100% {
@@ -231,3 +287,4 @@ body {
     transition: none;
   }
 }
+

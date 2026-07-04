@@ -19,11 +19,6 @@ export const investments: Investment[] = [
     status: "in_progress",
     description: "Faza I zakończona. Trwają odbiory techniczne.",
   },
-  {
-    name: "Droga dojazdowa",
-    status: "planned",
-    description: "Przetarg przełożony na przyszły rok.",
-  },
 ];
 
 export const investmentStatusLabels: Record<

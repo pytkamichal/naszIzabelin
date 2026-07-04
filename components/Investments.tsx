@@ -6,16 +6,16 @@ import {
 import { SectionHeading } from "./ui/SectionHeading";
 
 const statusStyles: Record<InvestmentStatus, string> = {
-  done: "bg-green-100 text-green-800 ring-green-600/20",
-  in_progress: "bg-amber-100 text-amber-800 ring-amber-600/20",
-  planned: "bg-red-100 text-red-800 ring-red-600/20",
+  done: "bg-pine-100 text-pine-800 ring-pine-600/25",
+  in_progress: "bg-gold-300/40 text-gold-600 ring-gold-500/30",
+  planned: "bg-blood/10 text-blood-dark ring-blood/25",
 };
 
 function StatusPill({ status }: { status: InvestmentStatus }) {
   const { label, icon } = investmentStatusLabels[status];
   return (
     <span
-      className={`inline-flex items-center gap-1.5 whitespace-nowrap rounded-full px-2.5 py-1 text-sm font-medium ring-1 ring-inset ${statusStyles[status]}`}
+      className={`inline-flex items-center gap-1.5 whitespace-nowrap rounded-full px-3 py-1 text-sm font-bold ring-1 ring-inset ${statusStyles[status]}`}
     >
       <span aria-hidden>{icon}</span>
       {label}
@@ -25,9 +25,10 @@ function StatusPill({ status }: { status: InvestmentStatus }) {
 
 export function Investments() {
   return (
-    <section id="inwestycje" className="py-16">
-      <div className="mx-auto max-w-6xl px-4">
+    <section id="inwestycje" className="bg-sand py-24">
+      <div className="mx-auto max-w-6xl px-4 sm:px-5">
         <SectionHeading
+          index="05"
           eyebrow="Infrastruktura"
           icon="🏗️"
           title="Inwestycje"
@@ -35,27 +36,25 @@ export function Investments() {
         />
 
         {/* Tabela (od sm w górę) */}
-        <div className="hidden overflow-hidden rounded-xl border border-slate-200 shadow-sm sm:block">
+        <div className="hidden overflow-hidden rounded-3xl border border-ink/10 shadow-md shadow-pine-900/5 sm:block">
           <table className="w-full border-collapse text-left">
             <thead>
-              <tr className="bg-slate-50 text-sm uppercase tracking-wide text-slate-500">
-                <th className="px-5 py-3 font-semibold">Inwestycja</th>
-                <th className="px-5 py-3 font-semibold">Status</th>
-                <th className="px-5 py-3 font-semibold">Etap / Opis</th>
+              <tr className="bg-pine-950 text-xs uppercase tracking-[0.16em] text-cream/60">
+                <th className="px-6 py-4 font-bold">Inwestycja</th>
+                <th className="px-6 py-4 font-bold">Status</th>
+                <th className="px-6 py-4 font-bold">Etap / Opis</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100">
+            <tbody className="divide-y divide-ink/5 bg-cream">
               {investments.map((item) => (
-                <tr key={item.name} className="hover:bg-slate-50/60">
-                  <td className="px-5 py-4 font-semibold text-slate-900">
+                <tr key={item.name} className="transition hover:bg-pine-50">
+                  <td className="px-6 py-5 font-serif text-lg font-semibold tracking-tight text-pine-900">
                     {item.name}
                   </td>
-                  <td className="px-5 py-4">
+                  <td className="px-6 py-5">
                     <StatusPill status={item.status} />
                   </td>
-                  <td className="px-5 py-4 text-slate-600">
-                    {item.description}
-                  </td>
+                  <td className="px-6 py-5 text-ink/70">{item.description}</td>
                 </tr>
               ))}
             </tbody>
@@ -63,17 +62,21 @@ export function Investments() {
         </div>
 
         {/* Karty (na telefonach) */}
-        <div className="space-y-3 sm:hidden">
+        <div className="space-y-4 sm:hidden">
           {investments.map((item) => (
             <div
               key={item.name}
-              className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm"
+              className="rounded-3xl border border-ink/10 bg-cream p-5 shadow-sm"
             >
               <div className="flex items-center justify-between gap-3">
-                <h3 className="font-semibold text-slate-900">{item.name}</h3>
+                <h3 className="font-serif text-lg font-semibold tracking-tight text-pine-900">
+                  {item.name}
+                </h3>
                 <StatusPill status={item.status} />
               </div>
-              <p className="mt-2 text-sm text-slate-600">{item.description}</p>
+              <p className="mt-2.5 text-sm leading-relaxed text-ink/70">
+                {item.description}
+              </p>
             </div>
           ))}
         </div>

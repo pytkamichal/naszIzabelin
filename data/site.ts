@@ -30,15 +30,20 @@ export const air = {
   longitude: 21.79,
 };
 
-export type NavLink = { href: string; label: string };
+export type NavLink = { href: string; label: string; badge?: string };
 
+// Hrefs are absolute ("/#...") so the anchors also work from subpages
+// such as /strefa-6sp; on the home page the browser just scrolls.
+// "Pomoc sąsiedzka" is listed first so the priority nav shows it whenever
+// there's room; on the tightest screens it falls back into the `»` menu.
 export const navLinks: NavLink[] = [
-  { href: "#aktualnosci", label: "Aktualności" },
-  { href: "#historia", label: "Historia" },
-  { href: "#miejsca", label: "W okolicy" },
-  { href: "#kalendarz", label: "Kalendarz" },
-  { href: "#transport", label: "Autobusy" },
-  { href: "#odpady", label: "Śmieci" },
-  { href: "#inwestycje", label: "Inwestycje" },
-  { href: "#kontakty", label: "Kontakty" },
+  { href: "/#sasiedzka-pomoc", label: "Pomoc sąsiedzka", badge: "Nowość" },
+  { href: "/#aktualnosci", label: "Aktualności" },
+  { href: "/#historia", label: "Historia" },
+  { href: "/#miejsca", label: "W okolicy" },
+  { href: "/#kalendarz", label: "Kalendarz" },
+  { href: "/#transport", label: "Autobusy" },
+  { href: "/#odpady", label: "Śmieci" },
+  { href: "/#inwestycje", label: "Inwestycje" },
+  { href: "/#kontakty", label: "Kontakty" },
 ];

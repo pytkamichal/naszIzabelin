@@ -1,13 +1,27 @@
 import { village } from "@/data/village";
 import { FieldForest } from "./illustrations/FieldForest";
 
+/** Renders the hero heading with the village name set in italic gold —
+ *  the copy itself is unchanged, only the emphasis is typographic. */
+function AccentedHeading({ text }: { text: string }) {
+  const idx = text.indexOf(village.name);
+  if (idx === -1) return <>{text}</>;
+  return (
+    <>
+      {text.slice(0, idx)}
+      <em className="font-serif italic text-gold-300">{village.name}</em>
+      {text.slice(idx + village.name.length)}
+    </>
+  );
+}
+
 export function Hero() {
   return (
     <section
       id="top"
-      className="relative isolate min-h-[620px] overflow-hidden bg-[#0c1f14] sm:min-h-[720px]"
+      className="relative isolate flex min-h-svh flex-col justify-end overflow-hidden bg-pine-950"
     >
-      {/* Peaceful field + forest illustration */}
+      {/* Peaceful field + forest illustration (fallback under the photo) */}
       <FieldForest className="absolute inset-0 h-full w-full" />
 
       {/* Hero photo (falls back to the illustration above if missing).
@@ -24,14 +38,14 @@ export function Hero() {
         }}
       />
 
-      {/* Scrims so white text stays readable over the bright photo */}
+      {/* Pine-tinted scrims so cream text stays readable over the photo */}
       <div
         aria-hidden
-        className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/30 to-black/5"
+        className="absolute inset-0 bg-gradient-to-t from-pine-950 via-pine-950/35 to-pine-950/10"
       />
       <div
         aria-hidden
-        className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/25 to-transparent"
+        className="absolute inset-0 bg-gradient-to-r from-pine-950/80 via-pine-950/25 to-transparent"
       />
 
       {/* Fireflies drifting over the evening field (decorative, CSS-only). */}
@@ -60,68 +74,52 @@ export function Hero() {
         ))}
       </div>
 
-      {/* Village coat of arms — a soft watermark on the open right side.
-          Hidden on small screens, where it appears inline above the title instead. */}
+      {/* Village coat of arms — floats on the open right side, above the moose.
+          Hidden on small screens, where it appears inline above the title. */}
       <img
         src="/herb.png?v=2"
         alt=""
         aria-hidden
-        className="pointer-events-none absolute right-6 top-28 hidden h-[185px] w-auto opacity-100 drop-shadow-[0_12px_28px_rgba(0,0,0,0.55)] md:block lg:right-14 lg:h-[220px]"
+        className="pointer-events-none absolute right-8 top-32 hidden h-[180px] w-auto drop-shadow-[0_12px_28px_rgba(0,0,0,0.55)] md:block lg:right-16 lg:h-[220px]"
       />
 
-      <div className="relative mx-auto max-w-6xl px-4 py-24 sm:py-36">
+      <div className="relative mx-auto w-full max-w-6xl px-4 pb-24 pt-40 sm:px-5 sm:pb-28">
         {/* Coat of arms for small screens — sits above the title, clear of the copy. */}
         <img
           src="/herb.png?v=2"
           alt="Herb wsi Izabelin"
-          className="mb-6 h-28 w-auto drop-shadow-[0_10px_24px_rgba(0,0,0,0.55)] md:hidden"
+          className="mb-8 h-24 w-auto drop-shadow-[0_10px_24px_rgba(0,0,0,0.55)] md:hidden"
         />
-        <p className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.2em] text-brand-100 drop-shadow">
-          <span aria-hidden className="h-px w-8 bg-brand-200/70" />
+
+        <p className="flex items-center gap-4 text-[11px] font-extrabold uppercase tracking-[0.32em] text-gold-300 sm:text-xs">
+          <span aria-hidden className="h-px w-12 bg-gold-400/80" />
           {village.region}
         </p>
-        <h1 className="mt-4 max-w-3xl font-serif text-4xl font-semibold leading-[1.1] tracking-tight text-white drop-shadow-md sm:text-6xl">
-          {village.heroHeading}
+
+        <h1 className="mt-6 max-w-4xl font-serif text-5xl font-semibold leading-[1.02] tracking-tight text-cream drop-shadow-[0_4px_24px_rgba(0,0,0,0.45)] sm:text-6xl lg:text-7xl">
+          <AccentedHeading text={village.heroHeading} />
         </h1>
-        <p className="mt-6 max-w-2xl text-lg leading-relaxed text-slate-100 drop-shadow-sm">
+
+        <p className="mt-8 max-w-2xl text-base leading-relaxed text-cream/85 drop-shadow-sm sm:text-lg">
           {village.heroLead}
         </p>
 
         {/* Village motto */}
-        <figure className="mt-10 max-w-xl border-l-2 border-brand-200/50 pl-5">
-          <blockquote className="font-serif text-xl font-medium italic leading-relaxed text-white/90 drop-shadow sm:text-2xl">
+        <figure className="mt-12 max-w-xl border-l-2 border-gold-400/70 pl-6">
+          <blockquote className="font-serif text-xl font-medium italic leading-relaxed text-cream/90 drop-shadow sm:text-2xl">
             „{village.quote.text}"
           </blockquote>
-          <figcaption className="mt-2.5 text-xs font-semibold uppercase tracking-[0.18em] text-brand-100/85">
+          <figcaption className="mt-3 text-[11px] font-extrabold uppercase tracking-[0.24em] text-gold-300/90">
             — {village.quote.author}
           </figcaption>
         </figure>
       </div>
 
-      {/* Organic hills edge — the hero melts into the page background. */}
-      <svg
-        aria-hidden
-        className="absolute inset-x-0 bottom-0 h-12 w-full sm:h-16"
-        viewBox="0 0 2880 120"
-        preserveAspectRatio="xMidYMax slice"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M0,84 Q360,44 720,70 T1440,58 T2160,72 T2880,54 L2880,120 L0,120 Z"
-          fill="var(--color-canvas)"
-          opacity="0.4"
-        />
-        <path
-          d="M0,100 Q360,66 720,88 T1440,78 T2160,92 T2880,74 L2880,120 L0,120 Z"
-          fill="var(--color-canvas)"
-        />
-      </svg>
-
       {/* Scroll cue */}
       <a
         href="#o-wsi"
         aria-label="Przewiń do sekcji o wsi"
-        className="animate-cue-bounce absolute bottom-5 left-1/2 hidden -translate-x-1/2 text-brand-800/70 transition hover:text-brand-800 sm:block"
+        className="animate-cue-bounce absolute bottom-6 left-1/2 hidden -translate-x-1/2 text-cream/70 transition hover:text-cream sm:block"
       >
         <svg
           width="26"

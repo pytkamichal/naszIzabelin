@@ -48,11 +48,11 @@ export function Weather({ className }: { className?: string }) {
       <button
         type="button"
         aria-label={ariaLabel}
-        className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-white px-2.5 py-1 text-xs font-medium text-slate-600 transition hover:border-slate-300 hover:text-slate-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500/40"
+        className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/10 px-2.5 py-1 text-xs font-medium text-cream/70 transition hover:border-white/30 hover:text-cream focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-400/50"
       >
         <span aria-hidden>{emoji}</span>
         <span>
-          Pogoda: <span className="font-semibold text-slate-800">{displayText}</span>
+          Pogoda: <span className="font-semibold text-cream">{displayText}</span>
         </span>
       </button>
 

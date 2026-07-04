@@ -61,9 +61,10 @@ export function CalendarBoard() {
   );
 
   return (
-    <section id="kalendarz" className="bg-paper py-16">
-      <div className="mx-auto max-w-6xl px-4">
+    <section id="kalendarz" className="bg-cream py-24">
+      <div className="mx-auto max-w-6xl px-4 sm:px-5">
         <SectionHeading
+          index="04"
           eyebrow="Życie wsi"
           icon="📅"
           title="Kalendarz i tablica ogłoszeń"
@@ -71,13 +72,15 @@ export function CalendarBoard() {
 
         <div className="grid gap-6 lg:grid-cols-2">
           {/* Kalendarz */}
-          <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
-            <div className="mb-5 flex items-center justify-between gap-3">
-              <h3 className="text-lg font-semibold text-slate-900">Wydarzenia</h3>
+          <div className="rounded-3xl border border-ink/10 bg-white p-7 shadow-md shadow-pine-900/5">
+            <div className="mb-6 flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <h3 className="font-serif text-2xl font-semibold tracking-tight text-pine-900">
+                Wydarzenia
+              </h3>
               <div
                 role="tablist"
                 aria-label="Zakres kalendarza"
-                className="inline-flex rounded-lg border border-slate-200 bg-slate-100 p-0.5"
+                className="inline-flex rounded-full border border-ink/10 bg-sand p-1"
               >
                 {VIEWS.map((v) => (
                   <button
@@ -85,10 +88,10 @@ export function CalendarBoard() {
                     role="tab"
                     aria-selected={view === v.id}
                     onClick={() => setView(v.id)}
-                    className={`rounded-md px-3 py-1.5 text-sm font-medium transition ${
+                    className={`rounded-full px-3.5 py-1.5 text-sm font-bold transition ${
                       view === v.id
-                        ? "bg-white text-brand-700 shadow-sm"
-                        : "text-slate-500 hover:text-slate-800"
+                        ? "bg-pine-900 text-cream shadow-sm"
+                        : "text-ink/55 hover:text-ink"
                     }`}
                   >
                     {v.label}
@@ -99,31 +102,31 @@ export function CalendarBoard() {
 
             <ul className="space-y-3">
               {visible.length === 0 ? (
-                <li className="rounded-lg bg-slate-50 px-4 py-6 text-center text-sm text-slate-500">
+                <li className="rounded-2xl bg-sand px-4 py-7 text-center text-sm text-ink/55">
                   Brak wydarzeń w wybranym zakresie.
                 </li>
               ) : (
                 visible.map((event) => (
                   <li
                     key={`${event.date}-${event.title}`}
-                    className="flex items-center gap-4 rounded-lg border border-slate-100 bg-slate-50/60 p-3"
+                    className="flex items-center gap-4 rounded-2xl border border-ink/5 bg-cream p-3.5 transition hover:border-gold-500/40"
                   >
-                    <div className="flex h-12 w-12 shrink-0 flex-col items-center justify-center rounded-lg bg-brand-600 text-white">
-                      <span className="text-lg font-bold leading-none">
+                    <div className="flex h-13 w-13 shrink-0 flex-col items-center justify-center rounded-xl bg-pine-900 py-2 text-cream">
+                      <span className="font-serif text-xl font-semibold leading-none text-gold-300">
                         {dayNumber(event.date)}
                       </span>
-                      <span className="text-[10px] uppercase">
+                      <span className="mt-0.5 text-[10px] font-bold uppercase tracking-wide text-cream/70">
                         {formatDayMonthPL(event.date).split(" ")[1]?.slice(0, 3)}
                       </span>
                     </div>
                     <div className="min-w-0">
-                      <p className="font-medium text-slate-900">
+                      <p className="font-semibold text-ink">
                         <span className="mr-1" aria-hidden>
                           {event.icon}
                         </span>
                         {event.title}
                       </p>
-                      <p className="text-sm text-slate-500">
+                      <p className="text-sm text-ink/55">
                         {formatDayMonthPL(event.date)}
                         {event.time ? ` · ${event.time}` : ""}
                       </p>
@@ -133,8 +136,8 @@ export function CalendarBoard() {
               )}
             </ul>
 
-            <div className="mt-5 border-t border-slate-100 pt-4">
-              <p className="mb-2 text-sm font-medium text-slate-600">
+            <div className="mt-6 border-t border-ink/10 pt-5">
+              <p className="mb-3 text-sm font-medium text-ink/65">
                 Dodaj kalendarz wsi (wydarzenia + wywóz śmieci) do telefonu:
               </p>
               <AddToCalendar path="/kalendarz.ics" />
@@ -144,20 +147,31 @@ export function CalendarBoard() {
           {/* Tablica ogłoszeń */}
           <div
             id="aktualnosci"
-            className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm"
+            className="rounded-3xl border border-ink/10 bg-white p-7 shadow-md shadow-pine-900/5"
           >
-            <h3 className="mb-5 text-lg font-semibold text-slate-900">
+            <h3 className="mb-6 font-serif text-2xl font-semibold tracking-tight text-pine-900">
               📌 Ogłoszenia
             </h3>
-            <ul className="divide-y divide-slate-100">
-              {notices.map((notice) => (
-                <li key={notice.date + notice.text} className="py-3 first:pt-0">
-                  <p className="text-xs font-semibold uppercase tracking-wide text-brand-700">
-                    {formatShortDatePL(notice.date)}
-                  </p>
-                  <p className="mt-1 text-slate-700">{notice.text}</p>
+            <ul className="space-y-3">
+              {notices.length === 0 ? (
+                <li className="rounded-2xl bg-sand px-4 py-7 text-center text-sm text-ink/55">
+                  Brak aktualnych ogłoszeń.
                 </li>
-              ))}
+              ) : (
+                notices.map((notice) => (
+                  <li
+                    key={notice.date + notice.text}
+                    className="rounded-2xl border border-ink/5 bg-cream p-4"
+                  >
+                    <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-gold-600">
+                      {formatShortDatePL(notice.date)}
+                    </p>
+                    <p className="mt-1.5 leading-relaxed text-ink/80">
+                      {notice.text}
+                    </p>
+                  </li>
+                ))
+              )}
             </ul>
           </div>
         </div>

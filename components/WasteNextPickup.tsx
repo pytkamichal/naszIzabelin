@@ -30,25 +30,25 @@ export function WasteNextPickup() {
   if (next.length === 0) return null;
 
   return (
-    <div className="mb-8 grid gap-3 sm:grid-cols-3">
+    <div className="mb-10 grid gap-4 sm:grid-cols-3">
       {next.map(({ kind, date }) => {
         const { label, icon } = wasteKindLabels[kind];
         return (
           <div
             key={kind}
-            className="rounded-xl border border-brand-200 bg-brand-50 p-4 shadow-sm"
+            className="rounded-3xl border-t-4 border border-ink/10 border-t-gold-400 bg-white p-5 shadow-sm"
           >
-            <p className="text-xs font-semibold uppercase tracking-wide text-brand-700">
+            <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-pine-700">
               Najbliższy odbiór
             </p>
-            <p className="mt-1 flex items-center gap-2 text-lg font-bold text-slate-900">
+            <p className="mt-2 flex items-center gap-2 font-serif text-xl font-semibold tracking-tight text-pine-900">
               <span aria-hidden>{icon}</span>
               {formatLongDatePL(date)}
             </p>
-            <p className="text-sm capitalize text-slate-500">
+            <p className="text-sm capitalize text-ink/50">
               {formatWeekdayPL(date)}
             </p>
-            <p className="mt-1 text-sm text-slate-600">{label}</p>
+            <p className="mt-1.5 text-sm text-ink/70">{label}</p>
           </div>
         );
       })}
