@@ -11,6 +11,7 @@ import { Contacts } from "@/components/Contacts";
 import { NeighborHelp } from "@/components/NeighborHelp";
 import { Footer } from "@/components/Footer";
 import { Reveal } from "@/components/ui/Reveal";
+import { AnnouncementModal } from "@/components/ui/AnnouncementModal";
 import { site } from "@/data/site";
 import { village } from "@/data/village";
 
@@ -87,6 +88,7 @@ export default function Home() {
         </Reveal>
       </main>
       <Footer />
+      <AnnouncementModal />
     </>
   );
 }
