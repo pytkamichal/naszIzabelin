@@ -70,14 +70,6 @@ export function Footer() {
           </p>
         </div>
       </div>
-
-      {/* Giant hollow watermark — the village name as a typographic sign-off. */}
-      <p
-        aria-hidden
-        className="text-hollow pointer-events-none relative -mb-[0.28em] select-none text-center font-serif text-[21vw] font-semibold leading-none tracking-tight text-cream/25 lg:text-[17rem]"
-      >
-        {village.name.toUpperCase()}
-      </p>
     </footer>
   );
 }

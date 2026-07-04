@@ -1,6 +1,5 @@
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
-import { Alert6SP } from "@/components/Alert6SP";
 import { VillageStats } from "@/components/VillageStats";
 import { VillageHistory } from "@/components/VillageHistory";
 import { Places } from "@/components/Places";
@@ -11,7 +10,6 @@ import { Waste } from "@/components/Waste";
 import { Contacts } from "@/components/Contacts";
 import { Footer } from "@/components/Footer";
 import { Reveal } from "@/components/ui/Reveal";
-import { Ticker } from "@/components/ui/Ticker";
 import { site } from "@/data/site";
 import { village } from "@/data/village";
 
@@ -58,9 +56,6 @@ export default function Home() {
       <Header />
       <main className="flex-1">
         <Hero />
-        {/* Harvest-gold marquee — a rotated ribbon stitching the hero to the body. */}
-        <Ticker />
-        <Alert6SP />
         <VillageStats />
         <VillageHistory />
         <Reveal>

@@ -103,30 +103,6 @@ body {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-/* --- Outline display type ------------------------------------------------- */
-/* Hollow watermark lettering (footer "IZABELIN", ghost section numbers). */
-.text-hollow {
-  /* Fill goes transparent but `color` stays, so the stroke can use it. */
-  -webkit-text-fill-color: transparent;
-  -webkit-text-stroke: 1.5px currentColor;
-}
-
-/* --- Ticker marquee ------------------------------------------------------- */
-@keyframes ticker-scroll {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-.ticker-track {
-  display: flex;
-  width: max-content;
-  animation: ticker-scroll 36s linear infinite;
-}
-
 /* --- Scroll-reveal -------------------------------------------------------- */
 /* Elements start slightly lowered and transparent; the Reveal component
    adds .is-revealed when they enter the viewport. */
@@ -282,8 +258,7 @@ body {
   .animate-pulse-glow,
   .hero-kenburns,
   .firefly,
-  .animate-cue-bounce,
-  .ticker-track {
+  .animate-cue-bounce {
     animation: none;
   }
   .firefly {

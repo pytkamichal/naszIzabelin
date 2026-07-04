@@ -32,13 +32,15 @@ export const air = {
 
 export type NavLink = { href: string; label: string };
 
+// Hrefs are absolute ("/#...") so the anchors also work from subpages
+// such as /strefa-6sp; on the home page the browser just scrolls.
 export const navLinks: NavLink[] = [
-  { href: "#aktualnosci", label: "Aktualności" },
-  { href: "#historia", label: "Historia" },
-  { href: "#miejsca", label: "W okolicy" },
-  { href: "#kalendarz", label: "Kalendarz" },
-  { href: "#transport", label: "Autobusy" },
-  { href: "#odpady", label: "Śmieci" },
-  { href: "#inwestycje", label: "Inwestycje" },
-  { href: "#kontakty", label: "Kontakty" },
+  { href: "/#aktualnosci", label: "Aktualności" },
+  { href: "/#historia", label: "Historia" },
+  { href: "/#miejsca", label: "W okolicy" },
+  { href: "/#kalendarz", label: "Kalendarz" },
+  { href: "/#transport", label: "Autobusy" },
+  { href: "/#odpady", label: "Śmieci" },
+  { href: "/#inwestycje", label: "Inwestycje" },
+  { href: "/#kontakty", label: "Kontakty" },
 ];
