@@ -3,6 +3,7 @@ import { navLinks, site } from "@/data/site";
 import { protest } from "@/data/protest";
 import { AirQuality } from "./AirQuality";
 import { Weather } from "./Weather";
+import { BrandLink } from "./ui/BrandLink";
 import { BuyMeACoffee } from "./ui/BuyMeACoffee";
 import { PriorityNav } from "./ui/PriorityNav";
 
@@ -14,15 +15,12 @@ export function Header() {
       <div className="mx-auto max-w-6xl overflow-visible rounded-2xl border border-white/10 bg-pine-950/85 shadow-[0_16px_48px_rgba(10,31,21,0.45)] backdrop-blur-xl">
         {/* Main row: logo · single-line priority nav · alert button */}
         <div className="flex h-16 items-center gap-1.5 px-2.5 max-[360px]:gap-1 sm:gap-4 sm:px-5">
-          <Link
-            href="/"
-            className="flex shrink-0 items-baseline gap-1 font-serif text-xl font-semibold tracking-tight text-cream max-[360px]:text-lg sm:text-2xl"
-          >
+          <BrandLink className="flex shrink-0 items-baseline gap-1 font-serif text-xl font-semibold tracking-tight text-cream max-[360px]:text-lg sm:text-2xl">
             Nasz {site.name}
             <span aria-hidden className="text-gold-400">
               .
             </span>
-          </Link>
+          </BrandLink>
 
           {/* Fills the middle; overflowing links collapse behind a `»` menu. */}
           <PriorityNav links={navLinks} />
