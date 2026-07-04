@@ -84,7 +84,15 @@ export default function RootLayout({
       lang="pl"
       className={`${manrope.variable} ${fraunces.variable} ${geistMono.variable} ${cookie.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-cream font-sans text-ink">
+      {/* Browser extensions (password managers, security suites, etc.) often
+          inject attributes like `bis_register` / `__processed_…` onto <body>
+          before React hydrates, which triggers a hydration attribute mismatch.
+          suppressHydrationWarning silences that noise for this element only;
+          body content stays fully static. */}
+      <body
+        className="min-h-full flex flex-col bg-cream font-sans text-ink"
+        suppressHydrationWarning
+      >
         {children}
         <Analytics />
       </body>

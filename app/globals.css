@@ -69,6 +69,22 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Real phones use overlay scrollbars, but narrow desktop windows and some
+   device emulators render a classic vertical scrollbar whose gutter exposes
+   the page background as a stray strip on the right. Below `sm` we hide that
+   scrollbar so fixed/full-width elements reach the very edge — matching how
+   the page actually looks on a phone. Scrolling itself is unaffected. */
+@media (max-width: 640px) {
+  html {
+    scrollbar-width: none; /* Firefox */
+  }
+  html::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    display: none; /* Chromium / WebKit */
+  }
+}
+
 ::selection {
   background: var(--color-gold-300);
   color: var(--color-pine-950);

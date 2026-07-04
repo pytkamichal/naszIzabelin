@@ -13,7 +13,7 @@ export function Header() {
           scrolling; everything (nav, alert, weather) lives inside it. */}
       <div className="mx-auto max-w-6xl overflow-visible rounded-2xl border border-white/10 bg-pine-950/85 shadow-[0_16px_48px_rgba(10,31,21,0.45)] backdrop-blur-xl">
         {/* Main row: logo · single-line priority nav · alert button */}
-        <div className="flex h-16 items-center gap-3 px-4 sm:gap-4 sm:px-5">
+        <div className="flex h-16 items-center gap-2 px-3 sm:gap-4 sm:px-5">
           <Link
             href="/"
             className="flex shrink-0 items-baseline gap-1 font-serif text-xl font-semibold tracking-tight text-cream sm:text-2xl"
@@ -38,9 +38,10 @@ export function Header() {
               <span className="relative inline-flex h-2 w-2 rounded-full bg-toxic" />
             </span>
             {protest.navLabel}
+            {/* Decorative arrow — hidden on the tightest phones to save space. */}
             <span
               aria-hidden
-              className="transition-transform duration-150 group-hover:translate-x-0.5"
+              className="hidden transition-transform duration-150 group-hover:translate-x-0.5 sm:inline"
             >
               →
             </span>

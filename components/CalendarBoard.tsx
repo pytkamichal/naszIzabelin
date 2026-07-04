@@ -73,7 +73,7 @@ export function CalendarBoard() {
         <div className="grid gap-6 lg:grid-cols-2">
           {/* Kalendarz */}
           <div className="rounded-3xl border border-ink/10 bg-white p-7 shadow-md shadow-pine-900/5">
-            <div className="mb-6 flex items-center justify-between gap-3">
+            <div className="mb-6 flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
               <h3 className="font-serif text-2xl font-semibold tracking-tight text-pine-900">
                 Wydarzenia
               </h3>
