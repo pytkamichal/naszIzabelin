@@ -13,10 +13,10 @@ export function Header() {
           scrolling; everything (nav, alert, weather) lives inside it. */}
       <div className="mx-auto max-w-6xl overflow-visible rounded-2xl border border-white/10 bg-pine-950/85 shadow-[0_16px_48px_rgba(10,31,21,0.45)] backdrop-blur-xl">
         {/* Main row: logo · single-line priority nav · alert button */}
-        <div className="flex h-16 items-center gap-2 px-3 sm:gap-4 sm:px-5">
+        <div className="flex h-16 items-center gap-1.5 px-2.5 max-[360px]:gap-1 sm:gap-4 sm:px-5">
           <Link
             href="/"
-            className="flex shrink-0 items-baseline gap-1 font-serif text-xl font-semibold tracking-tight text-cream sm:text-2xl"
+            className="flex shrink-0 items-baseline gap-1 font-serif text-xl font-semibold tracking-tight text-cream max-[360px]:text-lg sm:text-2xl"
           >
             Nasz {site.name}
             <span aria-hidden className="text-gold-400">
@@ -31,13 +31,15 @@ export function Header() {
               below, arrow affordance — links to the /strefa-6sp subpage. */}
           <Link
             href="/strefa-6sp"
-            className="animate-pulse-soft group inline-flex shrink-0 items-center gap-1.5 rounded-xl border-2 border-toxic bg-blood px-3 py-1.5 text-xs font-extrabold uppercase tracking-wide text-white shadow-[0_4px_0_0_var(--color-blood-dark),0_8px_18px_rgba(209,31,42,0.45)] transition-all duration-150 hover:-translate-y-0.5 hover:bg-blood-dark hover:shadow-[0_6px_0_0_var(--color-blood-dark),0_10px_22px_rgba(209,31,42,0.5)] active:translate-y-1 active:shadow-[0_0_0_0_var(--color-blood-dark)] md:gap-2 md:px-4 md:py-2"
+            className="animate-pulse-soft group inline-flex shrink-0 items-center gap-1.5 rounded-xl border-2 border-toxic bg-blood px-3 py-1.5 text-xs font-extrabold uppercase tracking-wide text-white shadow-[0_4px_0_0_var(--color-blood-dark),0_8px_18px_rgba(209,31,42,0.45)] transition-all duration-150 hover:-translate-y-0.5 hover:bg-blood-dark hover:shadow-[0_6px_0_0_var(--color-blood-dark),0_10px_22px_rgba(209,31,42,0.5)] active:translate-y-1 active:shadow-[0_0_0_0_var(--color-blood-dark)] max-[360px]:px-2 md:gap-2 md:px-4 md:py-2"
           >
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-toxic opacity-75" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-toxic" />
             </span>
-            {protest.navLabel}
+            {/* Full label on roomy screens, compact label on tight phones. */}
+            <span className="hidden min-[400px]:inline">{protest.navLabel}</span>
+            <span className="min-[400px]:hidden">{protest.navLabelShort}</span>
             {/* Decorative arrow — hidden on the tightest phones to save space. */}
             <span
               aria-hidden

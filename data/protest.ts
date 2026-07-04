@@ -7,6 +7,9 @@
 export const protest = {
   // Label used in the header alert button and nav.
   navLabel: "STOP STREFIE 6SP!",
+  // Compact label for the tightest phone widths (keeps the button from
+  // crowding out the logo and the » menu).
+  navLabelShort: "STOP 6SP!",
 
   heading: "STOP WYSYPISKU ŚMIECI W NASZYM LESIE!",
 

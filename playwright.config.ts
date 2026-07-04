@@ -9,6 +9,9 @@ export default defineConfig({
   reporter: "list",
   use: {
     baseURL: `http://localhost:${PORT}`,
+    // Stop CSS animations (e.g. the pulsing alert button) so elements are
+    // "stable" for clicks and measurements — the app honours reduced motion.
+    reducedMotion: "reduce",
   },
   webServer: {
     // Production build + start (Node ≥ 20 on PATH, same as the app). Using
