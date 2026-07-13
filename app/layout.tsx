@@ -35,7 +35,7 @@ const cookie = Cookie({
   display: "swap",
 });
 
-const description = `Strona mieszkańców wsi ${village.name} (powiat miński, woj. mazowieckie). Aktualności, kalendarz, inwestycje, kontakty oraz akcja STOP STREFIE 6SP.`;
+const description = `Strona mieszkańców wsi ${village.name} (powiat miński, woj. mazowieckie). Aktualności, kalendarz, inwestycje i kontakty.`;
 
 const title = `${village.name} – strona mieszkańców wsi`;
 
@@ -51,7 +51,6 @@ export const metadata: Metadata = {
     "wieś",
     "powiat miński",
     "Mazowsze",
-    "strefa 6SP",
     "mieszkańcy",
   ],
   alternates: {

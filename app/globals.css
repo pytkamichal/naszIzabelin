@@ -49,13 +49,7 @@
   --color-canvas: #f7f4ea;
   --color-paper: #efe8d8;
 
-  /* "Strefa 6SP" — dark / industrial / Chernobyl palette */
-  --color-graphite: #121417;
-  --color-graphite-800: #181b20;
-  --color-graphite-700: #20242b;
-  --color-graphite-600: #2a2f38;
-  --color-toxic: #c4dd00; /* toxic yellow-green */
-  --color-toxic-bright: #e4ff1a;
+  /* Alert reds — form errors and "planned" investment status chips */
   --color-blood: #d11f2a;
   --color-blood-dark: #8c1119;
 }
@@ -217,62 +211,10 @@ body {
   animation: cue-bounce 2s ease-in-out infinite;
 }
 
-/* Subtle drifting smog used by the Strefa 6SP section */
-@keyframes smog-drift {
-  0% {
-    transform: translate3d(0, 0, 0) scale(1.1);
-    opacity: 0.35;
-  }
-  50% {
-    transform: translate3d(-3%, -1.5%, 0) scale(1.2);
-    opacity: 0.5;
-  }
-  100% {
-    transform: translate3d(0, 0, 0) scale(1.1);
-    opacity: 0.35;
-  }
-}
-
-/* Gentle attention pulse for the "Strefa 6SP" alert button in the header:
-   a slow, subtle breathing scale (no layout shift). */
-@keyframes pulse-soft {
-  0%,
-  100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.04);
-  }
-}
-
-.animate-pulse-soft {
-  animation: pulse-soft 2.2s ease-in-out infinite;
-}
-
-/* Pulsing toxic halo for the "Alarm" badge in the Strefa 6SP section. */
-@keyframes pulse-glow {
-  0%,
-  100% {
-    box-shadow: 0 0 0 0 rgba(196, 221, 0, 0);
-  }
-  50% {
-    box-shadow: 0 0 16px 1px rgba(196, 221, 0, 0.45);
-  }
-}
-
-.animate-pulse-glow {
-  animation: pulse-glow 2.4s ease-in-out infinite;
-}
-
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
-  .smog-layer {
-    animation: none !important;
-  }
-  .animate-pulse-soft,
-  .animate-pulse-glow,
   .hero-kenburns,
   .firefly,
   .animate-cue-bounce {

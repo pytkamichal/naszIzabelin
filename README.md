@@ -1,7 +1,7 @@
 # Izabelin — strona mieszkańców wsi
 
 Strona internetowa wsi Izabelin (powiat miński, woj. mazowieckie). Aktualności,
-kalendarz, inwestycje, kontakty oraz akcja **STOP STREFIE 6SP**.
+kalendarz, inwestycje i kontakty.
 
 Stack: **Next.js 16** (App Router, TypeScript) · **Tailwind CSS v4** · **Supabase**
 (tylko zapis formularza pomysłów).
@@ -35,8 +35,6 @@ Wszystkie treści są w katalogu `data/` — wystarczy edytować plik i odświe�
 | Plik | Zawartość |
 | --- | --- |
 | `data/village.ts` | Nazwa wsi, liczba mieszkańców, opis (Hero) |
-| `data/protest.ts` | Sekcja „Strefa 6SP”, spotkanie, link do wideo FB |
-| `data/documents.ts` | Pliki do pobrania (PDF/DOCX z `public/docs/`) |
 | `data/calendar.ts` | Wydarzenia w kalendarzu |
 | `data/notices.ts` | Tablica ogłoszeń |
 | `data/investments.ts` | Inwestycje i ich statusy |
@@ -47,8 +45,6 @@ Wszystkie treści są w katalogu `data/` — wystarczy edytować plik i odświe�
 ## Materiały do uzupełnienia
 
 - `public/hero.jpg` — zdjęcie wsi (tło sekcji powitalnej).
-- `public/docs/petycja-6sp.pdf` oraz `public/docs/protest-mieszkancow.docx`.
-- Link do filmu z Facebooka → `data/protest.ts` (`facebookVideoUrl`).
 - Link „Buy me a coffee” → `data/site.ts` (`buyMeACoffeeUrl`).
 
 ## Formularz pomysłów (Supabase)

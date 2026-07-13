@@ -8,7 +8,7 @@ type SectionHeadingProps = {
   index?: string;
   /** Small pill next to the eyebrow, e.g. "Nowość". */
   badge?: string;
-  /** "dark" for headings sitting on pine/graphite sections. */
+  /** "dark" for headings sitting on dark (pine) sections. */
   tone?: "light" | "dark";
 };
 
