@@ -32,8 +32,8 @@ export const air = {
 
 export type NavLink = { href: string; label: string; badge?: string };
 
-// Hrefs are absolute ("/#...") so the anchors also work from subpages
-// such as /strefa-6sp; on the home page the browser just scrolls.
+// Hrefs are absolute ("/#...") so the anchors also work from any subpage;
+// on the home page the browser just scrolls.
 // "Pomoc sąsiedzka" is listed first so the priority nav shows it whenever
 // there's room; on the tightest screens it falls back into the `»` menu.
 export const navLinks: NavLink[] = [
