@@ -73,6 +73,14 @@ export const metadata: Metadata = {
   },
 };
 
+// Runs before paint on every load: reads the visitor's current month and marks
+// <html> with the matching season so the theme changes over automatically with
+// the calendar (meteorological seasons). Sep–Nov → autumn, Dec–Feb → winter,
+// Mar–Aug → the default warm theme (attribute removed). Kept inline and tiny so
+// it applies before the first paint — no flash of the wrong palette — and re-runs
+// per request, so a statically cached page still shows the right season.
+const seasonScript = `(function(){try{var m=new Date().getMonth(),s=m>=8&&m<=10?"autumn":(m===11||m<=1?"winter":"");var r=document.documentElement;if(s){r.setAttribute("data-season",s)}else{r.removeAttribute("data-season")}}catch(e){}})();`;
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -92,6 +100,7 @@ export default function RootLayout({
         className="min-h-full flex flex-col bg-cream font-sans text-ink paper-grain relative"
         suppressHydrationWarning
       >
+        <script dangerouslySetInnerHTML={{ __html: seasonScript }} />
         {children}
         <Analytics />
       </body>

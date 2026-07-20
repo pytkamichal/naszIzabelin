@@ -57,6 +57,140 @@
 :root {
   --background: #f6f1e4;
   --foreground: #2b251d;
+
+  /* Hero scene tokens — the FieldForest illustration reads these so the sky,
+     sun, treeline and field re-tint per season. Defaults are the warm
+     spring/summer golden-hour scene (matching the original hard-coded SVG). */
+  --hero-sky-top: #b9d4e6;
+  --hero-sky-mid: #e6dcc4;
+  --hero-sky-bot: #f6cd90;
+  --hero-sun: #fff3cf;
+  --hero-tree-far: #3f6f53;
+  --hero-tree-near: #2b5640;
+  --hero-tree-conifer: #234b36;
+  --hero-field-top: #7ea85b;
+  --hero-field-mid: #517d3c;
+  --hero-field-bot: #2f4f27;
+}
+
+/* --- Seasonal themes ------------------------------------------------------- */
+/* The whole palette is expressed as Tailwind `@theme` custom properties, so a
+   single `data-season` attribute on <html> re-tints every section at once.
+   No attribute (or spring/summer) keeps the default warm harvest look above;
+   `autumn` and `winter` override the brand tokens below. The attribute is set
+   before paint by a tiny inline script in app/layout.tsx that reads the current
+   month, so the site changes over automatically with the calendar. The
+   `html[...]` selector keeps these one specificity step above Tailwind's
+   `:root` theme defaults so they always win. */
+
+/* Autumn (Jesień) — full harvest; the green recedes into warm bark + amber. */
+html[data-season="autumn"] {
+  --color-pine-950: #33190e;
+  --color-pine-900: #5e2810;
+  --color-pine-800: #762f12;
+  --color-pine-700: #8c3a16;
+  --color-pine-600: #a8461a;
+  --color-pine-500: #c0561f;
+  --color-pine-400: #d17a3a;
+  --color-pine-300: #e09b63;
+  --color-pine-200: #edbf95;
+  --color-pine-100: #f4d8c4;
+  --color-pine-50: #fbe9dc;
+
+  --color-brand-900: #5e2810;
+  --color-brand-800: #762f12;
+  --color-brand-700: #8c3a16;
+  --color-brand-600: #a8461a;
+  --color-brand-500: #c0561f;
+  --color-brand-400: #d17a3a;
+  --color-brand-300: #e09b63;
+  --color-brand-200: #edbf95;
+  --color-brand-100: #f4d8c4;
+  --color-brand-50: #fbe9dc;
+
+  --color-gold-300: #f3cd7f;
+  --color-gold-400: #dc9526;
+  --color-gold-500: #c07a1c;
+  --color-gold-600: #94590f;
+
+  --color-cream: #f8efdf;
+  --color-sand: #ecdcc3;
+  --color-sand-deep: #e0ccaa;
+  --color-ink: #2f2013;
+  --color-canvas: #f8efdf;
+  --color-paper: #ecdcc3;
+
+  --color-blood: #c22a1c;
+  --color-blood-dark: #7e1c11;
+
+  --background: #f7efe1;
+  --foreground: #2f2013;
+
+  --hero-sky-top: #9fb0b3;
+  --hero-sky-mid: #e8cfa0;
+  --hero-sky-bot: #e0a94f;
+  --hero-sun: #ffe9bf;
+  --hero-tree-far: #8a6a2f;
+  --hero-tree-near: #6e4a1f;
+  --hero-tree-conifer: #5c3d1a;
+  --hero-field-top: #b98a3d;
+  --hero-field-mid: #8a5f24;
+  --hero-field-bot: #4d3315;
+}
+
+/* Winter (Zima) — cozy midnight-pine + lamplight gold + icy blue on snow. */
+html[data-season="winter"] {
+  --color-pine-950: #0c1a17;
+  --color-pine-900: #123023;
+  --color-pine-800: #163d2c;
+  --color-pine-700: #1d4f39;
+  --color-pine-600: #256448;
+  --color-pine-500: #2f7d59;
+  --color-pine-400: #4f9a75;
+  --color-pine-300: #7bb597;
+  --color-pine-200: #a8d0bd;
+  --color-pine-100: #d3e6dc;
+  --color-pine-50: #e8f1ec;
+
+  --color-brand-900: #123023;
+  --color-brand-800: #163d2c;
+  --color-brand-700: #1d4f39;
+  --color-brand-600: #256448;
+  --color-brand-500: #2f7d59;
+  --color-brand-400: #4f9a75;
+  --color-brand-300: #7bb597;
+  --color-brand-200: #a8d0bd;
+  --color-brand-100: #d3e6dc;
+  --color-brand-50: #e8f1ec;
+
+  --color-gold-300: #f2cd76;
+  --color-gold-400: #e0a531;
+  --color-gold-500: #bd7f1f;
+  --color-gold-600: #8a5f16;
+
+  --color-cream: #eef4f2;
+  --color-sand: #e2ebf1;
+  --color-sand-deep: #d0dde6;
+  --color-ink: #1b2731;
+  --color-canvas: #eef4f2;
+  --color-paper: #e2ebf1;
+
+  --color-blood: #c62f2a;
+  --color-blood-dark: #7e1a17;
+
+  --background: #eef3f7;
+  --foreground: #1b2731;
+
+  --hero-sky-top: #aebfca;
+  --hero-sky-mid: #d3dee6;
+  --hero-sky-bot: #e8eef2;
+  --hero-sun: #eef3f6;
+  --hero-tree-far: #2f4a40;
+  --hero-tree-near: #1e3a30;
+  --hero-tree-conifer: #16302a;
+  --hero-field-top: #eef3f7;
+  --hero-field-mid: #dbe6ec;
+  --hero-field-bot: #c3d2db;
 }
 
 html {
@@ -209,6 +343,77 @@ body {
   animation-delay: var(--ff-delay, 0s);
 }
 
+/* --- Hero: seasonal falling particles -------------------------------------- */
+/* Three decorative hero layers, one shown per season via the `data-season`
+   attribute on <html>. Spring/summer keep the fireflies; autumn drops leaves;
+   winter drops snow. The Hero renders all three (each aria-hidden,
+   pointer-events:none); CSS decides which is visible, so nothing needs client
+   state. */
+.hero-leaves,
+.hero-snow {
+  display: none;
+}
+html[data-season="autumn"] .hero-leaves {
+  display: block;
+}
+html[data-season="winter"] .hero-snow {
+  display: block;
+}
+/* Fireflies belong to the warm season — hide them once a season theme is on. */
+html[data-season="autumn"] .hero-fireflies,
+html[data-season="winter"] .hero-fireflies {
+  display: none;
+}
+
+.season-leaf,
+.season-snow {
+  position: absolute;
+  top: 0;
+  will-change: transform;
+}
+.season-snow {
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.55);
+}
+
+@keyframes fall-leaf {
+  0% {
+    transform: translateY(-15vh) rotate(0deg);
+    opacity: 0;
+  }
+  8% {
+    opacity: 0.92;
+  }
+  100% {
+    transform: translateY(118vh) rotate(600deg);
+    opacity: 0.8;
+  }
+}
+
+@keyframes fall-snow {
+  0% {
+    transform: translateY(-15vh) translateX(0);
+    opacity: 0;
+  }
+  8% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(118vh) translateX(var(--sway, 20px));
+    opacity: 0.75;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .season-leaf {
+    animation: fall-leaf var(--dur, 10s) linear var(--delay, 0s) infinite;
+  }
+  .season-snow {
+    animation: fall-snow var(--dur, 10s) linear var(--delay, 0s) infinite;
+  }
+}
+
 /* --- Hero: gentle scroll cue ----------------------------------------------- */
 @keyframes cue-bounce {
   0%,
@@ -235,7 +440,9 @@ body {
   .animate-cue-bounce {
     animation: none;
   }
-  .firefly {
+  .firefly,
+  .season-leaf,
+  .season-snow {
     display: none;
   }
   .reveal {

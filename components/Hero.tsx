@@ -1,6 +1,46 @@
 import { village } from "@/data/village";
 import { FieldForest } from "./illustrations/FieldForest";
 
+// Deterministic pseudo-random generator (mulberry32). Seeded so the particle
+// layouts are identical on the server and the client — random-per-render would
+// cause a hydration mismatch. Computed once at module load.
+function seeded(seed: number) {
+  return () => {
+    seed |= 0;
+    seed = (seed + 0x6d2b79f5) | 0;
+    let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+const LEAF_GLYPHS = ["🍂", "🍁", "🍃"];
+
+// 22 falling leaves (autumn) and 22 snowflakes (winter), each with a fixed
+// column, size, speed and start delay so the drift looks organic but stable.
+const LEAVES = Array.from({ length: 22 }, (_, i) => {
+  const r = seeded(101 + i * 7);
+  return {
+    left: `${(r() * 100).toFixed(1)}%`,
+    size: `${(13 + r() * 13).toFixed(0)}px`,
+    dur: `${(6 + r() * 9).toFixed(1)}s`,
+    delay: `${(r() * 12).toFixed(1)}s`,
+    glyph: LEAF_GLYPHS[i % 3],
+  };
+});
+
+const SNOW = Array.from({ length: 22 }, (_, i) => {
+  const r = seeded(613 + i * 7);
+  const size = 3 + r() * 6;
+  return {
+    left: `${(r() * 100).toFixed(1)}%`,
+    size: `${size.toFixed(1)}px`,
+    dur: `${(6 + r() * 9).toFixed(1)}s`,
+    delay: `${(r() * 12).toFixed(1)}s`,
+    sway: `${(r() * 60 - 30).toFixed(0)}px`,
+  };
+});
+
 /** Renders the hero heading with the village name set in italic gold —
  *  the copy itself is unchanged, only the emphasis is typographic. */
 function AccentedHeading({ text }: { text: string }) {
@@ -48,8 +88,12 @@ export function Hero() {
         className="absolute inset-0 bg-gradient-to-r from-pine-950/80 via-pine-950/25 to-transparent"
       />
 
-      {/* Fireflies drifting over the evening field (decorative, CSS-only). */}
-      <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+      {/* Fireflies drifting over the evening field (decorative, CSS-only).
+          Shown in the default warm season; hidden once autumn/winter is on. */}
+      <div
+        aria-hidden
+        className="hero-fireflies pointer-events-none absolute inset-0 overflow-hidden"
+      >
         {[
           { left: "12%", bottom: "18%", duration: "11s", delay: "0s" },
           { left: "28%", bottom: "10%", duration: "14s", delay: "2.5s" },
@@ -68,6 +112,52 @@ export function Hero() {
                 bottom: fly.bottom,
                 "--ff-duration": fly.duration,
                 "--ff-delay": fly.delay,
+              } as React.CSSProperties
+            }
+          />
+        ))}
+      </div>
+
+      {/* Falling leaves — shown only in autumn (CSS-gated by data-season). */}
+      <div
+        aria-hidden
+        className="hero-leaves pointer-events-none absolute inset-0 overflow-hidden"
+      >
+        {LEAVES.map((leaf, i) => (
+          <span
+            key={i}
+            className="season-leaf"
+            style={
+              {
+                left: leaf.left,
+                fontSize: leaf.size,
+                "--dur": leaf.dur,
+                "--delay": leaf.delay,
+              } as React.CSSProperties
+            }
+          >
+            {leaf.glyph}
+          </span>
+        ))}
+      </div>
+
+      {/* Falling snow — shown only in winter (CSS-gated by data-season). */}
+      <div
+        aria-hidden
+        className="hero-snow pointer-events-none absolute inset-0 overflow-hidden"
+      >
+        {SNOW.map((flake, i) => (
+          <span
+            key={i}
+            className="season-snow"
+            style={
+              {
+                left: flake.left,
+                width: flake.size,
+                height: flake.size,
+                "--dur": flake.dur,
+                "--delay": flake.delay,
+                "--sway": flake.sway,
               } as React.CSSProperties
             }
           />
