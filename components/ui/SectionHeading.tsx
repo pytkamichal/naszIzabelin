@@ -26,23 +26,26 @@ export function SectionHeading({
     <div className="mb-12 max-w-3xl">
       {eyebrow ? (
         <p
-          className={`flex items-baseline gap-4 text-xs font-extrabold uppercase tracking-[0.28em] ${
+          className={`flex items-center gap-4 text-xs font-extrabold uppercase tracking-[0.28em] ${
             dark ? "text-gold-300" : "text-pine-700"
           }`}
         >
           {index ? (
             <span
-              className={`font-serif text-2xl font-semibold italic tracking-normal ${
-                dark ? "text-gold-400" : "text-gold-500"
+              className={`flex h-9 w-9 items-center justify-center rounded-full border font-serif text-base font-semibold italic tracking-normal ${
+                dark
+                  ? "border-gold-400/45 bg-gold-400/10 text-gold-400"
+                  : "border-gold-500/45 bg-gold-500/10 text-gold-500"
               }`}
             >
               {index}
             </span>
           ) : null}
-          <span
-            aria-hidden
-            className={`h-px w-10 self-center ${dark ? "bg-gold-400/60" : "bg-gold-500/70"}`}
-          />
+          <span aria-hidden className="inline-flex items-center gap-[5px] self-center">
+            <span className={`h-[5px] w-[5px] rotate-45 ${dark ? "bg-gold-300" : "bg-gold-500"}`} />
+            <span className={`h-2 w-2 rotate-45 ${dark ? "bg-gold-300" : "bg-gold-500"}`} />
+            <span className={`h-[5px] w-[5px] rotate-45 ${dark ? "bg-gold-300" : "bg-gold-500"}`} />
+          </span>
           {eyebrow}
           {badge ? (
             <span className="self-center rounded-full bg-gold-400 px-2.5 py-0.5 text-[10px] font-extrabold uppercase tracking-wider text-pine-950">

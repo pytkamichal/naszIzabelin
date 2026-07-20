@@ -89,7 +89,7 @@ export default function RootLayout({
           suppressHydrationWarning silences that noise for this element only;
           body content stays fully static. */}
       <body
-        className="min-h-full flex flex-col bg-cream font-sans text-ink"
+        className="min-h-full flex flex-col bg-cream font-sans text-ink paper-grain relative"
         suppressHydrationWarning
       >
         {children}

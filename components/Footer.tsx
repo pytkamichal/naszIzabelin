@@ -9,7 +9,7 @@ export function Footer() {
   return (
     <footer
       id="kontakt"
-      className="grain relative mt-auto overflow-hidden bg-pine-950 text-cream/80"
+      className="grain relative z-10 mt-auto overflow-hidden bg-pine-950 text-cream/80"
     >
       <div
         aria-hidden

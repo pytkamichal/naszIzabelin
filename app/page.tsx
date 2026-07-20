@@ -61,7 +61,7 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <Header />
-      <main className="flex-1">
+      <main className="relative z-10 flex-1">
         <Hero />
         <VillageStats />
         <VillageHistory />

@@ -17,7 +17,7 @@
   --color-pine-700: #235137;
   --color-pine-800: #1a3d2a;
   --color-pine-900: #122d1f;
-  --color-pine-950: #0a1f15;
+  --color-pine-950: #0c1d12;
 
   /* brand-* aliases — kept so small shared components (buttons, links)
      keep working; they now resolve to the pine palette. */
@@ -34,20 +34,20 @@
 
   /* Harvest gold — the accent. Ripe-grain warm, used sparingly for
      numbers, rules, the ticker and small flourishes. */
-  --color-gold-300: #eec766;
-  --color-gold-400: #e3ae35;
-  --color-gold-500: #c9941b;
-  --color-gold-600: #a4770e;
+  --color-gold-300: #f2cd76;
+  --color-gold-400: #e0a531;
+  --color-gold-500: #bd7f1f;
+  --color-gold-600: #986a12;
 
   /* Warm papers */
-  --color-cream: #f7f4ea;
-  --color-sand: #efe8d8;
-  --color-sand-deep: #e3d9c2;
-  --color-ink: #1d241e;
+  --color-cream: #f6f1e4;
+  --color-sand: #ebdfc8;
+  --color-sand-deep: #ded0b4;
+  --color-ink: #2b251d;
 
   /* Legacy paper aliases (still referenced in a few places) */
-  --color-canvas: #f7f4ea;
-  --color-paper: #efe8d8;
+  --color-canvas: #f6f1e4;
+  --color-paper: #ebdfc8;
 
   /* Alert reds — form errors and "planned" investment status chips */
   --color-blood: #d11f2a;
@@ -55,8 +55,8 @@
 }
 
 :root {
-  --background: #f7f4ea;
-  --foreground: #1d241e;
+  --background: #f6f1e4;
+  --foreground: #2b251d;
 }
 
 html {
@@ -113,6 +113,21 @@ body {
   mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
+
+/* Subtle fibrous paper grain over light sections. */
+.paper-grain::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  mix-blend-mode: multiply;
+  background-size: 300px 300px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.42  0 0 0 0 0.34  0 0 0 0 0.2  0 0 0 0.9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E");
+}
+@media (prefers-reduced-motion: no-preference) {
+} /* no-op, keep grain static */
 
 /* --- Scroll-reveal -------------------------------------------------------- */
 /* Elements start slightly lowered and transparent; the Reveal component
