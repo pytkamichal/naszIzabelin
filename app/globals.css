@@ -193,6 +193,61 @@ html[data-season="winter"] {
   --hero-field-bot: #c3d2db;
 }
 
+/* Spring (Wiosna) — fresh leaf-green, airy, blossom accents. */
+html[data-season="spring"] {
+  --color-pine-950: #123a24;
+  --color-pine-900: #1c5236;
+  --color-pine-800: #236642;
+  --color-pine-700: #2c7d51;
+  --color-pine-600: #359160;
+  --color-pine-500: #4bab77;
+  --color-pine-400: #6fc194;
+  --color-pine-300: #97d3b0;
+  --color-pine-200: #bce3cc;
+  --color-pine-100: #d6efdf;
+  --color-pine-50: #eaf8ef;
+
+  --color-brand-900: #1c5236;
+  --color-brand-800: #236642;
+  --color-brand-700: #2c7d51;
+  --color-brand-600: #359160;
+  --color-brand-500: #4bab77;
+  --color-brand-400: #6fc194;
+  --color-brand-300: #97d3b0;
+  --color-brand-200: #bce3cc;
+  --color-brand-100: #d6efdf;
+  --color-brand-50: #eaf8ef;
+
+  --color-gold-300: #f6d98a;
+  --color-gold-400: #e7b23e;
+  --color-gold-500: #c88f28;
+  --color-gold-600: #9c6d18;
+
+  --color-cream: #f7f3e8;
+  --color-sand: #e4eddb;
+  --color-sand-deep: #d4e0c6;
+  --color-ink: #23301f;
+  --color-canvas: #f7f3e8;
+  --color-paper: #e4eddb;
+
+  --color-blood: #d1452a;
+  --color-blood-dark: #8c2612;
+
+  --background: #f1f7ee;
+  --foreground: #23301f;
+
+  --hero-sky-top: #bcd8ec;
+  --hero-sky-mid: #e6eecf;
+  --hero-sky-bot: #f2f4d2;
+  --hero-sun: #fdfbe0;
+  --hero-tree-far: #6fae72;
+  --hero-tree-near: #4f9257;
+  --hero-tree-conifer: #3c7d4a;
+  --hero-field-top: #a8cf6a;
+  --hero-field-mid: #7bb04a;
+  --hero-field-bot: #4d7d2f;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -344,14 +399,18 @@ body {
 }
 
 /* --- Hero: seasonal falling particles -------------------------------------- */
-/* Three decorative hero layers, one shown per season via the `data-season`
-   attribute on <html>. Spring/summer keep the fireflies; autumn drops leaves;
-   winter drops snow. The Hero renders all three (each aria-hidden,
-   pointer-events:none); CSS decides which is visible, so nothing needs client
-   state. */
+/* Four decorative hero layers, one shown per season via the `data-season`
+   attribute on <html>: spring petals, summer fireflies, autumn leaves, winter
+   snow. The Hero renders all of them (each aria-hidden, pointer-events:none);
+   CSS decides which is visible, so nothing needs client state. Summer is the
+   default, so with no attribute the fireflies show. */
+.hero-petals,
 .hero-leaves,
 .hero-snow {
   display: none;
+}
+html[data-season="spring"] .hero-petals {
+  display: block;
 }
 html[data-season="autumn"] .hero-leaves {
   display: block;
@@ -359,12 +418,23 @@ html[data-season="autumn"] .hero-leaves {
 html[data-season="winter"] .hero-snow {
   display: block;
 }
-/* Fireflies belong to the warm season — hide them once a season theme is on. */
+/* Fireflies belong to summer — hide them once another season is on. */
+html[data-season="spring"] .hero-fireflies,
 html[data-season="autumn"] .hero-fireflies,
 html[data-season="winter"] .hero-fireflies {
   display: none;
 }
 
+/* Summer keeps the current photographic hero (the moose over the field). The
+   other three seasons hide that photo to reveal the season-tinted FieldForest
+   illustration beneath — matching the seasonal hero scenes from the design. */
+html[data-season="spring"] .hero-photo,
+html[data-season="autumn"] .hero-photo,
+html[data-season="winter"] .hero-photo {
+  display: none;
+}
+
+.season-petal,
 .season-leaf,
 .season-snow {
   position: absolute;
@@ -406,6 +476,7 @@ html[data-season="winter"] .hero-fireflies {
 }
 
 @media (prefers-reduced-motion: no-preference) {
+  .season-petal,
   .season-leaf {
     animation: fall-leaf var(--dur, 10s) linear var(--delay, 0s) infinite;
   }
@@ -441,6 +512,7 @@ html[data-season="winter"] .hero-fireflies {
     animation: none;
   }
   .firefly,
+  .season-petal,
   .season-leaf,
   .season-snow {
     display: none;

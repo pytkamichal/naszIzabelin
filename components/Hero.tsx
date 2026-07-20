@@ -15,6 +15,20 @@ function seeded(seed: number) {
 }
 
 const LEAF_GLYPHS = ["🍂", "🍁", "🍃"];
+const PETAL_GLYPHS = ["🌸", "🌼", "🌷"];
+
+// 22 drifting blossom petals (spring). Slightly smaller than the leaves; they
+// reuse the same falling keyframe.
+const PETALS = Array.from({ length: 22 }, (_, i) => {
+  const r = seeded(307 + i * 7);
+  return {
+    left: `${(r() * 100).toFixed(1)}%`,
+    size: `${(11 + r() * 10).toFixed(0)}px`,
+    dur: `${(6 + r() * 9).toFixed(1)}s`,
+    delay: `${(r() * 12).toFixed(1)}s`,
+    glyph: PETAL_GLYPHS[i % 3],
+  };
+});
 
 // 22 falling leaves (autumn) and 22 snowflakes (winter), each with a fixed
 // column, size, speed and start delay so the drift looks organic but stable.
@@ -68,7 +82,7 @@ export function Hero() {
           Slow Ken Burns drift; the keyframes carry the scaleX(-1) mirror. */}
       <div
         aria-hidden
-        className="hero-kenburns absolute inset-0 bg-cover"
+        className="hero-photo hero-kenburns absolute inset-0 bg-cover"
         style={{
           backgroundImage: "url('/hero.jpg')",
           // Anchor to the bottom so the animals stand fully in frame (no clipped legs).
@@ -115,6 +129,29 @@ export function Hero() {
               } as React.CSSProperties
             }
           />
+        ))}
+      </div>
+
+      {/* Drifting petals — shown only in spring (CSS-gated by data-season). */}
+      <div
+        aria-hidden
+        className="hero-petals pointer-events-none absolute inset-0 overflow-hidden"
+      >
+        {PETALS.map((petal, i) => (
+          <span
+            key={i}
+            className="season-petal"
+            style={
+              {
+                left: petal.left,
+                fontSize: petal.size,
+                "--dur": petal.dur,
+                "--delay": petal.delay,
+              } as React.CSSProperties
+            }
+          >
+            {petal.glyph}
+          </span>
         ))}
       </div>
 

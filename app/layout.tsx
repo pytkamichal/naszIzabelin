@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Manrope, Fraunces, Geist_Mono, Cookie } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
@@ -73,14 +74,6 @@ export const metadata: Metadata = {
   },
 };
 
-// Runs before paint on every load: reads the visitor's current month and marks
-// <html> with the matching season so the theme changes over automatically with
-// the calendar (meteorological seasons). Sep–Nov → autumn, Dec–Feb → winter,
-// Mar–Aug → the default warm theme (attribute removed). Kept inline and tiny so
-// it applies before the first paint — no flash of the wrong palette — and re-runs
-// per request, so a statically cached page still shows the right season.
-const seasonScript = `(function(){try{var m=new Date().getMonth(),s=m>=8&&m<=10?"autumn":(m===11||m<=1?"winter":"");var r=document.documentElement;if(s){r.setAttribute("data-season",s)}else{r.removeAttribute("data-season")}}catch(e){}})();`;
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -90,6 +83,9 @@ export default function RootLayout({
     <html
       lang="pl"
       className={`${manrope.variable} ${fraunces.variable} ${geistMono.variable} ${cookie.variable} h-full antialiased`}
+      // The season script sets data-season on <html> before hydration, which
+      // React can't know about — suppress the resulting attribute mismatch here.
+      suppressHydrationWarning
     >
       {/* Browser extensions (password managers, security suites, etc.) often
           inject attributes like `bis_register` / `__processed_…` onto <body>
@@ -100,7 +96,11 @@ export default function RootLayout({
         className="min-h-full flex flex-col bg-cream font-sans text-ink paper-grain relative"
         suppressHydrationWarning
       >
-        <script dangerouslySetInnerHTML={{ __html: seasonScript }} />
+        {/* Sets data-season on <html> from the current month before the page
+            becomes interactive — see public/season-init.js. External + before-
+            Interactive so it runs per load (correct even for a cached page) and
+            avoids rendering a <script> inside the React tree. */}
+        <Script src="/season-init.js" strategy="beforeInteractive" />
         {children}
         <Analytics />
       </body>
