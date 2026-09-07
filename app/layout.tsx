@@ -82,9 +82,11 @@ export default function RootLayout({
   return (
     <html
       lang="pl"
+      data-season="autumn"
       className={`${manrope.variable} ${fraunces.variable} ${geistMono.variable} ${cookie.variable} h-full antialiased`}
-      // The season script sets data-season on <html> before hydration, which
-      // React can't know about — suppress the resulting attribute mismatch here.
+      // Autumn is the server-rendered theme, so the current season is visible
+      // from the very first paint. The script below still keeps future calendar
+      // rollovers automatic and may replace this attribute before hydration.
       suppressHydrationWarning
     >
       {/* Browser extensions (password managers, security suites, etc.) often

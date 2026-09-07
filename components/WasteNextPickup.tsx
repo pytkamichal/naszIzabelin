@@ -20,7 +20,11 @@ function todayISO(): string {
  */
 export function WasteNextPickup() {
   const [today, setToday] = useState<string | null>(null);
-  useEffect(() => setToday(todayISO()), []);
+  useEffect(() => {
+    // Keep the first client render identical to the cached server markup.
+    const frame = requestAnimationFrame(() => setToday(todayISO()));
+    return () => cancelAnimationFrame(frame);
+  }, []);
   if (!today) return null;
 
   const next = KINDS.map((kind) =>

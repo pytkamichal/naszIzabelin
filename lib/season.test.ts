@@ -13,6 +13,7 @@ const read = (rel: string) =>
 
 const SEASON_SCRIPT = read("public/season-init.js");
 const GLOBALS_CSS = read("app/globals.css");
+const ROOT_LAYOUT = read("app/layout.tsx");
 
 const SEASONS = ["spring", "summer", "autumn", "winter"] as const;
 type Season = (typeof SEASONS)[number];
@@ -42,6 +43,11 @@ function seasonOn(date: Date): string | undefined {
 }
 
 describe("season-init.js — calendar rollover", () => {
+  it("server-renders autumn immediately while the calendar script keeps later rollovers automatic", () => {
+    expect(ROOT_LAYOUT).toContain('data-season="autumn"');
+    expect(ROOT_LAYOUT).toContain('src="/season-init.js"');
+  });
+
   // Meteorological seasons: the month is what decides, so mid-month is
   // representative of the whole month.
   const BY_MONTH: Array<[number, Season]> = [
@@ -184,7 +190,7 @@ describe("globals.css — season token blocks", () => {
   // swapped out by accident.
   it.each([
     ["spring", "#123a24"],
-    ["autumn", "#33190e"],
+    ["autumn", "#2b150d"],
     ["winter", "#0c1a17"],
   ] as const)("%s uses the specified pine-950 %s", (season, hex) => {
     expect(seasonBlock(season)!).toContain(`--color-pine-950: ${hex}`);

@@ -51,7 +51,11 @@ function dayNumber(iso: string): string {
 export function CalendarBoard() {
   const [view, setView] = useState<View>("month");
   const [today, setToday] = useState<string | null>(null);
-  useEffect(() => setToday(todayISO()), []);
+  useEffect(() => {
+    // Read the visitor's date after hydration, as with AnimatedNumber.
+    const frame = requestAnimationFrame(() => setToday(todayISO()));
+    return () => cancelAnimationFrame(frame);
+  }, []);
 
   const anchorDate = today ?? fallbackAnchor;
 

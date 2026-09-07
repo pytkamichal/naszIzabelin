@@ -1,5 +1,6 @@
 import { village } from "@/data/village";
 import { FieldForest } from "./illustrations/FieldForest";
+import { Icon } from "./ui/Icon";
 
 // Deterministic pseudo-random generator (mulberry32). Seeded so the particle
 // layouts are identical on the server and the client — random-per-render would
@@ -14,7 +15,7 @@ function seeded(seed: number) {
   };
 }
 
-const LEAF_GLYPHS = ["🍂", "🍁", "🍃"];
+const LEAF_GLYPHS = ["🍂", "🍁"];
 const PETAL_GLYPHS = ["🌸", "🌼", "🌷"];
 
 // 22 drifting blossom petals (spring). Slightly smaller than the leaves; they
@@ -30,16 +31,22 @@ const PETALS = Array.from({ length: 22 }, (_, i) => {
   };
 });
 
-// 22 falling leaves (autumn) and 22 snowflakes (winter), each with a fixed
+// Nine falling leaves (autumn) and 22 snowflakes (winter), each with a fixed
 // column, size, speed and start delay so the drift looks organic but stable.
-const LEAVES = Array.from({ length: 22 }, (_, i) => {
+const LEAVES = Array.from({ length: 9 }, (_, i) => {
   const r = seeded(101 + i * 7);
+  const depth = r();
+  const drift = r() * 150 - 75;
   return {
     left: `${(r() * 100).toFixed(1)}%`,
-    size: `${(13 + r() * 13).toFixed(0)}px`,
-    dur: `${(6 + r() * 9).toFixed(1)}s`,
-    delay: `${(r() * 12).toFixed(1)}s`,
-    glyph: LEAF_GLYPHS[i % 3],
+    size: `${(12 + depth * 18).toFixed(0)}px`,
+    dur: `${(18 + r() * 12).toFixed(1)}s`,
+    delay: `${(-r() * 30).toFixed(1)}s`,
+    drift: `${drift.toFixed(0)}px`,
+    driftMid: `${(drift * -0.35).toFixed(0)}px`,
+    blur: `${((1 - depth) * 1.2).toFixed(1)}px`,
+    opacity: (0.52 + depth * 0.42).toFixed(2),
+    glyph: LEAF_GLYPHS[i % LEAF_GLYPHS.length],
   };
 });
 
@@ -73,10 +80,12 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative isolate flex min-h-svh flex-col justify-end overflow-hidden bg-pine-950"
+      className="village-hero relative isolate flex min-h-svh flex-col justify-end overflow-hidden bg-pine-950"
     >
       {/* Peaceful field + forest illustration (fallback under the photo) */}
       <FieldForest className="absolute inset-0 h-full w-full" />
+
+      <div aria-hidden className="autumn-landscape pointer-events-none absolute inset-0" />
 
       {/* Hero photo (falls back to the illustration above if missing).
           Slow Ken Burns drift; the keyframes carry the scaleX(-1) mirror. */}
@@ -95,12 +104,15 @@ export function Hero() {
       {/* Pine-tinted scrims so cream text stays readable over the photo */}
       <div
         aria-hidden
-        className="absolute inset-0 bg-gradient-to-t from-pine-950 via-pine-950/35 to-pine-950/10"
+        className="hero-standard-scrim absolute inset-0 bg-gradient-to-t from-pine-950 via-pine-950/35 to-pine-950/10"
       />
       <div
         aria-hidden
-        className="absolute inset-0 bg-gradient-to-r from-pine-950/80 via-pine-950/25 to-transparent"
+        className="hero-standard-scrim absolute inset-0 bg-gradient-to-r from-pine-950/80 via-pine-950/25 to-transparent"
       />
+
+      {/* A cinematic, low-sun wash reserved for the autumn composition. */}
+      <div aria-hidden className="autumn-atmosphere pointer-events-none absolute inset-0" />
 
       {/* Fireflies drifting over the evening field (decorative, CSS-only).
           Shown in the default warm season; hidden once autumn/winter is on. */}
@@ -170,6 +182,10 @@ export function Hero() {
                 fontSize: leaf.size,
                 "--dur": leaf.dur,
                 "--delay": leaf.delay,
+                "--drift": leaf.drift,
+                "--drift-mid": leaf.driftMid,
+                "--leaf-blur": leaf.blur,
+                "--leaf-opacity": leaf.opacity,
               } as React.CSSProperties
             }
           >
@@ -207,34 +223,51 @@ export function Hero() {
         src="/herb.png?v=2"
         alt=""
         aria-hidden
-        className="pointer-events-none absolute right-8 top-32 hidden h-[180px] w-auto drop-shadow-[0_12px_28px_rgba(0,0,0,0.55)] md:block lg:right-16 lg:h-[220px]"
+        className="hero-desktop-crest pointer-events-none absolute right-8 top-32 hidden h-[180px] w-auto drop-shadow-[0_12px_28px_rgba(0,0,0,0.55)] md:block lg:right-16 lg:h-[220px]"
       />
 
-      <div className="relative mx-auto w-full max-w-6xl px-4 pb-24 pt-40 sm:px-5 sm:pb-28">
+      <div className="hero-content relative mx-auto w-full max-w-6xl px-4 pb-24 pt-40 sm:px-5 sm:pb-28">
         {/* Coat of arms for small screens — sits above the title, clear of the copy. */}
         <img
           src="/herb.png?v=2"
           alt="Herb wsi Izabelin"
-          className="mb-8 h-24 w-auto drop-shadow-[0_10px_24px_rgba(0,0,0,0.55)] md:hidden"
+          className="hero-mobile-crest mb-8 h-24 w-auto drop-shadow-[0_10px_24px_rgba(0,0,0,0.55)] md:hidden"
         />
 
-        <p className="flex items-center gap-4 text-[11px] font-extrabold uppercase tracking-[0.32em] text-gold-300 sm:text-xs">
+        <div className="autumn-season-mark items-center gap-3">
+          <Icon name="leaf" className="h-4 w-4" />
+          <span>Złota jesień na Mazowszu</span>
+        </div>
+
+        <p className="hero-region flex items-center gap-4 text-[11px] font-extrabold uppercase tracking-[0.32em] text-gold-300 sm:text-xs">
           <span aria-hidden className="h-px w-12 bg-gold-400/80" />
           {village.region}
         </p>
 
         <h1 className="mt-6 max-w-4xl font-serif text-5xl font-semibold leading-[1.02] tracking-tight text-cream drop-shadow-[0_4px_24px_rgba(0,0,0,0.45)] sm:text-6xl lg:text-7xl">
-          <AccentedHeading text={village.heroHeading} />
+          <span className="hero-standard-copy"><AccentedHeading text={village.heroHeading} /></span>
+          <span className="autumn-heading">
+            <span>Izabelin<span className="autumn-heading-dot">.</span></span>
+            <em>Dobrze tu być.</em>
+          </span>
         </h1>
 
-        <p className="mt-8 max-w-2xl text-base leading-relaxed text-cream/85 drop-shadow-sm sm:text-lg">
-          {village.heroLead}
+        <p className="hero-lead mt-8 max-w-2xl text-base leading-relaxed text-cream/85 drop-shadow-sm sm:text-lg">
+          <span className="hero-standard-copy">{village.heroLead}</span>
+          <span className="autumn-only">Wśród mazowieckich lasów i pól jest nasze miejsce.
+            Mała wieś, bliscy sąsiedzi i sprawy, które nas łączą.
+            Witaj na stronie mieszkańców Izabelina.</span>
         </p>
 
+        <div className="autumn-actions">
+          <a href="#o-wsi" className="autumn-primary-link">Poznaj naszą wieś <Icon name="arrow-right" className="h-4 w-4" /></a>
+          <a href="#kalendarz" className="autumn-secondary-link">Co słychać w okolicy <span aria-hidden>↗</span></a>
+        </div>
+
         {/* Village motto */}
-        <figure className="mt-12 max-w-xl border-l-2 border-gold-400/70 pl-6">
+        <figure className="hero-motto mt-12 max-w-xl border-l-2 border-gold-400/70 pl-6">
           <blockquote className="font-serif text-xl font-medium italic leading-relaxed text-cream/90 drop-shadow sm:text-2xl">
-            „{village.quote.text}"
+            „{village.quote.text}”
           </blockquote>
           <figcaption className="mt-3 text-[11px] font-extrabold uppercase tracking-[0.24em] text-gold-300/90">
             — {village.quote.author}
@@ -242,11 +275,18 @@ export function Hero() {
         </figure>
       </div>
 
+      <nav className="autumn-shortcuts" aria-label="Na co dzień w Izabelinie">
+        <div className="autumn-shortcuts-title"><span>Dla mieszkańców</span><span>Na co dzień</span></div>
+        <a href="#kalendarz"><Icon name="calendar" className="h-5 w-5" /><span><strong>Kalendarz</strong><small>Wydarzenia i terminy</small></span><Icon name="arrow-right" className="shortcut-arrow h-4 w-4" /></a>
+        <a href="#odpady"><Icon name="leaf" className="h-5 w-5" /><span><strong>Odbiór odpadów</strong><small>Sprawdź harmonogram</small></span><Icon name="arrow-right" className="shortcut-arrow h-4 w-4" /></a>
+        <a href="#kontakty"><Icon name="users" className="h-5 w-5" /><span><strong>Ważne kontakty</strong><small>Zawsze pod ręką</small></span><Icon name="arrow-right" className="shortcut-arrow h-4 w-4" /></a>
+      </nav>
+
       {/* Scroll cue */}
       <a
         href="#o-wsi"
         aria-label="Przewiń do sekcji o wsi"
-        className="animate-cue-bounce absolute bottom-6 left-1/2 hidden -translate-x-1/2 text-cream/70 transition hover:text-cream sm:block"
+        className="hero-scroll-cue animate-cue-bounce absolute bottom-6 left-1/2 hidden -translate-x-1/2 text-cream/70 transition hover:text-cream sm:block"
       >
         <svg
           width="26"
