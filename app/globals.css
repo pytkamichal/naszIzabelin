@@ -85,57 +85,57 @@
 
 /* Autumn (Jesień) — full harvest; the green recedes into warm bark + amber. */
 html[data-season="autumn"] {
-  --color-pine-950: #33190e;
-  --color-pine-900: #5e2810;
-  --color-pine-800: #762f12;
-  --color-pine-700: #8c3a16;
-  --color-pine-600: #a8461a;
-  --color-pine-500: #c0561f;
-  --color-pine-400: #d17a3a;
-  --color-pine-300: #e09b63;
-  --color-pine-200: #edbf95;
-  --color-pine-100: #f4d8c4;
-  --color-pine-50: #fbe9dc;
+  --color-pine-950: #2b150d;
+  --color-pine-900: #4c2112;
+  --color-pine-800: #692b13;
+  --color-pine-700: #833716;
+  --color-pine-600: #9d461b;
+  --color-pine-500: #b85a23;
+  --color-pine-400: #cd7939;
+  --color-pine-300: #df9c63;
+  --color-pine-200: #edc199;
+  --color-pine-100: #f5ddc8;
+  --color-pine-50: #fbede1;
 
-  --color-brand-900: #5e2810;
-  --color-brand-800: #762f12;
-  --color-brand-700: #8c3a16;
-  --color-brand-600: #a8461a;
-  --color-brand-500: #c0561f;
-  --color-brand-400: #d17a3a;
-  --color-brand-300: #e09b63;
-  --color-brand-200: #edbf95;
-  --color-brand-100: #f4d8c4;
-  --color-brand-50: #fbe9dc;
+  --color-brand-900: #4c2112;
+  --color-brand-800: #692b13;
+  --color-brand-700: #833716;
+  --color-brand-600: #9d461b;
+  --color-brand-500: #b85a23;
+  --color-brand-400: #cd7939;
+  --color-brand-300: #df9c63;
+  --color-brand-200: #edc199;
+  --color-brand-100: #f5ddc8;
+  --color-brand-50: #fbede1;
 
-  --color-gold-300: #f3cd7f;
-  --color-gold-400: #dc9526;
-  --color-gold-500: #c07a1c;
-  --color-gold-600: #94590f;
+  --color-gold-300: #f5d58a;
+  --color-gold-400: #e3a130;
+  --color-gold-500: #bd7419;
+  --color-gold-600: #8e5010;
 
-  --color-cream: #f8efdf;
-  --color-sand: #ecdcc3;
-  --color-sand-deep: #e0ccaa;
-  --color-ink: #2f2013;
-  --color-canvas: #f8efdf;
-  --color-paper: #ecdcc3;
+  --color-cream: #fbf1df;
+  --color-sand: #ead7ba;
+  --color-sand-deep: #d9bd95;
+  --color-ink: #302016;
+  --color-canvas: #fbf1df;
+  --color-paper: #ead7ba;
 
   --color-blood: #c22a1c;
   --color-blood-dark: #7e1c11;
 
-  --background: #f7efe1;
-  --foreground: #2f2013;
+  --background: #f8eddb;
+  --foreground: #302016;
 
-  --hero-sky-top: #9fb0b3;
-  --hero-sky-mid: #e8cfa0;
-  --hero-sky-bot: #e0a94f;
-  --hero-sun: #ffe9bf;
-  --hero-tree-far: #8a6a2f;
-  --hero-tree-near: #6e4a1f;
-  --hero-tree-conifer: #5c3d1a;
-  --hero-field-top: #b98a3d;
-  --hero-field-mid: #8a5f24;
-  --hero-field-bot: #4d3315;
+  --hero-sky-top: #52636a;
+  --hero-sky-mid: #c08a61;
+  --hero-sky-bot: #e7ae58;
+  --hero-sun: #ffe4a8;
+  --hero-tree-far: #8d622c;
+  --hero-tree-near: #643a1d;
+  --hero-tree-conifer: #3c2417;
+  --hero-field-top: #b78235;
+  --hero-field-mid: #795021;
+  --hero-field-bot: #382416;
 }
 
 /* Winter (Zima) — cozy midnight-pine + lamplight gold + icy blue on snow. */
@@ -290,6 +290,20 @@ body {
   color: var(--foreground);
 }
 
+html[data-season="autumn"] body {
+  background-image:
+    radial-gradient(circle at 8% 8%, rgb(227 161 48 / 0.11), transparent 24rem),
+    radial-gradient(circle at 92% 30%, rgb(131 55 22 / 0.08), transparent 28rem);
+}
+
+html[data-season="autumn"] header > div {
+  border-color: rgb(245 213 138 / 0.2);
+  background: rgb(43 21 13 / 0.88);
+  box-shadow:
+    0 18px 60px rgb(31 13 7 / 0.5),
+    inset 0 1px 0 rgb(255 235 194 / 0.08);
+}
+
 /* --- Grain ---------------------------------------------------------------- */
 /* Subtle film grain laid over dark sections; gives the flat pine panels a
    printed, organic feel. Parent needs position:relative. */
@@ -350,6 +364,42 @@ body {
 .hero-kenburns {
   animation: hero-kenburns 28s ease-in-out infinite alternate;
   will-change: transform;
+}
+
+.autumn-atmosphere,
+.autumn-season-mark {
+  display: none;
+}
+
+html[data-season="autumn"] .autumn-atmosphere {
+  display: block;
+  background:
+    radial-gradient(circle at 73% 31%, rgb(255 219 145 / 0.3), transparent 13%),
+    linear-gradient(112deg, rgb(43 21 13 / 0.62) 8%, transparent 58%),
+    linear-gradient(to top, rgb(36 18 11 / 0.42), transparent 46%);
+}
+
+html[data-season="autumn"] .autumn-season-mark {
+  display: flex;
+  width: fit-content;
+  color: rgb(245 213 138 / 0.86);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.autumn-season-mark__line {
+  width: 2.75rem;
+  height: 1px;
+  background: linear-gradient(to right, transparent, currentColor);
+}
+
+.autumn-season-mark__dot {
+  width: 0.32rem;
+  height: 0.32rem;
+  rotate: 45deg;
+  background: currentColor;
 }
 
 /* --- Hero: fireflies over the evening field -------------------------------- */
@@ -441,6 +491,11 @@ html[data-season="winter"] .hero-photo {
   top: 0;
   will-change: transform;
 }
+.season-leaf {
+  color: #d67a25;
+  filter: blur(var(--leaf-blur, 0)) drop-shadow(0 5px 6px rgb(50 20 8 / 0.28));
+  opacity: var(--leaf-opacity, 0.85);
+}
 .season-snow {
   border-radius: 9999px;
   background: rgba(255, 255, 255, 0.92);
@@ -449,15 +504,20 @@ html[data-season="winter"] .hero-photo {
 
 @keyframes fall-leaf {
   0% {
-    transform: translateY(-15vh) rotate(0deg);
+    transform: translate3d(0, -15vh, 0) rotate(0deg) rotateX(0deg);
     opacity: 0;
   }
   8% {
-    opacity: 0.92;
+    opacity: var(--leaf-opacity, 0.9);
+  }
+  48% {
+    transform: translate3d(var(--drift-mid, -10px), 48vh, 0)
+      rotate(260deg) rotateX(150deg);
   }
   100% {
-    transform: translateY(118vh) rotate(600deg);
-    opacity: 0.8;
+    transform: translate3d(var(--drift, 30px), 118vh, 0) rotate(620deg)
+      rotateX(320deg);
+    opacity: 0.65;
   }
 }
 
@@ -523,4 +583,3 @@ html[data-season="winter"] .hero-photo {
     transition: none;
   }
 }
-

@@ -19,7 +19,7 @@ const SEASONS: Array<{
 }> = [
   { season: "spring", date: [2026, 3, 15], pine950: "#123a24", layer: ".hero-petals" },
   { season: "summer", date: [2026, 6, 15], pine950: "#0c1d12", layer: ".hero-fireflies" },
-  { season: "autumn", date: [2026, 9, 15], pine950: "#33190e", layer: ".hero-leaves" },
+  { season: "autumn", date: [2026, 9, 15], pine950: "#2b150d", layer: ".hero-leaves" },
   { season: "winter", date: [2026, 11, 15], pine950: "#0c1a17", layer: ".hero-snow" },
 ];
 

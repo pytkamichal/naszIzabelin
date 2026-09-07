@@ -34,11 +34,17 @@ const PETALS = Array.from({ length: 22 }, (_, i) => {
 // column, size, speed and start delay so the drift looks organic but stable.
 const LEAVES = Array.from({ length: 22 }, (_, i) => {
   const r = seeded(101 + i * 7);
+  const depth = r();
+  const drift = r() * 150 - 75;
   return {
     left: `${(r() * 100).toFixed(1)}%`,
-    size: `${(13 + r() * 13).toFixed(0)}px`,
+    size: `${(12 + depth * 18).toFixed(0)}px`,
     dur: `${(6 + r() * 9).toFixed(1)}s`,
     delay: `${(r() * 12).toFixed(1)}s`,
+    drift: `${drift.toFixed(0)}px`,
+    driftMid: `${(drift * -0.35).toFixed(0)}px`,
+    blur: `${((1 - depth) * 1.2).toFixed(1)}px`,
+    opacity: (0.52 + depth * 0.42).toFixed(2),
     glyph: LEAF_GLYPHS[i % 3],
   };
 });
@@ -101,6 +107,9 @@ export function Hero() {
         aria-hidden
         className="absolute inset-0 bg-gradient-to-r from-pine-950/80 via-pine-950/25 to-transparent"
       />
+
+      {/* A cinematic, low-sun wash reserved for the autumn composition. */}
+      <div aria-hidden className="autumn-atmosphere pointer-events-none absolute inset-0" />
 
       {/* Fireflies drifting over the evening field (decorative, CSS-only).
           Shown in the default warm season; hidden once autumn/winter is on. */}
@@ -170,6 +179,10 @@ export function Hero() {
                 fontSize: leaf.size,
                 "--dur": leaf.dur,
                 "--delay": leaf.delay,
+                "--drift": leaf.drift,
+                "--drift-mid": leaf.driftMid,
+                "--leaf-blur": leaf.blur,
+                "--leaf-opacity": leaf.opacity,
               } as React.CSSProperties
             }
           >
@@ -218,6 +231,12 @@ export function Hero() {
           className="mb-8 h-24 w-auto drop-shadow-[0_10px_24px_rgba(0,0,0,0.55)] md:hidden"
         />
 
+        <div className="autumn-season-mark mb-7 items-center gap-3" aria-hidden="true">
+          <span className="autumn-season-mark__line" />
+          <span>Jesień w Izabelinie</span>
+          <span className="autumn-season-mark__dot" />
+        </div>
+
         <p className="flex items-center gap-4 text-[11px] font-extrabold uppercase tracking-[0.32em] text-gold-300 sm:text-xs">
           <span aria-hidden className="h-px w-12 bg-gold-400/80" />
           {village.region}
@@ -234,7 +253,7 @@ export function Hero() {
         {/* Village motto */}
         <figure className="mt-12 max-w-xl border-l-2 border-gold-400/70 pl-6">
           <blockquote className="font-serif text-xl font-medium italic leading-relaxed text-cream/90 drop-shadow sm:text-2xl">
-            „{village.quote.text}"
+            „{village.quote.text}”
           </blockquote>
           <figcaption className="mt-3 text-[11px] font-extrabold uppercase tracking-[0.24em] text-gold-300/90">
             — {village.quote.author}
