@@ -37,7 +37,7 @@ export function Waste() {
           <p className="mt-2 mb-5 max-w-2xl text-sm leading-relaxed text-ink/70">
             Wszystkie terminy trafią do Twojego kalendarza (telefon, Google,
             Apple), a wieczorem dzień przed każdym odbiorem dostaniesz
-            przypomnienie. „Subskrybuj" aktualizuje się automatycznie, gdy
+            przypomnienie. „Subskrybuj” aktualizuje się automatycznie, gdy
             zmieni się harmonogram.
           </p>
           <AddToCalendar path="/odpady.ics" />

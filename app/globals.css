@@ -367,39 +367,233 @@ html[data-season="autumn"] header > div {
 }
 
 .autumn-atmosphere,
-.autumn-season-mark {
+.autumn-season-mark,
+.autumn-landscape,
+.autumn-heading,
+.autumn-only,
+.autumn-actions,
+.autumn-shortcuts {
+  display: none;
+}
+
+html[data-season="autumn"] .village-hero {
+  min-height: max(800px, 100svh);
+  justify-content: center;
+  background: #29241a;
+}
+
+html[data-season="autumn"] .autumn-landscape {
+  display: block;
+  background: url('/autumn-landscape.webp') 62% 50% / cover no-repeat;
+}
+
+html[data-season="autumn"] .hero-standard-scrim,
+html[data-season="autumn"] .hero-standard-copy,
+html[data-season="autumn"] .hero-region,
+html[data-season="autumn"] .hero-mobile-crest,
+html[data-season="autumn"] .hero-desktop-crest,
+html[data-season="autumn"] .hero-scroll-cue {
   display: none;
 }
 
 html[data-season="autumn"] .autumn-atmosphere {
   display: block;
   background:
-    radial-gradient(circle at 73% 31%, rgb(255 219 145 / 0.3), transparent 13%),
-    linear-gradient(112deg, rgb(43 21 13 / 0.62) 8%, transparent 58%),
-    linear-gradient(to top, rgb(36 18 11 / 0.42), transparent 46%);
+    linear-gradient(90deg, rgb(27 25 18 / 0.88), rgb(31 26 17 / 0.57) 36%, transparent 75%),
+    linear-gradient(0deg, #282219 0%, rgb(40 34 25 / 0.12) 29%, transparent 65%, rgb(28 23 17 / 0.4));
+}
+
+html[data-season="autumn"] .hero-content {
+  max-width: 1200px;
+  padding: 175px 32px 190px;
+}
+
+html[data-season="autumn"] .hero-content h1 {
+  margin-top: 26px;
+  max-width: 720px;
+  font-weight: 500;
+  text-shadow: 0 4px 40px rgb(0 0 0 / 0.12);
+  filter: none;
+}
+
+html[data-season="autumn"] .autumn-heading {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-size: clamp(5rem, 8.2vw, 7.5rem);
+  line-height: 1.02;
+  letter-spacing: -0.055em;
+}
+
+.autumn-heading-dot { color: #e6b76d; }
+
+.autumn-heading em {
+  font-size: 0.57em;
+  font-weight: 400;
+  letter-spacing: -0.035em;
+  color: #ebcc97;
+}
+
+html[data-season="autumn"] .hero-lead {
+  max-width: 440px;
+  margin-top: 30px;
+  color: #eadfcd;
+  font-size: 1rem;
+  line-height: 1.85;
+}
+
+html[data-season="autumn"] .autumn-only { display: inline; }
+
+html[data-season="autumn"] .autumn-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 24px;
+  margin-top: 32px;
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.autumn-primary-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 22px;
+  min-height: 52px;
+  padding: 14px 22px;
+  border: 1px solid #edcc8c;
+  border-radius: 6px;
+  background: #edcc8c;
+  color: #342414;
+  box-shadow: 0 6px 22px rgb(0 0 0 / 0.1);
+  transition: background 180ms, transform 180ms;
+}
+
+.autumn-primary-link:hover { background: #ffe0a4; transform: translateY(-2px); }
+
+.autumn-secondary-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  gap: 12px;
+  color: #f3e5cf;
+  text-underline-offset: 7px;
+}
+
+.autumn-secondary-link:hover { text-decoration: underline; }
+
+html[data-season="autumn"] .hero-motto {
+  position: absolute;
+  right: 32px;
+  bottom: 188px;
+  max-width: 290px;
+  margin: 0;
+  padding: 20px 0 0;
+  border-left: 0;
+  border-top: 1px solid rgb(245 213 138 / 0.45);
+  text-shadow: 0 2px 16px rgb(0 0 0 / 0.5);
+}
+
+html[data-season="autumn"] .hero-motto blockquote { font-size: 1.3rem; }
+html[data-season="autumn"] .hero-motto figcaption { font-size: 0.75rem; letter-spacing: 0.16em; }
+
+html[data-season="autumn"] .autumn-shortcuts {
+  position: absolute;
+  bottom: 0;
+  inset-inline: 0;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 0.85fr repeat(3, 1fr);
+  align-items: stretch;
+  max-width: 1136px;
+  margin-inline: auto;
+  border-top: 1px solid rgb(243 223 184 / 0.26);
+  color: #f4e9d7;
+}
+
+.autumn-shortcuts-title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  padding: 26px 0;
+}
+
+.autumn-shortcuts-title > span:first-child {
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #cbb79a;
+}
+
+.autumn-shortcuts-title > span:last-child { font-family: var(--font-fraunces); font-size: 1.65rem; }
+
+.autumn-shortcuts > a {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 30px 23px;
+  border-left: 1px solid rgb(243 223 184 / 0.14);
+  transition: background 180ms;
+}
+
+.autumn-shortcuts > a:hover { background: rgb(245 213 138 / 0.08); }
+.autumn-shortcuts > a > svg:first-child { flex-shrink: 0; color: #dfb875; }
+.autumn-shortcuts strong { display: block; font-size: 0.875rem; font-weight: 600; }
+.autumn-shortcuts small { display: block; margin-top: 5px; color: #cdbfa9; font-size: 0.75rem; }
+.shortcut-arrow { margin-left: auto; flex-shrink: 0; opacity: 0.65; }
+
+html[data-season="autumn"] #o-wsi {
+  background: #282219;
+  padding-block: 72px;
+  border-bottom: 4px solid #be8740;
+}
+
+html[data-season="autumn"] #o-wsi .text-cream\/55 { color: #cbbda7; }
+
+html[data-season="autumn"] #historia {
+  background: radial-gradient(ellipse at 0% 25%, #ecdbbd 0%, transparent 50%), #fbf1df;
+}
+
+html[data-season="autumn"] header > div {
+  max-width: 1200px;
+  border-radius: 10px;
+  background: rgb(39 32 23 / 0.91);
+  border-color: rgb(240 213 168 / 0.22);
+}
+
+@media (max-width: 1023px) {
+  html[data-season="autumn"] .hero-motto { display: none; }
+  html[data-season="autumn"] .autumn-shortcuts { margin-inline: 32px; grid-template-columns: repeat(3, 1fr); }
+  .autumn-shortcuts-title { display: none; }
+  .autumn-shortcuts > a { padding: 26px 16px; }
+  .autumn-shortcuts > a:nth-child(2) { border-left: 0; }
+}
+
+@media (max-width: 639px) {
+  html[data-season="autumn"] .village-hero { min-height: 880px; }
+  html[data-season="autumn"] .hero-content { padding: 138px 24px 250px; }
+  html[data-season="autumn"] .autumn-landscape { background-position: 65% center; }
+  html[data-season="autumn"] .autumn-atmosphere {
+    background: linear-gradient(90deg, rgb(27 25 18 / 0.8), rgb(31 26 17 / 0.28)), linear-gradient(0deg, #282219 3%, rgb(40 34 25 / 0.4) 50%, rgb(28 23 17 / 0.2));
+  }
+  html[data-season="autumn"] .autumn-heading { font-size: clamp(4rem, 18vw, 6rem); gap: 16px; }
+  html[data-season="autumn"] .hero-lead { font-size: 1rem; max-width: 360px; margin-top: 26px; }
+  html[data-season="autumn"] .autumn-actions { gap: 10px 22px; margin-top: 24px; }
+  html[data-season="autumn"] .autumn-shortcuts { margin-inline: 24px; grid-template-columns: 1fr; padding-bottom: 16px; }
+  .autumn-shortcuts > a { padding: 16px 0; border-left: 0; border-bottom: 1px solid rgb(243 223 184 / 0.12); }
+  .autumn-shortcuts > a > span { display: flex; flex: 1; align-items: baseline; gap: 12px; }
+  .autumn-shortcuts small { display: none; }
+  html[data-season="autumn"] #o-wsi { padding-block: 56px; }
 }
 
 html[data-season="autumn"] .autumn-season-mark {
   display: flex;
   width: fit-content;
-  color: rgb(245 213 138 / 0.86);
-  font-size: 0.7rem;
-  font-weight: 800;
-  letter-spacing: 0.24em;
+  color: #eccc94;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-}
-
-.autumn-season-mark__line {
-  width: 2.75rem;
-  height: 1px;
-  background: linear-gradient(to right, transparent, currentColor);
-}
-
-.autumn-season-mark__dot {
-  width: 0.32rem;
-  height: 0.32rem;
-  rotate: 45deg;
-  background: currentColor;
 }
 
 /* --- Hero: fireflies over the evening field -------------------------------- */

@@ -288,3 +288,40 @@ test.describe("hero particle layers are decorative only", () => {
     }
   });
 });
+
+test.describe("autumn resident shortcuts", () => {
+  for (const width of [320, 375]) {
+    test(`shortcuts remain separate from the hero and navigate at ${width}px`, async ({ page }) => {
+      await gotoSeason(page, [2026, 8, 7], { width, height: 812 }, "reduce");
+
+      const actions = await page.locator(".autumn-actions").boundingBox();
+      const shortcuts = page.getByRole("navigation", { name: "Na co dzień w Izabelinie" });
+      const shortcutBox = await shortcuts.boundingBox();
+      expect(actions).not.toBeNull();
+      expect(shortcutBox).not.toBeNull();
+      expect(actions!.y + actions!.height).toBeLessThan(shortcutBox!.y);
+
+      for (const [name, target] of [
+        ["Kalendarz", "#kalendarz"],
+        ["Odbiór odpadów", "#odpady"],
+        ["Ważne kontakty", "#kontakty"],
+      ]) {
+        await shortcuts.getByRole("link", { name, exact: true }).click();
+        await expect(page).toHaveURL(new RegExp(`${target}$`));
+        await expect(page.locator(target).getByRole("heading", { level: 2 })).toBeInViewport();
+      }
+
+      await shortcuts.getByRole("link", { name: "Kalendarz", exact: true }).click();
+      await page.getByRole("tab", { name: "Tydzień", exact: true }).click();
+      await expect(page.getByRole("tab", { name: "Tydzień", exact: true })).toHaveAttribute("aria-selected", "true");
+      await expect(page.getByText("Brak wydarzeń w wybranym zakresie.")).toBeVisible();
+      await page.getByRole("tab", { name: "Miesiąc", exact: true }).click();
+      await expect(page.locator("#kalendarz")).toContainText("15 września");
+      await expect(page.locator("#odpady")).toContainText("30 września 2026");
+
+      const artwork = await page.request.get("/autumn-landscape.webp");
+      expect(artwork.ok()).toBe(true);
+      expect(artwork.headers()["content-type"]).toContain("image/webp");
+    });
+  }
+});
