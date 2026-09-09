@@ -65,8 +65,8 @@ export function CalendarBoard() {
   );
 
   return (
-    <section id="kalendarz" className="bg-cream py-24">
-      <div className="mx-auto max-w-6xl px-4 sm:px-5">
+    <section id="kalendarz" className="bg-cream py-16 sm:py-20 lg:py-24">
+      <div className="site-container">
         <SectionHeading
           index="04"
           eyebrow="Życie wsi"
@@ -76,7 +76,7 @@ export function CalendarBoard() {
 
         <div className="grid gap-6 lg:grid-cols-2">
           {/* Kalendarz */}
-          <div className="rounded-3xl border border-ink/10 bg-white p-7 shadow-md shadow-pine-900/5">
+          <div className="rounded-2xl border border-ink/10 bg-white p-5 sm:p-7 shadow-md shadow-pine-900/5">
             <div className="mb-6 flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
               <h3 className="font-serif text-2xl font-semibold tracking-tight text-pine-900">
                 Wydarzenia
@@ -151,7 +151,7 @@ export function CalendarBoard() {
           {/* Tablica ogłoszeń */}
           <div
             id="aktualnosci"
-            className="rounded-3xl border border-ink/10 bg-white p-7 shadow-md shadow-pine-900/5"
+            className="rounded-2xl border border-ink/10 bg-white p-5 sm:p-7 shadow-md shadow-pine-900/5"
           >
             <h3 className="mb-6 font-serif text-2xl font-semibold tracking-tight text-pine-900">
               📌 Ogłoszenia

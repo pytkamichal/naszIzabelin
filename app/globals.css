@@ -252,6 +252,18 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Shared page grid keeps every section aligned with the hero and navigation. */
+.site-container {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: 24px;
+}
+
+@media (min-width: 640px) {
+  .site-container { padding-inline: 32px; }
+}
+
 /* Real phones use overlay scrollbars, but narrow desktop windows and some
    device emulators render a classic vertical scrollbar whose gutter exposes
    the page background as a stray strip on the right. Below `sm` we hide that
@@ -504,6 +516,7 @@ html[data-season="autumn"] .autumn-shortcuts {
   display: grid;
   grid-template-columns: 0.85fr repeat(3, 1fr);
   align-items: stretch;
+  width: calc(100% - 64px);
   max-width: 1136px;
   margin-inline: auto;
   border-top: 1px solid rgb(243 223 184 / 0.26);
@@ -563,7 +576,7 @@ html[data-season="autumn"] header > div {
 
 @media (max-width: 1023px) {
   html[data-season="autumn"] .hero-motto { display: none; }
-  html[data-season="autumn"] .autumn-shortcuts { margin-inline: 32px; grid-template-columns: repeat(3, 1fr); }
+  html[data-season="autumn"] .autumn-shortcuts { margin-inline: auto; grid-template-columns: repeat(3, 1fr); }
   .autumn-shortcuts-title { display: none; }
   .autumn-shortcuts > a { padding: 26px 16px; }
   .autumn-shortcuts > a:nth-child(2) { border-left: 0; }
@@ -579,7 +592,7 @@ html[data-season="autumn"] header > div {
   html[data-season="autumn"] .autumn-heading { font-size: clamp(4rem, 18vw, 6rem); gap: 16px; }
   html[data-season="autumn"] .hero-lead { font-size: 1rem; max-width: 360px; margin-top: 26px; }
   html[data-season="autumn"] .autumn-actions { gap: 10px 22px; margin-top: 24px; }
-  html[data-season="autumn"] .autumn-shortcuts { margin-inline: 24px; grid-template-columns: 1fr; padding-bottom: 16px; }
+  html[data-season="autumn"] .autumn-shortcuts { width: calc(100% - 48px); margin-inline: auto; grid-template-columns: 1fr; padding-bottom: 16px; }
   .autumn-shortcuts > a { padding: 16px 0; border-left: 0; border-bottom: 1px solid rgb(243 223 184 / 0.12); }
   .autumn-shortcuts > a > span { display: flex; flex: 1; align-items: baseline; gap: 12px; }
   .autumn-shortcuts small { display: none; }

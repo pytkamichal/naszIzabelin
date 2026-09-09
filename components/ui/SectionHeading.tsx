@@ -23,16 +23,16 @@ export function SectionHeading({
   const dark = tone === "dark";
 
   return (
-    <div className="mb-12 max-w-3xl">
+    <div className="mb-9 max-w-3xl sm:mb-12">
       {eyebrow ? (
         <p
-          className={`flex items-center gap-4 text-xs font-extrabold uppercase tracking-[0.28em] ${
+          className={`flex flex-wrap items-center gap-3 text-[11px] font-bold uppercase tracking-[0.18em] ${
             dark ? "text-gold-300" : "text-pine-700"
           }`}
         >
           {index ? (
             <span
-              className={`flex h-9 w-9 items-center justify-center rounded-full border font-serif text-base font-semibold italic tracking-normal ${
+              className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-md border font-mono text-xs font-medium tracking-normal ${
                 dark
                   ? "border-gold-400/45 bg-gold-400/10 text-gold-400"
                   : "border-gold-500/45 bg-gold-500/10 text-gold-500"
@@ -41,11 +41,6 @@ export function SectionHeading({
               {index}
             </span>
           ) : null}
-          <span aria-hidden className="inline-flex items-center gap-[5px] self-center">
-            <span className={`h-[5px] w-[5px] rotate-45 ${dark ? "bg-gold-300" : "bg-gold-500"}`} />
-            <span className={`h-2 w-2 rotate-45 ${dark ? "bg-gold-300" : "bg-gold-500"}`} />
-            <span className={`h-[5px] w-[5px] rotate-45 ${dark ? "bg-gold-300" : "bg-gold-500"}`} />
-          </span>
           {eyebrow}
           {badge ? (
             <span className="self-center rounded-full bg-gold-400 px-2.5 py-0.5 text-[10px] font-extrabold uppercase tracking-wider text-pine-950">
@@ -55,7 +50,7 @@ export function SectionHeading({
         </p>
       ) : null}
       <h2
-        className={`mt-4 font-serif text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl ${
+        className={`mt-4 text-balance font-serif text-3xl font-semibold leading-[1.12] tracking-tight sm:text-4xl lg:text-5xl ${
           dark ? "text-cream" : "text-ink"
         }`}
       >

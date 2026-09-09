@@ -52,7 +52,7 @@ export function VillageStats() {
   return (
     <section
       id="o-wsi"
-      className="grain relative overflow-hidden bg-pine-950 py-24 text-cream"
+      className="grain relative overflow-hidden bg-pine-950 py-16 sm:py-20 lg:py-24 text-cream"
     >
       {/* Soft radial glow behind the numbers */}
       <div
@@ -64,7 +64,7 @@ export function VillageStats() {
         }}
       />
 
-      <div className="relative mx-auto max-w-6xl px-4 sm:px-5">
+      <div className="relative site-container">
         <Reveal>
           <SectionHeading
             index="01"
@@ -75,11 +75,11 @@ export function VillageStats() {
           />
         </Reveal>
 
-        <div className="grid grid-cols-2 gap-x-8 gap-y-12 sm:grid-cols-3 lg:grid-cols-6 lg:gap-x-10">
+        <div className="grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 xl:grid-cols-6">
           {cards.map((card, i) => (
             <Reveal key={card.key} delay={i * 80} className="h-full">
               <div className="flex h-full flex-col border-t-2 border-gold-400/50 pt-5">
-                <span className="font-serif text-5xl font-semibold tracking-tight text-gold-300 lg:text-[3.4rem]">
+                <span className="whitespace-nowrap font-serif text-4xl font-semibold tabular-nums tracking-tight text-gold-300 sm:text-5xl xl:text-[2.5rem]">
                   {card.value}
                 </span>
                 <span className="mt-3 text-xs font-semibold uppercase tracking-[0.14em] leading-relaxed text-cream/55">

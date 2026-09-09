@@ -21,8 +21,8 @@ export function VillageHistory() {
   ];
 
   return (
-    <section id="historia" className="bg-cream py-24">
-      <div className="mx-auto max-w-6xl px-4 sm:px-5">
+    <section id="historia" className="bg-cream py-16 sm:py-20 lg:py-24">
+      <div className="site-container">
         <div className="gap-14 lg:grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
           {/* Left column: heading + sources, sticky on desktop so it keeps
               the reader company along the long timeline. */}
