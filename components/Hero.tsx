@@ -226,7 +226,7 @@ export function Hero() {
         className="hero-desktop-crest pointer-events-none absolute right-8 top-32 hidden h-[180px] w-auto drop-shadow-[0_12px_28px_rgba(0,0,0,0.55)] md:block lg:right-16 lg:h-[220px]"
       />
 
-      <div className="hero-content relative mx-auto w-full max-w-6xl px-4 pb-24 pt-40 sm:px-5 sm:pb-28">
+      <div className="hero-content relative site-container pb-24 pt-40 sm:pb-28">
         {/* Coat of arms for small screens — sits above the title, clear of the copy. */}
         <img
           src="/herb.png?v=2"

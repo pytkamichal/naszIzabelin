@@ -14,10 +14,10 @@ import { SectionHeading } from "./ui/SectionHeading";
 function TimeChip({ value }: { value: string }) {
   const [time, note] = value.split(" ");
   return (
-    <span className="rounded-md bg-white/5 px-2.5 py-1 text-base font-medium tracking-wider text-gold-300 ring-1 ring-inset ring-white/10">
+    <span className="relative text-center rounded-md bg-white/5 px-2.5 py-1 text-base font-medium tracking-wider text-gold-300 ring-1 ring-inset ring-white/10">
       {time}
       {note ? (
-        <sup className="ml-0.5 text-[0.6rem] font-bold text-gold-400/80">
+        <sup className="absolute right-1 top-1 text-[0.6rem] font-bold text-gold-400/80">
           {note}
         </sup>
       ) : null}
@@ -32,7 +32,7 @@ function DayGroup({ label, times }: { label: string; times: string[] }) {
       <p className="mb-2.5 text-xs font-extrabold uppercase tracking-[0.2em] text-cream/40">
         {label}
       </p>
-      <div className="flex flex-wrap gap-2 font-mono">
+      <div className="grid grid-cols-3 gap-2 font-mono sm:grid-cols-5">
         {times.map((t) => (
           <TimeChip key={t} value={t} />
         ))}
@@ -43,7 +43,7 @@ function DayGroup({ label, times }: { label: string; times: string[] }) {
 
 function DirectionBoard({ direction }: { direction: BusDirection }) {
   return (
-    <div className="overflow-hidden rounded-3xl border border-white/10 bg-pine-900/70 shadow-xl shadow-black/20 backdrop-blur">
+    <div className="overflow-hidden rounded-2xl border border-white/10 bg-pine-900/70 shadow-xl shadow-black/20 backdrop-blur">
       <div className="flex items-center justify-between gap-3 border-b border-white/10 px-6 py-4">
         <div className="min-w-0">
           <p className="font-serif text-lg font-semibold tracking-tight text-cream">
@@ -69,7 +69,7 @@ export function Transport() {
   return (
     <section
       id="transport"
-      className="grain relative overflow-hidden bg-pine-950 py-24 text-cream"
+      className="grain relative overflow-hidden bg-pine-950 py-16 sm:py-20 lg:py-24 text-cream"
     >
       <div
         aria-hidden
@@ -80,7 +80,7 @@ export function Transport() {
         }}
       />
 
-      <div className="relative mx-auto max-w-6xl px-4 sm:px-5">
+      <div className="relative site-container">
         <SectionHeading
           index="06"
           eyebrow="Komunikacja"

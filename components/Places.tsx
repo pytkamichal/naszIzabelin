@@ -21,8 +21,8 @@ export function Places() {
   const filtered = nearbyPlaces.filter((place) => place.category === selected);
 
   return (
-    <section id="miejsca" className="bg-sand py-24">
-      <div className="mx-auto max-w-6xl px-4 sm:px-5">
+    <section id="miejsca" className="bg-sand py-16 sm:py-20 lg:py-24">
+      <div className="site-container">
         <SectionHeading
           index="03"
           eyebrow="Wokół Izabelina"
@@ -35,10 +35,10 @@ export function Places() {
             <button
               key={cat.id}
               onClick={() => setSelected(cat.id)}
-              className={`inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-bold transition ${
+              className={`inline-flex items-center gap-2 rounded-full border px-5 py-2.5 text-sm font-bold transition ${
                 selected === cat.id
-                  ? "bg-pine-900 text-cream shadow-lg shadow-pine-900/25"
-                  : "border border-ink/15 bg-cream text-ink/70 hover:border-pine-500/50 hover:text-pine-800"
+                  ? "border-pine-900 bg-pine-900 text-cream shadow-lg shadow-pine-900/25"
+                  : "border-ink/15 bg-cream text-ink/70 hover:border-pine-500/50 hover:text-pine-800"
               }`}
             >
               <span>{cat.emoji}</span>
@@ -67,7 +67,7 @@ export function Places() {
 
 function PlaceCard({ place }: { place: Place }) {
   return (
-    <div className="group overflow-hidden rounded-3xl border border-ink/10 bg-cream shadow-sm transition duration-300 hover:-translate-y-1.5 hover:border-gold-500/40 hover:shadow-xl hover:shadow-pine-900/10">
+    <div className="group overflow-hidden rounded-2xl border border-ink/10 bg-cream shadow-sm transition duration-300 hover:-translate-y-1.5 hover:border-gold-500/40 hover:shadow-xl hover:shadow-pine-900/10">
       <div className="relative flex h-28 items-center justify-center bg-gradient-to-br from-pine-100 to-sand">
         <span className="text-5xl transition-transform duration-300 group-hover:scale-110">
           {place.icon}
@@ -93,7 +93,7 @@ function PlaceCard({ place }: { place: Place }) {
 
 function AmenityCard({ item }: { item: Amenity }) {
   return (
-    <div className="group flex items-start gap-4 rounded-3xl border border-ink/10 bg-cream p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-gold-500/40 hover:shadow-xl hover:shadow-pine-900/10">
+    <div className="group flex items-start gap-4 rounded-2xl border border-ink/10 bg-cream p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-gold-500/40 hover:shadow-xl hover:shadow-pine-900/10">
       <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-pine-100 to-gold-300/50 text-pine-600 ring-1 ring-pine-600/10 transition-transform duration-300 group-hover:scale-105">
         <Icon name={item.icon} className="h-6 w-6" />
       </span>

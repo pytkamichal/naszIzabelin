@@ -20,7 +20,7 @@ export function Footer() {
         }}
       />
 
-      <div className="relative mx-auto max-w-6xl px-4 py-20 sm:px-5">
+      <div className="relative site-container py-16 sm:py-20">
         <div className="grid gap-14 lg:grid-cols-2">
           {/* Suggestion form */}
           <div>

@@ -25,8 +25,8 @@ function StatusPill({ status }: { status: InvestmentStatus }) {
 
 export function Investments() {
   return (
-    <section id="inwestycje" className="bg-sand py-24">
-      <div className="mx-auto max-w-6xl px-4 sm:px-5">
+    <section id="inwestycje" className="bg-sand py-16 sm:py-20 lg:py-24">
+      <div className="site-container">
         <SectionHeading
           index="05"
           eyebrow="Infrastruktura"
@@ -36,7 +36,7 @@ export function Investments() {
         />
 
         {/* Tabela (od sm w górę) */}
-        <div className="hidden overflow-hidden rounded-3xl border border-ink/10 shadow-md shadow-pine-900/5 sm:block">
+        <div className="hidden overflow-hidden rounded-2xl border border-ink/10 shadow-md shadow-pine-900/5 sm:block">
           <table className="w-full border-collapse text-left">
             <thead>
               <tr className="bg-pine-950 text-xs uppercase tracking-[0.16em] text-cream/60">
@@ -66,7 +66,7 @@ export function Investments() {
           {investments.map((item) => (
             <div
               key={item.name}
-              className="rounded-3xl border border-ink/10 bg-cream p-5 shadow-sm"
+              className="rounded-2xl border border-ink/10 bg-cream p-5 shadow-sm"
             >
               <div className="flex items-center justify-between gap-3">
                 <h3 className="font-serif text-lg font-semibold tracking-tight text-pine-900">

@@ -7,8 +7,8 @@ function telHref(phone: string): string {
 
 export function Contacts() {
   return (
-    <section id="kontakty" className="bg-sand py-24">
-      <div className="mx-auto max-w-6xl px-4 sm:px-5">
+    <section id="kontakty" className="bg-sand py-16 sm:py-20 lg:py-24">
+      <div className="site-container">
         <SectionHeading
           index="08"
           eyebrow="Pomoc i usługi"
@@ -21,7 +21,7 @@ export function Contacts() {
           {contacts.map((contact) => (
             <div
               key={contact.role}
-              className="flex gap-4 rounded-3xl border border-ink/10 bg-cream p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-gold-500/40 hover:shadow-xl hover:shadow-pine-900/10"
+              className="flex gap-4 rounded-2xl border border-ink/10 bg-cream p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-gold-500/40 hover:shadow-xl hover:shadow-pine-900/10"
             >
               <div
                 className="flex h-13 w-13 shrink-0 items-center justify-center rounded-2xl bg-pine-100 text-2xl ring-1 ring-pine-900/10"

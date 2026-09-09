@@ -17,8 +17,8 @@ const KINDS: WasteKind[] = ["bags", "pszok", "bulky"];
 
 export function Waste() {
   return (
-    <section id="odpady" className="bg-cream py-24">
-      <div className="mx-auto max-w-6xl px-4 sm:px-5">
+    <section id="odpady" className="bg-cream py-16 sm:py-20 lg:py-24">
+      <div className="site-container">
         <SectionHeading
           index="07"
           eyebrow="Gospodarka odpadami"
@@ -30,7 +30,7 @@ export function Waste() {
         <WasteNextPickup />
 
         {/* Subskrypcja kalendarza odpadów */}
-        <div className="mb-10 rounded-3xl border border-pine-800/15 bg-pine-50 p-6">
+        <div className="mb-10 rounded-2xl border border-pine-800/15 bg-pine-50 p-6">
           <h3 className="font-serif text-xl font-semibold tracking-tight text-pine-900">
             📅 Dodaj wywóz śmieci do swojego kalendarza
           </h3>
@@ -48,7 +48,7 @@ export function Waste() {
           {wasteBags.map((bag) => (
             <div
               key={bag.color}
-              className="flex items-start gap-3 rounded-3xl border border-ink/10 bg-white p-5 shadow-sm transition hover:border-gold-500/40 hover:shadow-md"
+              className="flex items-start gap-3 rounded-2xl border border-ink/10 bg-white p-5 shadow-sm transition hover:border-gold-500/40 hover:shadow-md"
             >
               <span className="text-2xl" aria-hidden>
                 {bag.icon}
@@ -65,7 +65,7 @@ export function Waste() {
 
         {/* Legenda + informacje */}
         <div className="grid gap-5 lg:grid-cols-2">
-          <div className="rounded-3xl border border-ink/10 bg-sand p-6">
+          <div className="rounded-2xl border border-ink/10 bg-sand p-6">
             <h3 className="text-xs font-extrabold uppercase tracking-[0.22em] text-pine-700">
               Oznaczenia
             </h3>
@@ -84,7 +84,7 @@ export function Waste() {
             </p>
           </div>
 
-          <div className="rounded-3xl border border-ink/10 bg-sand p-6">
+          <div className="rounded-2xl border border-ink/10 bg-sand p-6">
             <h3 className="text-xs font-extrabold uppercase tracking-[0.22em] text-pine-700">
               Wykonawca i kontakt
             </h3>

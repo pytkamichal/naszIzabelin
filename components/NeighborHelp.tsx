@@ -16,7 +16,7 @@ function RequestCard({ request }: { request: NeighborRequest }) {
   const contactHref = request.contact ? telHref(request.contact) : null;
 
   return (
-    <article className="flex h-full flex-col rounded-3xl border border-ink/10 bg-cream p-6 shadow-sm">
+    <article className="flex h-full flex-col rounded-2xl border border-ink/10 bg-cream p-6 shadow-sm">
       <div className="flex items-center justify-between gap-3">
         <span
           className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-extrabold uppercase tracking-wide ring-1 ring-inset ${
@@ -66,8 +66,8 @@ export async function NeighborHelp() {
   const requests = await getVisibleNeighborRequests();
 
   return (
-    <section id="sasiedzka-pomoc" className="bg-cream py-24">
-      <div className="mx-auto max-w-6xl px-4 sm:px-5">
+    <section id="sasiedzka-pomoc" className="bg-cream py-16 sm:py-20 lg:py-24">
+      <div className="site-container">
         <SectionHeading
           index="09"
           eyebrow="Wspólnota"
@@ -79,7 +79,7 @@ export async function NeighborHelp() {
           {/* Approved board */}
           <div>
             {requests.length === 0 ? (
-              <div className="flex h-full min-h-[220px] flex-col items-center justify-center rounded-3xl border border-dashed border-ink/20 bg-sand/60 p-8 text-center">
+              <div className="flex h-full min-h-[220px] flex-col items-center justify-center rounded-2xl border border-dashed border-ink/20 bg-sand/60 p-8 text-center">
                 <p className="text-4xl" aria-hidden>
                   🌻
                 </p>
@@ -98,7 +98,7 @@ export async function NeighborHelp() {
           </div>
 
           {/* Submission form */}
-          <div className="rounded-3xl border border-ink/10 bg-white p-7 shadow-md shadow-pine-900/5">
+          <div className="rounded-2xl border border-ink/10 bg-white p-5 sm:p-7 shadow-md shadow-pine-900/5">
             <h3 className="font-serif text-2xl font-semibold tracking-tight text-pine-900">
               Dodaj zgłoszenie
             </h3>
